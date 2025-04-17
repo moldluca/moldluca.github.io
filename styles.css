@@ -1,0 +1,216 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+header {
+    text-align: center;
+    padding: 2rem;
+    background-color: #333;
+}
+
+header.hero {
+    position: relative;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: url('images/hero-background.png'); /* Use only the image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff; /* Ensure text is white for better contrast */
+}
+
+header.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Lighten the overlay to 30% opacity */
+    z-index: 1;
+}
+
+header.hero h1,
+header.hero p,
+header.hero .cta-button {
+    position: relative;
+    z-index: 2; /* Ensure text and button are above the overlay */
+}
+
+header.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: flicker 3s infinite;
+}
+
+header.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+header.hero .cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #1e90ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+header.hero .cta-button:hover {
+    background-color: #0056b3;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    background-color: #444;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #f0f0f0;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    padding: 2rem;
+}
+
+aside {
+    width: 25%;
+    padding: 1rem;
+    background-color: #222;
+    color: #f0f0f0;
+    border-right: 1px solid #444;
+}
+
+aside h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin-bottom: 0.5rem;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #f0f0f0;
+}
+
+section#blog {
+    padding: 2rem;
+    text-align: center;
+}
+
+section#blog h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+article {
+    background-color: #222;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
+    color: #f0f0f0;
+}
+
+article img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+article h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+article p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+article a {
+    text-decoration: none;
+    color: #1e90ff;
+    font-weight: bold;
+}
+
+article a:hover {
+    text-decoration: underline;
+}
+
+section {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    text-align: left;
+}
+
+section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form label {
+    margin-bottom: 0.5rem;
+}
+
+form input, form textarea, form button {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+footer {
+    background-color: #333;
+    color: #f0f0f0;
+    text-align: center;
+    padding: 1rem;
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        opacity: 0.5;
+    }
+}
