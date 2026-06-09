@@ -1,53 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Severance Blog</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luca Moldovan — Portofoliu Web</title>
+  <meta name="description" content="Portofoliul lui Luca Moldovan — website-uri, platforme și aplicații web construite de la zero.">
+  <meta property="og:title" content="Luca Moldovan — Portofoliu Web">
+  <meta property="og:description" content="Website-uri, platforme și aplicații web construite de la zero.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="hero" style="background-image: url('images/hero-background.png');">
-        <h1>Inside Lumon Industries</h1>
-        <p>Exploring the mysteries of work-life balance.</p>
-        <a href="#blog" class="cta-button">Explore Blog</a>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section id="blog">
-            <h2>Latest Posts</h2>
-            <div class="blog-grid">
-                <article>
-                    <img src="images/severance-procedure.png" alt="Severance Procedure">
-                    <h3>The Severance Procedure</h3>
-                    <p>Discover how the severance procedure changes lives and the ethical questions it raises.</p>
-                    <a href="severance-procedure.html">Read more...</a>
-                </article>
-                <article>
-                    <img src="images/life-at-lumon.png" alt="Life at Lumon">
-                    <h3>Life at Lumon</h3>
-                    <p>What is it like to work at Lumon Industries? A glimpse into the corporate culture.</p>
-                    <a href="life-at-lumon.html">Read more...</a>
-                </article>
-                <article>
-                    <img src="images/unanswered-questions.png" alt="Unanswered Questions">
-                    <h3>Unanswered Questions</h3>
-                    <p>Exploring the mysteries surrounding Lumon and its enigmatic practices.</p>
-                    <a href="unanswered-questions.html">Read more...</a>
-                </article>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Severance Blog. All rights reserved.</p>
-    </footer>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="term">
+    <div class="term-bar">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span class="term-title">luca@portfolio: ~</span>
+    </div>
+    <div class="term-body">
+      <p class="line"><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">whoami</span></p>
+      <h1 class="name" id="typed"></h1>
+      <p class="line subtitle">// web developer · student · builder de website-uri</p>
+      <p class="line"><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">ls ./proiecte --status</span> <span class="caret">▋</span></p>
+      <p class="meta" id="summary">// se scanează proiectele...</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid" id="grid" aria-label="Proiecte"></section>
+  </main>
+
+  <footer class="footer">
+    <p><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">cat contact.txt</span></p>
+    <p class="footer-links">
+      <a href="https://github.com/moldluca" target="_blank" rel="noopener">github.com/moldluca</a>
+      <span class="sep">·</span>
+      <a href="mailto:moldemil@gmail.com">moldemil@gmail.com</a>
+    </p>
+    <p class="footer-note">// © <span id="year"></span> Luca Moldovan — build static · status verificat live în browser</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
