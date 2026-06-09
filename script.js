@@ -47,11 +47,6 @@ const PROJECTS = [
     tech:['Node.js','Socket.IO','HTML'], img:'images/projects/crocoai.png',
     live:null, repo:null, since:'2026-05-03', priv:true },
 
-  { slug:'dragos', title:'Bârlădianu Dragoș — Portfolio', cat:'Portfolio',
-    desc:'Portofoliu personal pentru Dragoș Bârlădianu (ARPD): bio, experiență, proiecte și inițiative.',
-    tech:['Tailwind','HTML','JS'], img:null,
-    live:'https://dragosbarladianu.ro/', repo:null, since:'2026-05-05' },
-
   { slug:'roworlds', title:'RO Worlds Tracker', cat:'Live data',
     desc:'Live tracker pentru echipele românești la FIRST World Championship 2026 Houston (FTC + FRC), cu Web Push.',
     tech:['Node.js','FIRST API','Web Push'], img:'images/projects/roworlds.png',
