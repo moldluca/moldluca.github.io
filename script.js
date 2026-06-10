@@ -165,11 +165,8 @@ document.querySelectorAll('.reveal').forEach((el,i)=>{ el.style.transitionDelay 
 
 // ---------- spray draw on load ----------
 addEventListener('load', () => setTimeout(() => {
-  const path = document.querySelector('.spray-svg path');
-  if(path){ path.style.transition = 'stroke-dashoffset 1.4s ease .3s'; path.style.strokeDashoffset = '0'; }
-  document.querySelectorAll('.drip').forEach((dr,i) => { dr.style.transition = `transform .6s ease ${1.3+i*.15}s`; dr.style.transform='scaleY(1)'; });
-  document.querySelector('.mold-graf')?.classList.add('in');
-}, 250));
+  document.querySelector('.mold-graf')?.classList.add('spraying');
+}, 850));
 
 // ---------- view more (graffiti transition) ----------
 const moreBtn = document.getElementById('moreBtn');
