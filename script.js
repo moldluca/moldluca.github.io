@@ -168,37 +168,47 @@ addEventListener('load', () => setTimeout(() => {
   document.querySelector('.mold-graf')?.classList.add('spraying');
 }, 850));
 
-// ---------- view more (graffiti transition) ----------
+// ---------- galerie graffiti (vandalizare → toate proiectele) ----------
 const moreBtn = document.getElementById('moreBtn');
-if(moreBtn){
-  bindCursor(moreBtn);
-  let expanded = false;
-  const gwipe = document.getElementById('gwipe'), gword = document.getElementById('gwipeWord');
-  function graffiti(word, color, after){
-    gword.textContent = word; gwipe.style.setProperty('--gc', color);
-    gwipe.classList.add('in');
-    setTimeout(after, 620);
-    setTimeout(() => gwipe.classList.remove('in'), 1280);
-  }
-  moreBtn.addEventListener('click', () => {
-    if(!expanded){
-      graffiti('PROIECTE', '#E6357A', () => {
-        grid.classList.add('expanded');
-        document.querySelectorAll('.card.extra').forEach(c => c.classList.add('in'));
-        moreBtn.querySelector('span').textContent = 'Înapoi';
-        document.getElementById('proiecte').scrollIntoView({ block:'start' });
-      });
-      expanded = true;
-    } else {
-      graffiti('RESTORE', '#143A2A', () => {
-        grid.classList.remove('expanded');
-        moreBtn.querySelector('span').textContent = 'View more';
-        document.getElementById('proiecte').scrollIntoView({ block:'start' });
-      });
-      expanded = false;
-    }
+const gview = document.getElementById('gview');
+const gback = document.getElementById('gback');
+const vfx = document.getElementById('vfx');
+const vword = document.getElementById('vword');
+const GCOLORS = ['#E6357A','#7Bd14b','#2f6df0','#ff7a1a','#46e6d0','#ffd23f'];
+const gGrid = document.getElementById('gviewGrid');
+
+if(gGrid){
+  PROJECTS.forEach((p,i) => {
+    const c = GCOLORS[i % GCOLORS.length];
+    const initials = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
+    const thumb = p.img
+      ? `<div class="gthumb"><span class="gcat">${esc(p.cat)}</span><img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy"></div>`
+      : `<div class="gthumb noimg"><span class="gcat">${esc(p.cat)}</span>${initials}</div>`;
+    const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : (p.priv ? '<span style="color:#9a9483">intern</span>' : '');
+    const repo = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod</a>` : '';
+    const card = document.createElement('article');
+    card.className = 'gcard'; card.style.setProperty('--gc', c);
+    card.innerHTML = `${thumb}<div class="gbody"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p><div class="gtags">${p.tech.map(esc).join(' · ')}</div><div class="glinks">${live}${repo}</div></div>`;
+    gGrid.appendChild(card);
+    bindCursor(card);
   });
 }
+
+let vTransitioning = false;
+function vandalize(word, open){
+  if(vTransitioning || !vfx) return; vTransitioning = true;
+  vword.textContent = word;
+  vfx.classList.add('go');
+  setTimeout(() => {
+    if(open){ gview.classList.add('open'); gview.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll'); gview.scrollTop = 0; }
+    else { gview.classList.remove('open'); gview.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); }
+  }, 620);
+  setTimeout(() => { vfx.classList.remove('go'); vTransitioning = false; }, 1150);
+}
+moreBtn?.addEventListener('click', () => vandalize('PROIECTE', true));
+gback?.addEventListener('click', () => vandalize('RESTORE', false));
+if(moreBtn) bindCursor(moreBtn);
+if(gback) bindCursor(gback);
 
 // ---------- counters ----------
 function count(el){

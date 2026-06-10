@@ -18,7 +18,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=EB+Garamond:ital@0;1&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=EB+Garamond:ital@0;1&family=Anton&family=Permanent+Marker&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -106,7 +106,7 @@
   <section class="section" id="proiecte">
     <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">Proiecte</h2><span class="sec-line"></span><span class="sec-meta" id="proiecte-meta">// se scanează…</span></div>
     <div class="work-grid" id="grid"></div>
-    <div class="more-wrap reveal"><button class="more-btn" id="moreBtn" type="button"><span>View more</span> <em>✦</em></button></div>
+    <div class="more-wrap reveal"><button class="more-btn" id="moreBtn" type="button"><span>Toate proiectele</span> <em>✦</em></button></div>
   </section>
 
   <!-- ===== Competențe / grafice ===== -->
@@ -218,7 +218,31 @@
   </div>
 </footer>
 
-<div class="gwipe" id="gwipe" aria-hidden="true"><span class="gwipe-word" id="gwipeWord">PROIECTE</span></div>
+<!-- ===== Galerie graffiti (lume urbană, toate proiectele) ===== -->
+<div class="gview" id="gview" aria-hidden="true">
+  <div class="gview-inner">
+    <div class="gview-top">
+      <h2 class="gview-title">PRO<span class="o">IECTE</span></h2>
+      <button class="gback" id="gback" type="button">← înapoi la site</button>
+    </div>
+    <div class="gview-grid" id="gviewGrid"></div>
+    <p class="gview-foot">★ toate proiectele · zona vandalizată ★</p>
+  </div>
+</div>
+
+<!-- cortina de vandalizare -->
+<div class="vandal-fx" id="vfx" aria-hidden="true">
+  <span class="vblob" style="--c:#E6357A;width:40vmin;height:40vmin;left:4%;top:10%;"></span>
+  <span class="vblob" style="--c:#7Bd14b;width:32vmin;height:32vmin;left:60%;top:6%;"></span>
+  <span class="vblob" style="--c:#2f6df0;width:36vmin;height:36vmin;left:68%;top:54%;"></span>
+  <span class="vblob" style="--c:#ff7a1a;width:28vmin;height:28vmin;left:14%;top:60%;"></span>
+  <span class="vblob" style="--c:#46e6d0;width:26vmin;height:26vmin;left:38%;top:26%;"></span>
+  <span class="vblob" style="--c:#ffd23f;width:24vmin;height:24vmin;left:46%;top:74%;"></span>
+  <span class="vtag" style="left:7%;top:42%;color:#7Bd14b;font-size:6vmin;">street</span>
+  <span class="vtag" style="left:64%;top:36%;color:#E6357A;font-size:5vmin;">code</span>
+  <span class="vtag" style="left:28%;top:80%;color:#46e6d0;font-size:5vmin;">+ tag</span>
+  <span class="vword" id="vword">PROIECTE</span>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
