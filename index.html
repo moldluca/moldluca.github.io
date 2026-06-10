@@ -220,9 +220,16 @@
 
 <!-- ===== Galerie graffiti (lume urbană, toate proiectele) ===== -->
 <div class="gview" id="gview" aria-hidden="true">
+  <div class="gwall" aria-hidden="true">
+    <span class="wall-tag" style="left:1%;top:11%;color:#E6357A;font-size:16vmin;transform:rotate(-8deg);">LM</span>
+    <span class="wall-tag" style="right:2%;top:26%;color:#7Bd14b;font-size:8vmin;transform:rotate(6deg);">street</span>
+    <span class="wall-tag" style="left:5%;bottom:9%;color:#2f6df0;font-size:9vmin;transform:rotate(-5deg);">code</span>
+    <span class="wall-tag" style="right:7%;bottom:20%;color:#ff7a1a;font-size:7vmin;transform:rotate(9deg);">2026</span>
+    <span class="wall-tag" style="left:43%;top:5%;color:#46e6d0;font-size:6vmin;transform:rotate(-3deg);">▲▲▲</span>
+  </div>
   <div class="gview-inner">
     <div class="gview-top">
-      <h2 class="gview-title">PRO<span class="o">IECTE</span></h2>
+      <h2 class="gview-title"><span class="t1">PRO</span><span class="t2">IECTE</span></h2>
       <button class="gback" id="gback" type="button">← înapoi la site</button>
     </div>
     <div class="gview-grid" id="gviewGrid"></div>
@@ -230,18 +237,29 @@
   </div>
 </div>
 
-<!-- cortina de vandalizare -->
-<div class="vandal-fx" id="vfx" aria-hidden="true">
-  <span class="vblob" style="--c:#E6357A;width:40vmin;height:40vmin;left:4%;top:10%;"></span>
-  <span class="vblob" style="--c:#7Bd14b;width:32vmin;height:32vmin;left:60%;top:6%;"></span>
-  <span class="vblob" style="--c:#2f6df0;width:36vmin;height:36vmin;left:68%;top:54%;"></span>
-  <span class="vblob" style="--c:#ff7a1a;width:28vmin;height:28vmin;left:14%;top:60%;"></span>
-  <span class="vblob" style="--c:#46e6d0;width:26vmin;height:26vmin;left:38%;top:26%;"></span>
-  <span class="vblob" style="--c:#ffd23f;width:24vmin;height:24vmin;left:46%;top:74%;"></span>
-  <span class="vtag" style="left:7%;top:42%;color:#7Bd14b;font-size:6vmin;">street</span>
-  <span class="vtag" style="left:64%;top:36%;color:#E6357A;font-size:5vmin;">code</span>
-  <span class="vtag" style="left:28%;top:80%;color:#46e6d0;font-size:5vmin;">+ tag</span>
-  <span class="vword" id="vword">PROIECTE</span>
+<!-- canistră de spray + fum (tranziție) -->
+<div class="spray-fx" id="sfx" aria-hidden="true">
+  <div class="veil"></div>
+  <span class="puff" style="left:80%;top:78%;animation-delay:0s;"></span>
+  <span class="puff" style="left:70%;top:58%;animation-delay:.05s;"></span>
+  <span class="puff" style="left:55%;top:72%;animation-delay:.1s;"></span>
+  <span class="puff" style="left:60%;top:38%;animation-delay:.14s;"></span>
+  <span class="puff" style="left:40%;top:55%;animation-delay:.18s;"></span>
+  <span class="puff" style="left:30%;top:34%;animation-delay:.22s;"></span>
+  <span class="puff" style="left:48%;top:18%;animation-delay:.26s;"></span>
+  <span class="puff" style="left:18%;top:60%;animation-delay:.3s;"></span>
+  <span class="puff" style="left:76%;top:22%;animation-delay:.28s;"></span>
+  <span class="puff" style="left:10%;top:24%;animation-delay:.34s;"></span>
+  <svg class="spray-can" viewBox="0 0 60 130" xmlns="http://www.w3.org/2000/svg">
+    <rect x="25" y="2" width="10" height="9" rx="2" fill="#111"/>
+    <circle cx="30" cy="4.5" r="1.5" fill="#666"/>
+    <rect x="20" y="11" width="20" height="8" rx="2" fill="#2c2c2c"/>
+    <rect x="9" y="19" width="42" height="106" rx="9" fill="#16140f"/>
+    <rect x="9" y="48" width="42" height="32" fill="#E6357A"/>
+    <rect x="9" y="48" width="42" height="6" fill="#7Bd14b"/>
+    <text x="30" y="72" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="15" fill="#fff">LM</text>
+    <rect x="9" y="118" width="42" height="7" rx="3" fill="#0c0b08"/>
+  </svg>
 </div>
 <script src="script.js"></script>
 </body>

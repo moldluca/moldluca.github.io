@@ -172,8 +172,7 @@ addEventListener('load', () => setTimeout(() => {
 const moreBtn = document.getElementById('moreBtn');
 const gview = document.getElementById('gview');
 const gback = document.getElementById('gback');
-const vfx = document.getElementById('vfx');
-const vword = document.getElementById('vword');
+const sfx = document.getElementById('sfx');
 const GCOLORS = ['#E6357A','#7Bd14b','#2f6df0','#ff7a1a','#46e6d0','#ffd23f'];
 const gGrid = document.getElementById('gviewGrid');
 
@@ -195,18 +194,17 @@ if(gGrid){
 }
 
 let vTransitioning = false;
-function vandalize(word, open){
-  if(vTransitioning || !vfx) return; vTransitioning = true;
-  vword.textContent = word;
-  vfx.classList.add('go');
-  setTimeout(() => {
+function vandalize(open){
+  if(vTransitioning || !sfx) return; vTransitioning = true;
+  sfx.classList.add('go');                       // canistra intră + fumul se umflă
+  setTimeout(() => {                              // la fum maxim, schimbă lumea sub el
     if(open){ gview.classList.add('open'); gview.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll'); gview.scrollTop = 0; }
     else { gview.classList.remove('open'); gview.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); }
-  }, 620);
-  setTimeout(() => { vfx.classList.remove('go'); vTransitioning = false; }, 1150);
+  }, 900);
+  setTimeout(() => { sfx.classList.remove('go'); vTransitioning = false; }, 2000);  // fumul s-a risipit
 }
-moreBtn?.addEventListener('click', () => vandalize('PROIECTE', true));
-gback?.addEventListener('click', () => vandalize('RESTORE', false));
+moreBtn?.addEventListener('click', () => vandalize(true));
+gback?.addEventListener('click', () => vandalize(false));
 if(moreBtn) bindCursor(moreBtn);
 if(gback) bindCursor(gback);
 
