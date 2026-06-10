@@ -254,44 +254,57 @@ a{color:inherit;text-decoration:none;}
 }
 @media(max-width:560px){ .spray-can{width:108px;} }
 
-/* ===== Galerie graffiti — ZID PANNABIL (dark, static) ===== */
-.gview{position:fixed;inset:0;z-index:8000;overflow:auto;visibility:hidden;opacity:0;transition:opacity .3s ease;background:#0c0a08;}
+/* ===== Galerie graffiti — ZID REALIST (beton + spray + afișe) ===== */
+.gview{position:fixed;inset:0;z-index:8000;overflow:auto;visibility:hidden;opacity:0;transition:opacity .3s ease;background:#211e1b;}
 .gview.open{visibility:visible;opacity:1;}
 .gview.grabbing{cursor:grabbing;}
-.wall{position:relative;min-width:100%;min-height:100%;
-  background:
-    repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 1px, transparent 1px 46px),
-    repeating-linear-gradient(90deg, rgba(0,0,0,.28) 0 1px, transparent 1px 96px),
-    radial-gradient(circle at 28% 18%, #1c1814, #0c0a08 72%);}
-.wall::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-.wall-title{position:absolute;left:70px;top:56px;margin:0;font-family:'Bangers',cursive;font-size:180px;line-height:.78;letter-spacing:5px;
-  color:#FFE21F;-webkit-text-stroke:5px #000;paint-order:stroke fill;text-shadow:0 8px 0 #000,9px 15px 0 rgba(0,0,0,.55);transform:rotate(-3deg);}
-.wall-title .a{color:#FF2E88;} .wall-title .b{color:#00E5FF;}
-.deco{position:absolute;font-family:'Permanent Marker',cursive;line-height:1;pointer-events:none;
-  filter:drop-shadow(3px 4px 0 rgba(0,0,0,.55));opacity:.9;text-transform:lowercase;}
-.deco.out{color:transparent;-webkit-text-stroke:3px var(--oc,#fff);opacity:.5;}
-.piece{position:absolute;width:340px;background:#16130f;border:4px solid var(--gc,#FF2E88);box-shadow:8px 8px 0 #000;overflow:hidden;
-  transform:rotate(var(--rot,0deg));transition:transform .15s,box-shadow .15s;}
-.piece:hover{transform:translate(-3px,-5px) scale(1.03) rotate(var(--rot,0deg));box-shadow:13px 13px 0 var(--gc),0 0 26px var(--gc);z-index:5;}
-.pthumb{aspect-ratio:16/10;position:relative;overflow:hidden;border-bottom:4px solid var(--gc,#FF2E88);background:#0c0a08;}
-.pthumb img{width:100%;height:100%;object-fit:cover;object-position:top center;}
-.pthumb.noimg{display:grid;place-items:center;font-family:'Bangers',cursive;font-size:3rem;color:var(--gc,#FF2E88);
-  background:repeating-linear-gradient(45deg,#16130f 0 12px,#1e1813 12px 24px);}
-.pcat{position:absolute;top:10px;left:-30px;background:var(--gc,#FF2E88);color:#0c0a08;font-family:'Permanent Marker',cursive;
-  font-size:.76rem;padding:4px 36px;transform:rotate(-45deg);font-weight:700;}
-.pbody{padding:14px 16px 18px;}
-.piece h3{font-family:'Bangers',cursive;font-size:1.8rem;letter-spacing:1px;color:#fff;line-height:1;margin-bottom:6px;}
-.piece p{font-family:var(--body);font-size:.9rem;color:#b3aa9a;margin-bottom:10px;line-height:1.4;}
-.ptags{font-family:'Permanent Marker',cursive;font-size:.82rem;color:var(--gc,#FF2E88);}
-.plinks{margin-top:12px;display:flex;gap:12px;font-family:'Bangers',cursive;font-size:1rem;letter-spacing:1px;}
-.plinks a{color:#0c0a08;background:var(--gc,#FFE21F);padding:2px 11px;border:2px solid #000;}
-.plinks a:hover{background:#fff;}
-.gback{position:fixed;top:22px;left:22px;z-index:30;font-family:'Bangers',cursive;font-size:1.5rem;letter-spacing:1px;
-  background:#39FF14;color:#0c0a08;border:4px solid #000;padding:8px 22px;cursor:none;box-shadow:5px 5px 0 #000;transform:rotate(-2deg);transition:.15s;}
-.gback:hover{background:#FF2E88;color:#fff;transform:rotate(1deg) translate(-2px,-2px);box-shadow:8px 8px 0 #000;}
+.gview::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:25;box-shadow:inset 0 0 240px 70px rgba(0,0,0,.72);}
+/* beton uzat */
+.wall{position:relative;min-width:100%;min-height:100%;background:#2a2622;
+  background-image:
+    radial-gradient(ellipse 45% 40% at 16% 20%, rgba(255,255,255,.03), transparent 70%),
+    radial-gradient(ellipse 42% 55% at 84% 72%, rgba(0,0,0,.5), transparent 72%),
+    radial-gradient(ellipse 60% 40% at 50% 108%, rgba(0,0,0,.55), transparent 70%),
+    linear-gradient(180deg,#302b27,#221e1b);}
+.wall::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.6;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");background-size:240px;}
+.wall::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+  background:repeating-linear-gradient(90deg, transparent 0 90px, rgba(0,0,0,.16) 90px 92px, transparent 92px 220px);}
+/* litere de spray real */
+.wall-title{position:absolute;left:64px;top:48px;margin:0;font-family:'Lacquer',system-ui,cursive;font-size:200px;line-height:.8;letter-spacing:2px;
+  color:#e8b71d;-webkit-text-stroke:2px #14100c;paint-order:stroke fill;
+  text-shadow:5px 6px 7px rgba(0,0,0,.6);filter:url(#rough);transform:rotate(-3deg);}
+.wall-title .a{color:#c0392b;} .wall-title .b{color:#2a9d8f;}
+.deco{position:absolute;font-family:'Lacquer',system-ui,cursive;line-height:1;pointer-events:none;
+  filter:url(#rough) drop-shadow(2px 4px 5px rgba(0,0,0,.5));opacity:.8;text-transform:lowercase;}
+.deco.out{color:transparent;-webkit-text-stroke:2px var(--oc,#fff);opacity:.4;}
+/* afișe lipite pe perete */
+.piece{position:absolute;width:328px;background:#dcd5c4;padding:11px 11px 4px;
+  box-shadow:0 14px 28px rgba(0,0,0,.55),0 3px 6px rgba(0,0,0,.45);
+  transform:rotate(var(--rot,0deg));transition:transform .18s,box-shadow .18s;}
+.piece::before,.piece::after{content:"";position:absolute;top:-9px;width:72px;height:24px;
+  background:rgba(226,216,188,.4);box-shadow:0 1px 3px rgba(0,0,0,.3);}
+.piece::before{left:18px;transform:rotate(-6deg);}
+.piece::after{right:18px;transform:rotate(5deg);}
+.piece:hover{transform:translateY(-4px) rotate(var(--rot,0deg)) scale(1.015);box-shadow:0 22px 44px rgba(0,0,0,.62),0 4px 8px rgba(0,0,0,.5);z-index:5;}
+.pthumb{aspect-ratio:16/10;position:relative;overflow:hidden;background:#15120f;border:1px solid rgba(0,0,0,.18);}
+.pthumb img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:contrast(1.05) saturate(.96) brightness(.96);}
+.pthumb.noimg{display:grid;place-items:center;font-family:'Lacquer',system-ui,cursive;font-size:2.6rem;color:#d8d0bd;background:#1a1613;}
+.pcat{position:absolute;top:8px;left:8px;background:rgba(18,15,12,.85);color:#e8e2d4;font-family:'Permanent Marker',cursive;
+  font-size:.68rem;letter-spacing:.5px;padding:2px 9px;transform:rotate(-2deg);}
+.pbody{padding:10px 5px 12px;}
+.piece h3{font-family:'Permanent Marker',cursive;font-size:1.5rem;color:#171310;line-height:1.02;margin-bottom:5px;transform:rotate(-.6deg);}
+.piece p{font-family:var(--body);font-size:.86rem;color:#42392c;margin-bottom:8px;line-height:1.35;}
+.ptags{font-family:'Permanent Marker',cursive;font-size:.78rem;color:#7a2e16;}
+.plinks{margin-top:9px;display:flex;gap:16px;font-family:'Permanent Marker',cursive;font-size:1rem;}
+.plinks a{color:#171310;text-decoration:underline;text-decoration-color:var(--gc,#c0392b);text-decoration-thickness:2px;text-underline-offset:3px;}
+.plinks a:hover{color:var(--gc,#c0392b);}
+.plinks span{color:#8a7f6c;}
+.gback{position:fixed;top:20px;left:20px;z-index:30;font-family:'Permanent Marker',cursive;font-size:1.2rem;letter-spacing:.5px;
+  color:#ece6d8;background:rgba(18,15,12,.78);border:2px solid rgba(236,230,216,.35);padding:8px 18px;cursor:none;backdrop-filter:blur(2px);transition:.15s;}
+.gback:hover{background:#c0392b;border-color:#c0392b;color:#fff;}
 .pan-hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:30;font-family:'Permanent Marker',cursive;
-  color:#fff;background:rgba(0,0,0,.55);padding:6px 16px;border:2px solid rgba(255,255,255,.22);font-size:.9rem;white-space:nowrap;}
+  color:#cfc6b6;background:rgba(18,15,12,.6);padding:6px 16px;border:1px solid rgba(236,230,216,.2);font-size:.86rem;white-space:nowrap;}
 body.noscroll{overflow:hidden;}
 @media(prefers-reduced-motion:reduce){.spray-fx,.gview{transition:none;}.puff,.spray-can,.veil{animation:none;}}
 
