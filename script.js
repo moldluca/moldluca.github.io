@@ -186,15 +186,15 @@ if(wall){
     const rot = (Math.sin(i*3.3)*4).toFixed(2);
     const c = GCOLORS[i % GCOLORS.length];
     const initials = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
-    const thumb = p.img
-      ? `<div class="pthumb"><span class="pcat">${esc(p.cat)}</span><img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy"></div>`
-      : `<div class="pthumb noimg"><span class="pcat">${esc(p.cat)}</span>${initials}</div>`;
-    const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : (p.priv ? '<span style="color:#8a8276">intern</span>' : '');
+    const shot = p.img
+      ? `<div class="pshot"><img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy"></div>`
+      : `<div class="pshot noimg">${initials}</div>`;
+    const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : (p.priv ? '<span>intern</span>' : '');
     const repo = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod</a>` : '';
     const el = document.createElement('article');
     el.className = 'piece';
     el.style.cssText = `left:${x}px;top:${y}px;--gc:${c};--rot:${rot}deg;`;
-    el.innerHTML = `${thumb}<div class="pbody"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p><div class="ptags">${p.tech.map(esc).join(' · ')}</div><div class="plinks">${live}${repo}</div></div>`;
+    el.innerHTML = `<h3 class="ptitle">${esc(p.title)}</h3>${shot}<div class="pmeta">${esc(p.cat)} · ${p.tech.map(esc).join(' · ')}</div><div class="plinks">${live}${repo}</div>`;
     wall.appendChild(el);
     bindCursor(el);
   });

@@ -254,57 +254,50 @@ a{color:inherit;text-decoration:none;}
 }
 @media(max-width:560px){ .spray-can{width:108px;} }
 
-/* ===== Galerie graffiti — ZID REALIST (beton + spray + afișe) ===== */
-.gview{position:fixed;inset:0;z-index:8000;overflow:auto;visibility:hidden;opacity:0;transition:opacity .3s ease;background:#211e1b;}
+/* ===== Galerie graffiti — ZID DE CĂRĂMIDĂ (proiecte pictate) ===== */
+.gview{position:fixed;inset:0;z-index:8000;overflow:auto;visibility:hidden;opacity:0;transition:opacity .3s ease;background:#1c120e;}
 .gview.open{visibility:visible;opacity:1;}
 .gview.grabbing{cursor:grabbing;}
-.gview::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:25;box-shadow:inset 0 0 240px 70px rgba(0,0,0,.72);}
-/* beton uzat */
-.wall{position:relative;min-width:100%;min-height:100%;background:#2a2622;
+.gview::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:25;box-shadow:inset 0 0 240px 80px rgba(0,0,0,.7);}
+/* zid de cărămidă (running bond) */
+.wall{position:relative;min-width:100%;min-height:100%;background-color:#241813;
   background-image:
-    radial-gradient(ellipse 45% 40% at 16% 20%, rgba(255,255,255,.03), transparent 70%),
-    radial-gradient(ellipse 42% 55% at 84% 72%, rgba(0,0,0,.5), transparent 72%),
-    radial-gradient(ellipse 60% 40% at 50% 108%, rgba(0,0,0,.55), transparent 70%),
-    linear-gradient(180deg,#302b27,#221e1b);}
-.wall::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.6;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");background-size:240px;}
-.wall::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
-  background:repeating-linear-gradient(90deg, transparent 0 90px, rgba(0,0,0,.16) 90px 92px, transparent 92px 220px);}
-/* litere de spray real */
+    linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,.28)),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='80'><rect width='120' height='80' fill='%23211410'/><rect x='2' y='3' width='54' height='34' rx='2' fill='%234c2d24'/><rect x='62' y='3' width='54' height='34' rx='2' fill='%23452920'/><rect x='-28' y='43' width='54' height='34' rx='2' fill='%23482a1f'/><rect x='32' y='43' width='54' height='34' rx='2' fill='%23502f26'/><rect x='92' y='43' width='54' height='34' rx='2' fill='%23472a20'/></svg>");
+  background-size:auto, 156px 104px;}
+.wall::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");background-size:260px;}
+.wall::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;
+  background:radial-gradient(ellipse 40% 50% at 82% 72%, rgba(0,0,0,.6), transparent 70%),radial-gradient(ellipse 38% 46% at 18% 28%, rgba(0,0,0,.45), transparent 70%);}
+/* titlul mare, spray */
 .wall-title{position:absolute;left:64px;top:48px;margin:0;font-family:'Lacquer',system-ui,cursive;font-size:200px;line-height:.8;letter-spacing:2px;
-  color:#e8b71d;-webkit-text-stroke:2px #14100c;paint-order:stroke fill;
-  text-shadow:5px 6px 7px rgba(0,0,0,.6);filter:url(#rough);transform:rotate(-3deg);}
+  color:#e8b71d;-webkit-text-stroke:2px #120c08;paint-order:stroke fill;text-shadow:5px 6px 8px rgba(0,0,0,.7);filter:url(#rough);transform:rotate(-3deg);}
 .wall-title .a{color:#c0392b;} .wall-title .b{color:#2a9d8f;}
 .deco{position:absolute;font-family:'Lacquer',system-ui,cursive;line-height:1;pointer-events:none;
-  filter:url(#rough) drop-shadow(2px 4px 5px rgba(0,0,0,.5));opacity:.8;text-transform:lowercase;}
-.deco.out{color:transparent;-webkit-text-stroke:2px var(--oc,#fff);opacity:.4;}
-/* afișe lipite pe perete */
-.piece{position:absolute;width:328px;background:#dcd5c4;padding:11px 11px 4px;
-  box-shadow:0 14px 28px rgba(0,0,0,.55),0 3px 6px rgba(0,0,0,.45);
-  transform:rotate(var(--rot,0deg));transition:transform .18s,box-shadow .18s;}
-.piece::before,.piece::after{content:"";position:absolute;top:-9px;width:72px;height:24px;
-  background:rgba(226,216,188,.4);box-shadow:0 1px 3px rgba(0,0,0,.3);}
-.piece::before{left:18px;transform:rotate(-6deg);}
-.piece::after{right:18px;transform:rotate(5deg);}
-.piece:hover{transform:translateY(-4px) rotate(var(--rot,0deg)) scale(1.015);box-shadow:0 22px 44px rgba(0,0,0,.62),0 4px 8px rgba(0,0,0,.5);z-index:5;}
-.pthumb{aspect-ratio:16/10;position:relative;overflow:hidden;background:#15120f;border:1px solid rgba(0,0,0,.18);}
-.pthumb img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:contrast(1.05) saturate(.96) brightness(.96);}
-.pthumb.noimg{display:grid;place-items:center;font-family:'Lacquer',system-ui,cursive;font-size:2.6rem;color:#d8d0bd;background:#1a1613;}
-.pcat{position:absolute;top:8px;left:8px;background:rgba(18,15,12,.85);color:#e8e2d4;font-family:'Permanent Marker',cursive;
-  font-size:.68rem;letter-spacing:.5px;padding:2px 9px;transform:rotate(-2deg);}
-.pbody{padding:10px 5px 12px;}
-.piece h3{font-family:'Permanent Marker',cursive;font-size:1.5rem;color:#171310;line-height:1.02;margin-bottom:5px;transform:rotate(-.6deg);}
-.piece p{font-family:var(--body);font-size:.86rem;color:#42392c;margin-bottom:8px;line-height:1.35;}
-.ptags{font-family:'Permanent Marker',cursive;font-size:.78rem;color:#7a2e16;}
-.plinks{margin-top:9px;display:flex;gap:16px;font-family:'Permanent Marker',cursive;font-size:1rem;}
-.plinks a{color:#171310;text-decoration:underline;text-decoration-color:var(--gc,#c0392b);text-decoration-thickness:2px;text-underline-offset:3px;}
+  filter:url(#rough) drop-shadow(2px 4px 6px rgba(0,0,0,.6));opacity:.85;text-transform:lowercase;}
+.deco.out{color:transparent;-webkit-text-stroke:2px var(--oc,#fff);opacity:.45;}
+/* ===== fiecare proiect = piesă graffiti pe cărămidă ===== */
+.piece{position:absolute;width:360px;transform:rotate(var(--rot,0deg));transition:transform .18s;}
+.piece:hover{transform:rotate(var(--rot,0deg)) translateY(-3px) scale(1.02);z-index:5;}
+.ptitle{font-family:'Lacquer',system-ui,cursive;font-size:2.9rem;line-height:.96;letter-spacing:1px;color:var(--gc,#c0392b);
+  -webkit-text-stroke:1.6px #120c08;paint-order:stroke fill;text-shadow:3px 4px 6px rgba(0,0,0,.65);filter:url(#rough);
+  margin:0 0 14px;position:relative;}
+.ptitle::after{content:"";position:absolute;left:14%;bottom:-9px;width:5px;height:16px;background:var(--gc,#c0392b);
+  border-radius:0 0 4px 4px;box-shadow:54px 7px 0 var(--gc,#c0392b),116px -4px 0 var(--gc,#c0392b);opacity:.85;}
+.pshot{width:206px;aspect-ratio:16/10;overflow:hidden;border:4px solid var(--gc,#c0392b);transform:rotate(-1.6deg);
+  box-shadow:0 9px 20px rgba(0,0,0,.6);background:#15100c;}
+.pshot img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:contrast(1.06) saturate(.9) brightness(.93);}
+.pshot.noimg{display:grid;place-items:center;font-family:'Lacquer',system-ui,cursive;font-size:2.2rem;color:var(--gc,#c0392b);}
+.pmeta{font-family:'Permanent Marker',cursive;font-size:.82rem;color:var(--gc,#c0392b);margin-top:12px;text-shadow:0 1px 4px rgba(0,0,0,.9);}
+.plinks{margin-top:8px;display:flex;gap:18px;font-family:'Permanent Marker',cursive;font-size:1.05rem;}
+.plinks a{color:#ece6d8;text-decoration:underline;text-decoration-color:var(--gc,#c0392b);text-decoration-thickness:2px;text-underline-offset:3px;text-shadow:0 1px 4px rgba(0,0,0,.9);}
 .plinks a:hover{color:var(--gc,#c0392b);}
-.plinks span{color:#8a7f6c;}
+.plinks span{color:#b6ab97;text-shadow:0 1px 4px rgba(0,0,0,.9);}
 .gback{position:fixed;top:20px;left:20px;z-index:30;font-family:'Permanent Marker',cursive;font-size:1.2rem;letter-spacing:.5px;
-  color:#ece6d8;background:rgba(18,15,12,.78);border:2px solid rgba(236,230,216,.35);padding:8px 18px;cursor:none;backdrop-filter:blur(2px);transition:.15s;}
+  color:#ece6d8;background:rgba(18,12,9,.8);border:2px solid rgba(236,230,216,.35);padding:8px 18px;cursor:none;backdrop-filter:blur(2px);transition:.15s;}
 .gback:hover{background:#c0392b;border-color:#c0392b;color:#fff;}
 .pan-hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:30;font-family:'Permanent Marker',cursive;
-  color:#cfc6b6;background:rgba(18,15,12,.6);padding:6px 16px;border:1px solid rgba(236,230,216,.2);font-size:.86rem;white-space:nowrap;}
+  color:#cfc6b6;background:rgba(18,12,9,.62);padding:6px 16px;border:1px solid rgba(236,230,216,.2);font-size:.86rem;white-space:nowrap;}
 body.noscroll{overflow:hidden;}
 @media(prefers-reduced-motion:reduce){.spray-fx,.gview{transition:none;}.puff,.spray-can,.veil{animation:none;}}
 
