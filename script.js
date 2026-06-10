@@ -200,8 +200,8 @@ function vandalize(open){
   setTimeout(() => {                              // la fum maxim, schimbă lumea sub el
     if(open){ gview.classList.add('open'); gview.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll'); gview.scrollTop = 0; }
     else { gview.classList.remove('open'); gview.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); }
-  }, 900);
-  setTimeout(() => { sfx.classList.remove('go'); vTransitioning = false; }, 2000);  // fumul s-a risipit
+  }, 1250);
+  setTimeout(() => { sfx.classList.remove('go'); vTransitioning = false; }, 2450);  // fumul s-a risipit
 }
 moreBtn?.addEventListener('click', () => vandalize(true));
 gback?.addEventListener('click', () => vandalize(false));
