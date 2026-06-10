@@ -1,6 +1,22 @@
-// === Portofoliu Luca Moldovan — terminal theme ===
+// === Portofoliu Luca Moldovan — Ivory Estate × Spray ===
 
 const PROJECTS = [
+  { slug:'roworlds', title:'RO Worlds Tracker', cat:'Live data',
+    desc:'Live tracker pentru echipele românești la FIRST World Championship 2026 Houston (FTC + FRC), cu Web Push.',
+    tech:['Node.js','FIRST API','Web Push'], img:'images/projects/roworlds.png',
+    live:'https://worlds.perpetuummobile.tech/', repo:null, since:'2026-05-01' },
+
+  { slug:'crocoai', title:'CrocoAI', cat:'Produs / AI',
+    desc:'Platformă internă cu asistent AI, chat, taskuri și calendar pentru echipa Perpetuum Mobile.',
+    tech:['Node.js','Socket.IO','HTML'], img:'images/projects/crocoai.png',
+    live:null, repo:null, since:'2026-05-03', priv:true },
+
+  { slug:'arbori', title:'Arbori — Parcurgere', cat:'Educațional',
+    desc:'Vizualizare interactivă a algoritmilor de parcurgere a arborilor binari — 100 de arbori, cu dificultate.',
+    tech:['JavaScript','HTML','SVG'], img:'images/projects/arbori.png',
+    live:'https://moldluca.github.io/arbori-parcurgere/',
+    repo:'https://github.com/moldluca/arbori-parcurgere', since:'2026-06-09' },
+
   { slug:'codrea', title:'CODREA BATI', cat:'Comercial',
     desc:'Site de prezentare pentru o firmă de construcții din Franța (Travaux Bâtiment). Multipage, design curat.',
     tech:['HTML','CSS','JS'], img:'images/projects/codrea.png',
@@ -19,17 +35,16 @@ const PROJECTS = [
     live:'https://romania.perpetuummobile.tech/',
     repo:'https://github.com/moldluca/romania-visual-identity', since:'2026-05-07' },
 
+  { slug:'arvusmart', title:'ArvuSmart', cat:'Produs / Agri',
+    desc:'Platformă agricolă: frontend, GeoSelect 3D pentru parcele și asistent AI agronomic.',
+    tech:['HTML','Leaflet','JS'], img:'images/projects/arvusmart.png',
+    live:'https://arvusmart.perpetuummobile.tech/', repo:null, since:'2026-04-27' },
+
   { slug:'eco', title:'Eco Website', cat:'Educațional',
     desc:'Site pe teme de ecologie și sustenabilitate.',
     tech:['HTML','CSS','JS'], img:'images/projects/eco.png',
     live:'https://moldluca.github.io/eco-website/',
     repo:'https://github.com/moldluca/eco-website', since:'2026-03-26' },
-
-  { slug:'arbori', title:'Arbori — Parcurgere', cat:'Educațional',
-    desc:'Vizualizare interactivă a algoritmilor de parcurgere a arborilor.',
-    tech:['JavaScript','HTML','Canvas'], img:'images/projects/arbori.png',
-    live:'https://moldluca.github.io/arbori-parcurgere/',
-    repo:'https://github.com/moldluca/arbori-parcurgere', since:'2026-06-09' },
 
   { slug:'monede', title:'Prezentare Monede', cat:'Educațional',
     desc:'Prezentare web interactivă despre monede.',
@@ -42,152 +57,143 @@ const PROJECTS = [
     tech:['Node.js','Express','HTML'], img:'images/projects/perpetuum.png',
     live:'https://perpetuummobile.tech/', repo:null, since:'2026-01-24' },
 
-  { slug:'crocoai', title:'CrocoAI', cat:'Produs / AI',
-    desc:'Platformă internă cu asistent AI, chat, taskuri și calendar pentru echipa Perpetuum Mobile.',
-    tech:['Node.js','Socket.IO','HTML'], img:'images/projects/crocoai.png',
-    live:null, repo:null, since:'2026-05-03', priv:true },
-
-  { slug:'roworlds', title:'RO Worlds Tracker', cat:'Live data',
-    desc:'Live tracker pentru echipele românești la FIRST World Championship 2026 Houston (FTC + FRC), cu Web Push.',
-    tech:['Node.js','FIRST API','Web Push'], img:'images/projects/roworlds.png',
-    live:'https://worlds.perpetuummobile.tech/', repo:null, since:'2026-05-01' },
-
-  { slug:'arvusmart', title:'ArvuSmart', cat:'Produs / Agri',
-    desc:'Platformă agricolă: frontend, GeoSelect 3D pentru parcele și asistent AI agronomic.',
-    tech:['HTML','Leaflet','JS'], img:'images/projects/arvusmart.png',
-    live:'https://arvusmart.perpetuummobile.tech/', repo:null, since:'2026-04-27' },
-
   { slug:'timisoara', title:'Timișoara MUN', cat:'Eveniment',
     desc:'Site pentru conferința Timișoara Model United Nations — înscrieri, program, comitete.',
     tech:['Flask','Python','HTML'], img:null,
     live:null, repo:null, since:'2025-10-06', priv:true },
+
+  { slug:'portofoliu', title:'Portofoliu', cat:'Personal',
+    desc:'Acest portofoliu — temă „ivory estate × spray", cu animații, grafice și status live.',
+    tech:['HTML','CSS','JS'], img:null,
+    live:'https://moldluca.github.io/', repo:'https://github.com/moldluca/moldluca.github.io', since:'2026-06-09' },
 ];
 
-// ---------- typing effect ----------
-(function type() {
-  const el = document.getElementById('typed');
-  const text = 'Luca Moldovan';
-  let i = 0;
-  (function step() {
-    if (i <= text.length) { el.textContent = text.slice(0, i++); setTimeout(step, 70); }
-  })();
-})();
-
-document.getElementById('year').textContent = new Date().getFullYear();
-
 // ---------- helpers ----------
-function esc(s) { return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-
-function fmtUptime(sinceISO) {
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtUptime(sinceISO){
   const since = new Date(sinceISO + 'T00:00:00Z').getTime();
-  const ms = Date.now() - since;
-  if (ms < 0) return '0z';
-  const s = Math.floor(ms / 1000);
-  const d = Math.floor(s / 86400);
-  const h = Math.floor((s % 86400) / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const sec = s % 60;
-  const p = n => String(n).padStart(2, '0');
+  const ms = Date.now() - since; if (ms < 0) return '0z';
+  const s = Math.floor(ms/1000), d = Math.floor(s/86400), h = Math.floor((s%86400)/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  const p = n => String(n).padStart(2,'0');
   return `${d}z ${p(h)}:${p(m)}:${p(sec)}`;
 }
 
-// ---------- render cards ----------
-const grid = document.getElementById('grid');
+// ---------- custom cursor ----------
+const cursor = document.getElementById('cursor');
+if (cursor && matchMedia('(hover:hover)').matches) {
+  addEventListener('mousemove', e => { cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`; });
+}
+function bindCursor(el){ el.addEventListener('mouseenter',()=>cursor?.classList.add('big')); el.addEventListener('mouseleave',()=>cursor?.classList.remove('big')); }
+document.querySelectorAll('a,.btn').forEach(bindCursor);
 
+// ---------- render project cards ----------
+const grid = document.getElementById('grid');
 PROJECTS.forEach(p => {
   const card = document.createElement('article');
-  card.className = 'card';
-
-  const initials = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g, '').slice(0, 2).toUpperCase() || '#';
+  card.className = 'card reveal';
+  const initials = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
   const thumb = p.img
-    ? `<div class="thumb"><span class="cat-tag">${esc(p.cat)}</span><img src="${p.img}" alt="Screenshot ${esc(p.title)}" loading="lazy"></div>`
+    ? `<div class="thumb"><span class="cat-tag">${esc(p.cat)}</span><img src="${esc(p.img)}" alt="Screenshot ${esc(p.title)}" loading="lazy"></div>`
     : `<div class="thumb noimg"><span class="cat-tag">${esc(p.cat)}</span>${initials}</div>`;
-
   const tags = p.tech.map(t => `<span class="tag">${esc(t)}</span>`).join('');
-
-  // status: private projects skip the live check
   const statusInit = p.priv ? 'private' : 'offline';
-  const statusLabel = p.priv ? 'INTERN' : 'verific...';
-
-  const liveLink = p.live
-    ? `<a href="${p.live}" target="_blank" rel="noopener">→ live</a>`
-    : `<span class="disabled">→ live indisponibil</span>`;
-  const repoLink = p.repo ? `<a href="${p.repo}" target="_blank" rel="noopener">↳ cod</a>` : '';
-
+  const statusLabel = p.priv ? 'Intern' : 'verific…';
+  const liveLink = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : `<span class="disabled">→ indisponibil</span>`;
+  const repoLink = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod</a>` : '';
   card.innerHTML = `
     ${thumb}
     <div class="card-body">
       <h3 class="card-title">${esc(p.title)}</h3>
       <p class="card-desc">${esc(p.desc)}</p>
       <div class="tags">${tags}</div>
-      <div class="status ${statusInit}" data-slug="${p.slug}">
-        <span class="led"></span>
-        <span class="status-label">${statusLabel}</span>
-        <span class="uptime"></span>
-      </div>
+      <div class="status ${statusInit}" data-slug="${p.slug}"><span class="led"></span><span class="status-label">${statusLabel}</span><span class="uptime"></span></div>
       <div class="links">${liveLink}${repoLink}</div>
     </div>`;
-
   grid.appendChild(card);
   p._statusEl = card.querySelector('.status');
+  bindCursor(card);
 });
 
-// ---------- reveal on scroll ----------
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.card').forEach((c, i) => { c.style.transitionDelay = (i % 3) * 60 + 'ms'; io.observe(c); });
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ---------- radar chart ----------
+(function buildRadar(){
+  const svg = document.getElementById('radar'); if(!svg) return;
+  const skills = [
+    {l:'Frontend',v:92},{l:'Backend',v:86},{l:'Python',v:78},
+    {l:'UI/Design',v:82},{l:'Robotică',v:72},{l:'DevOps',v:75},
+  ];
+  const cx=160, cy=160, R=118, n=skills.length;
+  const ang = i => (-90 + i*360/n) * Math.PI/180;
+  const pt = (i,r) => [cx + Math.cos(ang(i))*r, cy + Math.sin(ang(i))*r];
+  let s='';
+  for(let g=1; g<=4; g++){
+    const r=R*g/4; let d='';
+    for(let i=0;i<n;i++){ const [x,y]=pt(i,r); d += (i?'L':'M')+x.toFixed(1)+','+y.toFixed(1)+' '; }
+    s += `<path class="ring" d="${d}Z"/>`;
+  }
+  for(let i=0;i<n;i++){
+    const [x,y]=pt(i,R); s += `<line class="axis" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
+    const [lx,ly]=pt(i,R+18);
+    const anchor = Math.abs(lx-cx)<5 ? 'middle' : (lx>cx ? 'start' : 'end');
+    s += `<text class="lab" x="${lx.toFixed(1)}" y="${(ly+4).toFixed(1)}" text-anchor="${anchor}">${skills[i].l}</text>`;
+  }
+  let d='';
+  skills.forEach((sk,i)=>{ const [x,y]=pt(i,R*sk.v/100); d += (i?'L':'M')+x.toFixed(1)+','+y.toFixed(1)+' '; });
+  s += `<path class="area" d="${d}Z"/>`;
+  skills.forEach((sk,i)=>{ const [x,y]=pt(i,R*sk.v/100); s += `<circle class="pt" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"/>`; });
+  svg.innerHTML = s;
+})();
+
+// ---------- reveal + animate on scroll ----------
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll?.('.bar-fill').forEach(b => b.style.width = b.dataset.w + '%');
+    const area = e.target.querySelector?.('.radar .area'); if(area) area.classList.add('in');
+    io.unobserve(e.target);
+  });
+}, { threshold:.15 });
+document.querySelectorAll('.reveal').forEach((el,i)=>{ el.style.transitionDelay = (i%4)*60 + 'ms'; io.observe(el); });
+
+// ---------- spray draw on load ----------
+addEventListener('load', () => setTimeout(() => {
+  const path = document.querySelector('.spray-svg path');
+  if(path){ path.style.transition = 'stroke-dashoffset 1.4s ease .3s'; path.style.strokeDashoffset = '0'; }
+  document.querySelectorAll('.drip').forEach((dr,i) => { dr.style.transition = `transform .6s ease ${1.3+i*.15}s`; dr.style.transform='scaleY(1)'; });
+}, 250));
+
+// ---------- counters ----------
+function count(el){
+  const to = +el.dataset.to; let n = 0; const step = Math.max(1, Math.round(to/40));
+  const node = el.childNodes[0];
+  const t = setInterval(()=>{ n += step; if(n>=to){ n=to; clearInterval(t); } node.nodeValue = n; }, 26);
+}
+const cio = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ count(e.target); cio.unobserve(e.target); } }), { threshold:.6 });
+document.querySelectorAll('[data-to]').forEach(el => { el.insertBefore(document.createTextNode('0'), el.firstChild); cio.observe(el); });
 
 // ---------- live status check (no-cors reachability) ----------
-function checkLive(url, timeout = 7000) {
+function checkLive(url, timeout=7000){
   return new Promise(resolve => {
     const ctrl = new AbortController();
-    const t = setTimeout(() => { ctrl.abort(); resolve(false); }, timeout);
-    fetch(url, { mode: 'no-cors', signal: ctrl.signal, cache: 'no-store' })
-      .then(() => { clearTimeout(t); resolve(true); })
-      .catch(() => { clearTimeout(t); resolve(false); });
+    const t = setTimeout(()=>{ ctrl.abort(); resolve(false); }, timeout);
+    fetch(url, { mode:'no-cors', signal:ctrl.signal, cache:'no-store' })
+      .then(()=>{ clearTimeout(t); resolve(true); }).catch(()=>{ clearTimeout(t); resolve(false); });
   });
 }
-
-async function runChecks() {
-  const online = [];
+async function runChecks(){
+  let on = 0;
   await Promise.all(PROJECTS.map(async p => {
     const el = p._statusEl;
-    if (p.priv || !p.live) {
-      el.className = 'status private';
-      el.querySelector('.status-label').textContent = 'INTERN';
-      el.querySelector('.uptime').textContent = '// privat / nedeploiat';
-      return;
-    }
+    if(p.priv || !p.live){ el.className='status private'; el.querySelector('.status-label').textContent='Intern'; el.querySelector('.uptime').textContent='// privat / nedeploiat'; return; }
     const up = await checkLive(p.live);
-    if (up) {
-      online.push(p);
-      el.className = 'status online';
-      el.querySelector('.status-label').textContent = 'ONLINE';
-      p._online = true;
-    } else {
-      el.className = 'status offline';
-      el.querySelector('.status-label').textContent = 'OFFLINE';
-      el.querySelector('.uptime').textContent = '// momentan indisponibil';
-    }
+    if(up){ on++; el.className='status online'; el.querySelector('.status-label').textContent='Online'; p._online=true; }
+    else { el.className='status offline'; el.querySelector('.status-label').textContent='Offline'; el.querySelector('.uptime').textContent='// momentan indisponibil'; }
   }));
-
-  // summary
-  const total = PROJECTS.length;
-  const on = online.length;
-  document.getElementById('summary').textContent =
-    `// ${total} proiecte · ${on} online · ${total - on} offline/intern — status verificat live`;
-
-  // ticking uptime for online ones
-  function tick() {
-    PROJECTS.forEach(p => {
-      if (p._online) {
-        p._statusEl.querySelector('.uptime').textContent = '↑ online de ' + fmtUptime(p.since);
-      }
-    });
-  }
-  tick();
-  setInterval(tick, 1000);
+  const meta = document.getElementById('proiecte-meta');
+  if(meta) meta.textContent = `// ${PROJECTS.length} proiecte · ${on} online`;
+  function tick(){ PROJECTS.forEach(p => { if(p._online) p._statusEl.querySelector('.uptime').textContent = '↑ ' + fmtUptime(p.since); }); }
+  tick(); setInterval(tick, 1000);
 }
-
 runChecks();

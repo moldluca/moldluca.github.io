@@ -3,109 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luca Moldovan — Portofoliu Web</title>
-  <meta name="description" content="Portofoliul lui Luca Moldovan — website-uri, platforme și aplicații web construite de la zero.">
-  <meta property="og:title" content="Luca Moldovan — Portofoliu Web">
+  <title>Luca Moldovan — Full Stack Developer</title>
+  <meta name="description" content="Portofoliul lui Luca Moldovan — full stack developer. Website-uri, platforme și aplicații web construite de la zero. Eleganță clasică, energie de stradă.">
+  <meta property="og:title" content="Luca Moldovan — Full Stack Developer">
   <meta property="og:description" content="Website-uri, platforme și aplicații web construite de la zero.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=EB+Garamond:ital@0;1&family=Permanent+Marker&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="scanlines" aria-hidden="true"></div>
-  <div class="glow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 
-  <header class="term">
-    <div class="term-bar">
-      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-      <span class="term-title">luca@portfolio: ~</span>
-    </div>
-    <div class="term-body">
-      <p class="line"><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">whoami</span></p>
-      <h1 class="name" id="typed"></h1>
-      <p class="line subtitle">// full stack developer · student · builder de website-uri</p>
-      <p class="line nav-line"><a href="#despre">despre</a> <span class="sep">·</span> <a href="#grid">proiecte</a> <span class="sep">·</span> <a href="#cv">cv</a> <span class="sep">·</span> <a href="#premii">premii</a></p>
-      <p class="line"><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">ls ./proiecte --status</span> <span class="caret">▋</span></p>
-      <p class="meta" id="summary">// se scanează proiectele...</p>
-    </div>
-  </header>
+<svg width="0" height="0" aria-hidden="true"><defs>
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="6"/></filter>
+</defs></svg>
 
+<!-- ===== Top bar ===== -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="crest" href="#top">
+      <span class="monogram">LM</span>
+      <span class="estab">Moldovan · Est. MMXXVI</span>
+    </a>
+    <nav class="nav">
+      <a href="#despre">Despre</a>
+      <a href="#proiecte">Proiecte</a>
+      <a href="#competente">Skills</a>
+      <a href="#parcurs">Parcurs</a>
+      <a href="#premii">Premii</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <p class="eyebrow reveal">Portofoliu Personal</p>
+      <h1 class="name">
+        <span class="l1 reveal">Luca</span>
+        <span class="spray-wrap">
+          <span class="l2 reveal">Moldovan</span>
+          <svg class="spray-svg" viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true"><path d="M8,72 C120,40 240,82 360,55 C460,34 545,72 592,50"/></svg>
+          <span class="drip" style="left:24%;height:26px;"></span>
+          <span class="drip" style="left:57%;height:38px;"></span>
+          <span class="drip" style="left:81%;height:20px;"></span>
+        </span>
+      </h1>
+      <p class="tagline reveal">Construiesc website-uri, platforme și aplicații web de la zero — cu rigoarea unui atelier și energia străzii.</p>
+      <p class="reveal"><span class="role-tag">// <span class="hl">full&nbsp;stack&nbsp;developer</span></span></p>
+      <div class="cta-row reveal">
+        <a class="btn" href="#proiecte">Vezi proiectele</a>
+        <a class="btn ghost" href="#contact">Contact</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="hs"><span class="hs-num" data-to="12"></span><span class="hs-cap">proiecte web</span></div>
+        <div class="hs"><span class="hs-num" data-to="100"><span class="plus">+</span></span><span class="hs-cap">arbori în app</span></div>
+        <div class="hs"><span class="hs-num" data-to="3"></span><span class="hs-cap">limbaje</span></div>
+      </div>
+    </div>
+    <div class="hero-frame reveal">
+      <div class="frame">
+        <span class="frame-initials">LM</span>
+        <span class="vandal2">est.</span>
+        <span class="vandal">street &amp; code</span>
+        <span class="plaque">Luca Moldovan</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint reveal">↓ scroll</div>
+</section>
+
+<!-- ===== Marquee ===== -->
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>Full Stack Developer</span><span><b>✦</b></span><span>Builder de website-uri</span><span><b>✦</b></span><span>Robotică · FIRST</span><span><b>✦</b></span><span>Satu Mare</span><span><b>✦</b></span>
+  <span>Full Stack Developer</span><span><b>✦</b></span><span>Builder de website-uri</span><span><b>✦</b></span><span>Robotică · FIRST</span><span><b>✦</b></span><span>Satu Mare</span><span><b>✦</b></span>
+</div></div>
+
+<main class="wrap">
+
+  <!-- ===== Despre ===== -->
   <section class="section" id="despre">
-    <div class="term">
-      <div class="term-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="term-title">luca@portfolio: ~/despre</span></div>
-      <div class="term-body">
-        <p class="line"><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">cat despre.md</span></p>
-        <h2 class="sec-title"># Despre mine</h2>
-        <p class="prose">Sunt <strong>Luca Moldovan</strong>, <strong>full stack developer</strong> și elev la <strong>Colegiul Național „Mihai Eminescu", Satu Mare</strong>. Construiesc website-uri, platforme și aplicații web de la zero — de la frontend (HTML/CSS/JS) până la backend (Node.js, Python). Sunt membru al echipei de robotică <strong>Perpetuum Mobile</strong> (FIRST) și pasionat de AI, programare și proiecte care rezolvă probleme reale.</p>
+    <div class="sec-head reveal"><span class="sec-num">01</span><h2 class="sec-title">Despre mine</h2><span class="sec-line"></span></div>
+    <div class="despre-grid">
+      <p class="lead reveal">Sunt <strong>Luca Moldovan</strong>, <strong>full stack developer</strong> și elev la <strong>Colegiul Național „Mihai Eminescu", Satu Mare</strong>.</p>
+      <div class="despre-body reveal">
+        <p>Construiesc website-uri, platforme și aplicații web de la zero — de la frontend (HTML/CSS/JS) până la backend (Node.js, Python). Sunt membru al echipei de robotică <strong>Perpetuum Mobile</strong> (FIRST) și pasionat de AI, programare și proiecte care rezolvă probleme reale.</p>
+        <p class="signed">— <span class="sig-tag">Luca</span></p>
       </div>
     </div>
   </section>
 
-  <main>
-    <section class="grid" id="grid" aria-label="Proiecte"></section>
-  </main>
+  <!-- ===== Proiecte ===== -->
+  <section class="section" id="proiecte">
+    <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">Proiecte</h2><span class="sec-line"></span><span class="sec-meta" id="proiecte-meta">// se scanează…</span></div>
+    <div class="work-grid" id="grid"></div>
+  </section>
 
-  <section class="section" id="cv">
-    <div class="term">
-      <div class="term-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="term-title">luca@portfolio: ~/cv</span></div>
-      <div class="term-body">
-        <p class="line"><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">cat cv.md</span></p>
-        <h2 class="sec-title"># CV</h2>
-        <div class="cv">
-          <div class="cv-block">
-            <h3 class="cv-h">› Educație</h3>
-            <p class="cv-item"><span class="cv-when">prezent</span> Colegiul Național „Mihai Eminescu", Satu Mare</p>
-          </div>
-          <div class="cv-block">
-            <h3 class="cv-h">› Skills</h3>
-            <div class="cv-skills">
-              <div><span class="cv-k">Frontend</span> HTML · CSS · JavaScript · Canvas · Leaflet</div>
-              <div><span class="cv-k">Backend</span> Node.js · Express · Socket.IO · Python · Flask</div>
-              <div><span class="cv-k">Tools</span> Git / GitHub · Cloudflare · DigitalOcean · Linux</div>
-              <div><span class="cv-k">Robotică</span> Arduino · FIRST (FTC / FRC)</div>
-            </div>
-          </div>
-          <div class="cv-block">
-            <h3 class="cv-h">› Experiență</h3>
-            <p class="cv-item">Echipa de robotică <strong>Perpetuum Mobile</strong> — dezvoltare web &amp; software (CrocoAI, RO Worlds Tracker, site echipă).</p>
-            <p class="cv-item">Website-uri pentru clienți și proiecte educaționale (CODREA BATI · Laboratorul de Criptare · ș.a.).</p>
-          </div>
-          <div class="cv-block">
-            <h3 class="cv-h">› Limbi</h3>
-            <p class="cv-item">Română (nativ) · Engleză</p>
-          </div>
-        </div>
+  <!-- ===== Competențe / grafice ===== -->
+  <section class="section" id="competente">
+    <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">Competențe</h2><span class="sec-line"></span></div>
+    <div class="skills-grid">
+      <div class="radar-card reveal">
+        <svg class="radar" id="radar" viewBox="0 0 320 320" aria-label="Grafic radar competențe"></svg>
       </div>
+      <div class="bars reveal">
+        <div class="bar-row"><div class="lbl"><span>Frontend · HTML/CSS/JS</span><span>92%</span></div><div class="bar-track"><div class="bar-fill" data-w="92"></div></div></div>
+        <div class="bar-row"><div class="lbl"><span>Backend · Node / Express</span><span>86%</span></div><div class="bar-track"><div class="bar-fill" data-w="86"></div></div></div>
+        <div class="bar-row"><div class="lbl"><span>Python / Flask</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-w="78"></div></div></div>
+        <div class="bar-row"><div class="lbl"><span>UI / Design</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-w="82"></div></div></div>
+        <div class="bar-row"><div class="lbl"><span>Robotică / Embedded</span><span>72%</span></div><div class="bar-track"><div class="bar-fill" data-w="72"></div></div></div>
+        <div class="bar-row"><div class="lbl"><span>DevOps · Git / Cloud</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-w="75"></div></div></div>
+      </div>
+    </div>
+    <div class="stack reveal">
+      <span class="stack-k">Frontend</span> HTML · CSS · JavaScript · Canvas · Leaflet
+      <span class="stack-k">Backend</span> Node.js · Express · Socket.IO · Python · Flask
+      <span class="stack-k">Tools</span> Git / GitHub · Cloudflare · DigitalOcean · Linux
+      <span class="stack-k">Robotică</span> Arduino · FIRST (FTC / FRC)
     </div>
   </section>
 
+  <!-- ===== Parcurs (timeline) ===== -->
+  <section class="section" id="parcurs">
+    <div class="sec-head reveal"><span class="sec-num">04</span><h2 class="sec-title">Parcurs</h2><span class="sec-line"></span></div>
+    <div class="timeline">
+      <div class="tl-item reveal"><span class="tl-dot"></span><span class="tl-when">prezent</span><div class="tl-body"><h3>Colegiul Național „Mihai Eminescu"</h3><p>Satu Mare — elev. Informatică, robotică, web.</p></div></div>
+      <div class="tl-item reveal"><span class="tl-dot"></span><span class="tl-when">2026</span><div class="tl-body"><h3>Echipa de robotică Perpetuum Mobile (FIRST)</h3><p>Dezvoltare web &amp; software: CrocoAI, RO Worlds Tracker, site-ul echipei.</p></div></div>
+      <div class="tl-item reveal"><span class="tl-dot"></span><span class="tl-when">2025—26</span><div class="tl-body"><h3>Website-uri pentru clienți &amp; educaționale</h3><p>CODREA BATI (Franța), Laboratorul de Criptare, România — Identitate Vizuală ș.a.</p></div></div>
+      <div class="tl-item reveal"><span class="tl-dot"></span><span class="tl-when">limbi</span><div class="tl-body"><h3>Limbi</h3><p>Română (nativ) · Engleză</p></div></div>
+    </div>
+  </section>
+
+  <!-- ===== Premii ===== -->
   <section class="section" id="premii">
-    <div class="term">
-      <div class="term-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="term-title">luca@portfolio: ~/premii</span></div>
-      <div class="term-body">
-        <p class="line"><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">cat premii.md</span></p>
-        <h2 class="sec-title"># Premii</h2>
-        <ul class="awards" id="awards">
-          <li class="prose">// secțiune în completare — premiile vor apărea aici</li>
-        </ul>
-      </div>
-    </div>
+    <div class="sec-head reveal"><span class="sec-num">05</span><h2 class="sec-title">Premii</h2><span class="sec-line"></span></div>
+    <ul class="awards reveal" id="awards">
+      <li class="empty">// secțiune în completare — premiile vor apărea aici</li>
+    </ul>
   </section>
 
-  <footer class="footer">
-    <p><span class="prompt">luca@portfolio</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">cat contact.txt</span></p>
-    <p class="footer-links">
+</main>
+
+<!-- ===== Contact / footer ===== -->
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <p class="foot-quote reveal">„Eleganță clasică, <span class="sig-tag">vandalizată</span> cu cod."</p>
+    <div class="foot-links reveal">
       <a href="https://github.com/moldluca" target="_blank" rel="noopener">github.com/moldluca</a>
       <span class="sep">·</span>
       <a href="mailto:moldluca@gmail.com">moldluca@gmail.com</a>
       <span class="sep">·</span>
       <a href="tel:+40756855700">+40 756 855 700</a>
-    </p>
-    <p class="footer-note">// © <span id="year"></span> Luca Moldovan — build static · status verificat live în browser</p>
-  </footer>
+    </div>
+    <p class="foot-note">© <span id="year"></span> Luca Moldovan — full stack developer · build static</p>
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
