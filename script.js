@@ -11,7 +11,7 @@ const PROJECTS = [
     tech:['Node.js','Socket.IO','HTML'], img:'images/projects/crocoai.png',
     live:null, repo:null, since:'2026-05-03', priv:true },
 
-  { slug:'arbori', title:'Arbori — Parcurgere', cat:'Educațional',
+  { slug:'arbori', featured:true, title:'Arbori — Parcurgere', cat:'Educațional',
     desc:'Vizualizare interactivă a algoritmilor de parcurgere a arborilor binari — 100 de arbori, cu dificultate.',
     tech:['JavaScript','HTML','SVG'], img:'images/projects/arbori.png',
     live:'https://moldluca.github.io/arbori-parcurgere/',
@@ -23,7 +23,7 @@ const PROJECTS = [
     live:'https://moldluca.github.io/codrea-bati-website/',
     repo:'https://github.com/moldluca/codrea-bati-website', since:'2026-05-07' },
 
-  { slug:'criptare', title:'Laboratorul de Criptare', cat:'Educațional',
+  { slug:'criptare', featured:true, title:'Laboratorul de Criptare', cat:'Educațional',
     desc:'Site educațional interactiv care învață copiii bazele criptografiei prin exerciții și jocuri.',
     tech:['JavaScript','HTML','CSS'], img:'images/projects/criptare.png',
     live:'http://criptare.perpetuummobile.tech/',
@@ -35,7 +35,7 @@ const PROJECTS = [
     live:'https://romania.perpetuummobile.tech/',
     repo:'https://github.com/moldluca/romania-visual-identity', since:'2026-05-07' },
 
-  { slug:'arvusmart', title:'ArvuSmart', cat:'Produs / Agri',
+  { slug:'arvusmart', featured:true, title:'ArvuSmart', cat:'Produs / Agri',
     desc:'Platformă agricolă: frontend, GeoSelect 3D pentru parcele și asistent AI agronomic.',
     tech:['HTML','Leaflet','JS'], img:'images/projects/arvusmart.png',
     live:'https://arvusmart.perpetuummobile.tech/', repo:null, since:'2026-04-27' },
@@ -52,7 +52,12 @@ const PROJECTS = [
     live:'https://moldluca.github.io/prezentare-monede/',
     repo:'https://github.com/moldluca/prezentare-monede', since:'2026-01-11' },
 
-  { slug:'perpetuum', title:'Perpetuum Mobile', cat:'Organizație',
+  { slug:'trainbot', featured:true, title:'TrainBot', cat:'Produs / AI',
+    desc:'Asistent AI pentru antrenamente — aplicație cu backend Node și model LLM (Groq / OpenAI).',
+    tech:['Node.js','LLM','iOS'], img:null,
+    live:'https://trainbot.perpetuummobile.tech/', repo:null, since:'2026-05-02' },
+
+  { slug:'perpetuum', featured:true, title:'Perpetuum Mobile', cat:'Organizație',
     desc:'Site-ul echipei de robotică Perpetuum Mobile — prezentare, sponsori, activități.',
     tech:['Node.js','Express','HTML'], img:'images/projects/perpetuum.png',
     live:'https://perpetuummobile.tech/', repo:null, since:'2026-01-24' },
@@ -88,9 +93,10 @@ document.querySelectorAll('a,.btn').forEach(bindCursor);
 
 // ---------- render project cards ----------
 const grid = document.getElementById('grid');
-PROJECTS.forEach(p => {
+const ordered = [...PROJECTS].sort((a,b) => (b.featured?1:0) - (a.featured?1:0));
+ordered.forEach(p => {
   const card = document.createElement('article');
-  card.className = 'card reveal';
+  card.className = 'card reveal' + (p.featured ? '' : ' extra');
   const initials = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
   const thumb = p.img
     ? `<div class="thumb"><span class="cat-tag">${esc(p.cat)}</span><img src="${esc(p.img)}" alt="Screenshot ${esc(p.title)}" loading="lazy"></div>`
@@ -120,8 +126,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
 (function buildRadar(){
   const svg = document.getElementById('radar'); if(!svg) return;
   const skills = [
-    {l:'Frontend',v:92},{l:'Backend',v:86},{l:'Python',v:78},
-    {l:'UI/Design',v:82},{l:'Robotică',v:72},{l:'DevOps',v:75},
+    {l:'Frontend',v:90},{l:'Backend',v:85},{l:'CAD / 3D',v:82},
+    {l:'Robotică',v:85},{l:'Design',v:80},{l:'Leadership',v:88},
   ];
   const cx=160, cy=160, R=118, n=skills.length;
   const ang = i => (-90 + i*360/n) * Math.PI/180;
@@ -162,7 +168,40 @@ addEventListener('load', () => setTimeout(() => {
   const path = document.querySelector('.spray-svg path');
   if(path){ path.style.transition = 'stroke-dashoffset 1.4s ease .3s'; path.style.strokeDashoffset = '0'; }
   document.querySelectorAll('.drip').forEach((dr,i) => { dr.style.transition = `transform .6s ease ${1.3+i*.15}s`; dr.style.transform='scaleY(1)'; });
+  document.querySelector('.mold-graf')?.classList.add('in');
 }, 250));
+
+// ---------- view more (graffiti transition) ----------
+const moreBtn = document.getElementById('moreBtn');
+if(moreBtn){
+  bindCursor(moreBtn);
+  let expanded = false;
+  const gwipe = document.getElementById('gwipe'), gword = document.getElementById('gwipeWord');
+  function graffiti(word, color, after){
+    gword.textContent = word; gwipe.style.setProperty('--gc', color);
+    gwipe.classList.add('in');
+    setTimeout(after, 620);
+    setTimeout(() => gwipe.classList.remove('in'), 1280);
+  }
+  moreBtn.addEventListener('click', () => {
+    if(!expanded){
+      graffiti('PROIECTE', '#E6357A', () => {
+        grid.classList.add('expanded');
+        document.querySelectorAll('.card.extra').forEach(c => c.classList.add('in'));
+        moreBtn.querySelector('span').textContent = 'Înapoi';
+        document.getElementById('proiecte').scrollIntoView({ block:'start' });
+      });
+      expanded = true;
+    } else {
+      graffiti('RESTORE', '#143A2A', () => {
+        grid.classList.remove('expanded');
+        moreBtn.querySelector('span').textContent = 'View more';
+        document.getElementById('proiecte').scrollIntoView({ block:'start' });
+      });
+      expanded = false;
+    }
+  });
+}
 
 // ---------- counters ----------
 function count(el){
