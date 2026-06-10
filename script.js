@@ -173,24 +173,41 @@ const moreBtn = document.getElementById('moreBtn');
 const gview = document.getElementById('gview');
 const gback = document.getElementById('gback');
 const sfx = document.getElementById('sfx');
-const GCOLORS = ['#FFE21F','#FF3DAE','#21D4FD','#8AFF1F','#FF7A1A','#B14BFF'];
-const gGrid = document.getElementById('gviewGrid');
+const GCOLORS = ['#FF2E88','#39FF14','#00E5FF','#FF8A00','#FFE21F','#B14BFF'];
+const wall = document.getElementById('wall');
 
-if(gGrid){
+if(wall){
+  const COLS = 4, CW = 520, CH = 430, padX = 90, padY = 380;
+  const rows = Math.ceil(PROJECTS.length / COLS);
   PROJECTS.forEach((p,i) => {
+    const col = i % COLS, row = Math.floor(i / COLS);
+    const x = padX + col*CW + Math.round(Math.sin(i*12.9)*38);
+    const y = padY + row*CH + Math.round(Math.cos(i*7.7)*34);
+    const rot = (Math.sin(i*3.3)*4).toFixed(2);
     const c = GCOLORS[i % GCOLORS.length];
     const initials = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
     const thumb = p.img
-      ? `<div class="gthumb"><span class="gcat">${esc(p.cat)}</span><img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy"></div>`
-      : `<div class="gthumb noimg"><span class="gcat">${esc(p.cat)}</span>${initials}</div>`;
-    const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : (p.priv ? '<span style="color:#9a9483">intern</span>' : '');
+      ? `<div class="pthumb"><span class="pcat">${esc(p.cat)}</span><img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy"></div>`
+      : `<div class="pthumb noimg"><span class="pcat">${esc(p.cat)}</span>${initials}</div>`;
+    const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : (p.priv ? '<span style="color:#8a8276">intern</span>' : '');
     const repo = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod</a>` : '';
-    const card = document.createElement('article');
-    card.className = 'gcard'; card.style.setProperty('--gc', c);
-    card.innerHTML = `${thumb}<div class="gbody"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p><div class="gtags">${p.tech.map(esc).join(' · ')}</div><div class="glinks">${live}${repo}</div></div>`;
-    gGrid.appendChild(card);
-    bindCursor(card);
+    const el = document.createElement('article');
+    el.className = 'piece';
+    el.style.cssText = `left:${x}px;top:${y}px;--gc:${c};--rot:${rot}deg;`;
+    el.innerHTML = `${thumb}<div class="pbody"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p><div class="ptags">${p.tech.map(esc).join(' · ')}</div><div class="plinks">${live}${repo}</div></div>`;
+    wall.appendChild(el);
+    bindCursor(el);
   });
+  wall.style.width = (padX*2 + COLS*CW) + 'px';
+  wall.style.height = (padY + rows*CH + 160) + 'px';
+}
+
+// drag-to-pan pe perete (scroll merge oricum în toate direcțiile)
+if(gview){
+  let down=false, sx=0, sy=0, sl=0, st=0;
+  gview.addEventListener('mousedown', e => { if(e.target.closest('a,button')) return; down=true; sx=e.clientX; sy=e.clientY; sl=gview.scrollLeft; st=gview.scrollTop; gview.classList.add('grabbing'); });
+  addEventListener('mouseup', () => { down=false; gview.classList.remove('grabbing'); });
+  addEventListener('mousemove', e => { if(!down) return; gview.scrollLeft = sl - (e.clientX - sx); gview.scrollTop = st - (e.clientY - sy); });
 }
 
 let vTransitioning = false;
