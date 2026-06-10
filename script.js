@@ -173,7 +173,7 @@ const moreBtn = document.getElementById('moreBtn');
 const gview = document.getElementById('gview');
 const gback = document.getElementById('gback');
 const sfx = document.getElementById('sfx');
-const GCOLORS = ['#c0392b','#d99a1c','#2a9d8f','#c2531a','#2c6fb0','#6b8e23'];
+const GCOLORS = ['#e8662a','#1fa090','#e0a93b','#d23b2e','#3a7d44','#c8743a'];
 const wall = document.getElementById('wall');
 
 if(wall){
