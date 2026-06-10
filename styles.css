@@ -180,6 +180,33 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 1rem 4rem; }
 .footer-links { margin: .4rem 0; }
 .footer-note { color: var(--fg-dim); font-size: .78rem; margin-top: .6rem; }
 
+/* ---------- Nav + secțiuni (despre / cv / premii) ---------- */
+.nav-line { margin-top: .5rem; }
+.nav-line a { color: var(--accent-2); }
+
+.section { max-width: 1100px; margin: 0 auto 2.2rem; padding: 0 1rem; }
+.section .term { margin: 0; }
+
+.sec-title { color: #fff; font-size: 1.3rem; font-weight: 800; letter-spacing: -.5px; margin: .6rem 0 1.1rem; }
+.prose { color: var(--fg); margin: .4rem 0; max-width: 78ch; }
+.prose strong { color: #fff; }
+
+.cv { display: flex; flex-direction: column; gap: 1.2rem; }
+.cv-h { color: var(--accent); font-size: .95rem; font-weight: 700; margin: 0 0 .5rem; }
+.cv-item { color: var(--fg-dim); margin: .3rem 0; }
+.cv-item strong { color: var(--fg); }
+.cv-when { display: inline-block; min-width: 6.5rem; color: var(--accent-2); }
+.cv-skills { display: flex; flex-direction: column; gap: .4rem; }
+.cv-skills > div { color: var(--fg-dim); }
+.cv-k { display: inline-block; min-width: 7rem; color: var(--accent); }
+
+.awards { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
+.awards li { color: var(--fg); padding-left: 1.3rem; position: relative; }
+.awards li::before { content: "🏆"; position: absolute; left: 0; font-size: .9rem; }
+.awards li .aw-when { color: var(--accent-2); }
+.awards li.empty, .awards li.prose { color: var(--fg-dim); padding-left: 0; }
+.awards li.empty::before, .awards li.prose::before { content: ""; }
+
 @media (max-width: 560px) {
   .term { margin-top: 2vh; }
   .term-body { padding: 1.2rem; }
