@@ -232,17 +232,17 @@ a{color:inherit;text-decoration:none;}
     radial-gradient(50vmax 50vmax at 58% 38%, rgba(232,228,219,.88), transparent 70%),
     radial-gradient(60vmax 60vmax at 86% 66%, rgba(244,242,236,.92), transparent 72%),
     linear-gradient(#eceae2,#e0dcd2);}
-.spray-fx.go .veil{animation:veilFade 1.7s ease forwards;}
+.spray-fx.go .veil{animation:veilFade 2.6s ease forwards;}
 @keyframes veilFade{0%{opacity:0;}42%{opacity:.86;}54%{opacity:.94;}70%{opacity:.82;}100%{opacity:0;}}
 /* arbori de fum, apar treptat stânga→dreapta (delay-uri inline) */
 .puff{position:absolute;width:34vmax;height:34vmax;margin:-17vmax 0 0 -17vmax;border-radius:50%;filter:blur(34px);
   background:radial-gradient(circle,rgba(245,243,237,.95),rgba(216,212,202,.45) 56%,transparent 74%);transform:scale(.12);opacity:0;}
-.spray-fx.go .puff{animation:puff2 1.35s ease-out forwards;}
+.spray-fx.go .puff{animation:puff2 1.9s ease-out forwards;}
 @keyframes puff2{0%{transform:scale(.12);opacity:0;}30%{opacity:1;}52%{transform:scale(.95);opacity:1;}100%{transform:scale(1.45) translateY(-8vh);opacity:0;}}
 /* canistra mare, traversează cu mișcare sus-jos */
 .spray-can{position:absolute;top:50%;left:-16%;width:155px;height:auto;transform:translateY(-50%) rotate(-12deg);
   filter:drop-shadow(0 14px 22px rgba(0,0,0,.6));z-index:3;}
-.spray-fx.go .spray-can{animation:canCross 1.7s cubic-bezier(.35,0,.5,1) forwards;}
+.spray-fx.go .spray-can{animation:canCross 2.6s cubic-bezier(.35,0,.5,1) forwards;}
 @keyframes canCross{
   0%{left:-16%;transform:translateY(calc(-50% - 5vh)) rotate(-12deg);}
   14%{transform:translateY(calc(-50% + 8vh)) rotate(-4deg);}
