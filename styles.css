@@ -235,18 +235,19 @@ a{color:inherit;text-decoration:none;}
 .spray-fx.go .puff{animation:puff2 1.7s ease-out forwards;}
 @keyframes puff2{0%{transform:scale(.1);opacity:0;}26%{opacity:1;}48%{transform:scale(1);opacity:1;}100%{transform:scale(1.7) translateY(-12vh);opacity:0;}}
 /* canistra traversează ecranul, vizibilă, în fruntea fumului */
-.spray-can{position:absolute;top:50%;left:-14%;width:98px;height:auto;transform:translateY(-50%) rotate(-10deg);
-  filter:drop-shadow(0 12px 18px rgba(0,0,0,.55));z-index:3;}
+.spray-can{position:absolute;top:50%;left:-16%;width:155px;height:auto;transform:translateY(-50%) rotate(-12deg);
+  filter:drop-shadow(0 14px 22px rgba(0,0,0,.6));z-index:3;}
 .spray-fx.go .spray-can{animation:canCross 2.4s cubic-bezier(.35,0,.5,1) forwards;}
 @keyframes canCross{
-  0%{left:-14%;transform:translateY(-50%) rotate(-10deg);}
-  15%{transform:translateY(-53%) rotate(-17deg);}
-  24%{transform:translateY(-47%) rotate(-5deg);}
-  36%{transform:translateY(-53%) rotate(-15deg);}
-  50%{left:94%;transform:translateY(-50%) rotate(-10deg);opacity:1;}
-  60%{left:114%;opacity:1;}
-  100%{left:114%;opacity:0;transform:translateY(-50%) rotate(-10deg);}
+  0%{left:-16%;transform:translateY(calc(-50% - 6vh)) rotate(-12deg);}
+  12%{transform:translateY(calc(-50% + 10vh)) rotate(-3deg);}
+  25%{transform:translateY(calc(-50% - 12vh)) rotate(-19deg);}
+  38%{transform:translateY(calc(-50% + 8vh)) rotate(-4deg);}
+  50%{left:94%;transform:translateY(calc(-50% - 10vh)) rotate(-14deg);opacity:1;}
+  60%{left:116%;opacity:1;}
+  100%{left:116%;opacity:0;transform:translateY(-50%) rotate(-12deg);}
 }
+@media(max-width:560px){ .spray-can{width:108px;} }
 
 /* ===== Galerie graffiti — URBAN ===== */
 .gview{position:fixed;inset:0;z-index:8000;overflow-y:auto;visibility:hidden;opacity:0;transition:opacity .3s ease;
