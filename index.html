@@ -18,7 +18,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=EB+Garamond:ital@0;1&family=Anton&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=EB+Garamond:ital@0;1&family=Anton&family=Bangers&family=Lacquer&family=Permanent+Marker&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -220,20 +220,27 @@
 
 <!-- ===== Galerie graffiti (lume urbană, toate proiectele) ===== -->
 <div class="gview" id="gview" aria-hidden="true">
-  <div class="gwall" aria-hidden="true">
-    <span class="wall-tag" style="left:1%;top:11%;color:#E6357A;font-size:16vmin;transform:rotate(-8deg);">LM</span>
-    <span class="wall-tag" style="right:2%;top:26%;color:#7Bd14b;font-size:8vmin;transform:rotate(6deg);">street</span>
-    <span class="wall-tag" style="left:5%;bottom:9%;color:#2f6df0;font-size:9vmin;transform:rotate(-5deg);">code</span>
-    <span class="wall-tag" style="right:7%;bottom:20%;color:#ff7a1a;font-size:7vmin;transform:rotate(9deg);">2026</span>
-    <span class="wall-tag" style="left:43%;top:5%;color:#46e6d0;font-size:6vmin;transform:rotate(-3deg);">▲▲▲</span>
+  <div class="gswirl" aria-hidden="true"></div>
+  <div class="gstickers" aria-hidden="true">
+    <span class="stk" style="left:5%;top:15%;font-size:4.4vmin;color:#FFE21F;">★</span>
+    <span class="stk" style="right:7%;top:11%;font-size:3.2vmin;color:#21D4FD;">✦</span>
+    <span class="stk" style="left:9%;bottom:13%;font-size:3.6vmin;color:#FF3DAE;">★</span>
+    <span class="stk" style="right:10%;bottom:16%;font-size:4.2vmin;color:#8AFF1F;">✦</span>
+    <span class="stk" style="left:47%;top:7%;font-size:2.8vmin;color:#fff;">✦</span>
+    <span class="stk" style="left:32%;bottom:8%;font-size:2.6vmin;color:#FFE21F;">★</span>
+    <svg class="stk" style="left:2.5%;top:38%;width:12vmin;" viewBox="0 0 100 70"><ellipse cx="50" cy="38" rx="46" ry="14" fill="none" stroke="#21D4FD" stroke-width="5" transform="rotate(-18 50 38)"/><circle cx="50" cy="35" r="20" fill="#FFE21F" stroke="#111" stroke-width="3"/></svg>
+    <svg class="stk" style="right:4%;top:42%;width:9vmin;" viewBox="0 0 100 92"><path d="M50 6 L94 86 H6 Z" fill="#7a3df0" stroke="#111" stroke-width="4"/><ellipse cx="50" cy="60" rx="20" ry="12" fill="#fff" stroke="#111" stroke-width="3"/><circle cx="50" cy="60" r="6" fill="#111"/></svg>
+    <svg class="stk" style="right:15%;bottom:32%;width:7vmin;" viewBox="0 0 100 100"><path d="M50 8 L90 30 L50 52 L10 30 Z" fill="#FF3DAE" stroke="#111" stroke-width="3"/><path d="M50 52 L90 30 L90 74 L50 96 Z" fill="#b1208a" stroke="#111" stroke-width="3"/><path d="M50 52 L10 30 L10 74 L50 96 Z" fill="#d62ba0" stroke="#111" stroke-width="3"/></svg>
+    <svg class="stk" style="left:18%;top:9%;width:6vmin;" viewBox="0 0 100 100"><path d="M50 8 L90 30 L50 52 L10 30 Z" fill="#8AFF1F" stroke="#111" stroke-width="3"/><path d="M50 52 L90 30 L90 74 L50 96 Z" fill="#5bbf12" stroke="#111" stroke-width="3"/><path d="M50 52 L10 30 L10 74 L50 96 Z" fill="#6fd418" stroke="#111" stroke-width="3"/></svg>
   </div>
+  <div class="gframe" aria-hidden="true"></div>
   <div class="gview-inner">
     <div class="gview-top">
-      <h2 class="gview-title"><span class="t1">PRO</span><span class="t2">IECTE</span></h2>
-      <button class="gback" id="gback" type="button">← înapoi la site</button>
+      <h2 class="gview-title">PRO<span class="a">IE</span><span class="b">CTE</span></h2>
+      <button class="gback" id="gback" type="button">← înapoi</button>
     </div>
     <div class="gview-grid" id="gviewGrid"></div>
-    <p class="gview-foot">★ toate proiectele · zona vandalizată ★</p>
+    <p class="gview-foot">★ toate proiectele ★</p>
   </div>
 </div>
 
