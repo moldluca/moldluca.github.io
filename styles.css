@@ -303,11 +303,11 @@ body.noscroll .cursor{display:none;}
 .st-ads{position:absolute;top:198px;right:28%;bottom:176px;width:min(470px,40vw);display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:16px;pointer-events:none;z-index:2;}
 .st-ad{position:relative;pointer-events:auto;display:block;width:100%;height:100%;border:7px solid #0c0c0e;border-radius:5px;overflow:hidden;background:#000;box-shadow:0 22px 44px rgba(0,0,0,.6),0 0 30px 4px rgba(120,180,255,.12);transition:transform .2s,box-shadow .2s;}
 .st-ad:first-child{grid-row:1 / span 2;}
-.st-ad img{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.05) brightness(.96);}
-.st-ad-ph{width:100%;height:100%;display:grid;place-items:center;font-family:system-ui,-apple-system,sans-serif;font-weight:800;font-size:2.6rem;letter-spacing:2px;color:rgba(255,255,255,.94);
+.st-ad-img{position:absolute;inset:0;z-index:2;display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(1.04);}
+.st-ad-ph{position:absolute;inset:0;z-index:1;display:grid;place-items:center;font-family:system-ui,-apple-system,sans-serif;font-weight:800;font-size:2.6rem;letter-spacing:2px;color:rgba(255,255,255,.94);
   background:radial-gradient(circle at 30% 22%, var(--phc,#2a3550), #0e1422 88%);text-shadow:0 3px 10px rgba(0,0,0,.5);}
 .st-ad:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 40px 70px rgba(0,0,0,.65),0 0 50px 8px rgba(120,180,255,.2);}
-.st-ad-tag{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.72);color:#fff;font-weight:600;font-size:.72rem;letter-spacing:.5px;padding:7px 9px;}
+.st-ad-tag{position:absolute;left:0;right:0;bottom:0;z-index:3;background:rgba(0,0,0,.72);color:#fff;font-weight:600;font-size:.72rem;letter-spacing:.5px;padding:7px 9px;}
 .st-ad-tag em{color:#7Bd14b;font-style:normal;}
 .st-floor{position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(#3a3a40,#2a2a30);box-shadow:inset 0 8px 16px rgba(0,0,0,.4);}
 .st-floor::before{content:"";position:absolute;inset:0;opacity:.5;background:repeating-linear-gradient(90deg, rgba(0,0,0,.12) 0 2px, transparent 2px 70px),repeating-linear-gradient(0deg, rgba(0,0,0,.12) 0 2px, transparent 2px 70px);}
