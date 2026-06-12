@@ -300,7 +300,7 @@ body.noscroll .cursor{display:none;}
 .st-map-area{background:#f4f2ea;padding:14px;}
 .st-map-svg{display:block;width:100%;height:auto;background:repeating-linear-gradient(0deg, rgba(0,0,0,.03) 0 1px, transparent 1px 22px),repeating-linear-gradient(90deg, rgba(0,0,0,.03) 0 1px, transparent 1px 22px),#f4f2ea;}
 .st-map-glass{position:absolute;inset:10px;pointer-events:none;border-radius:4px;background:linear-gradient(122deg, rgba(255,255,255,.15) 0 16%, transparent 30% 62%, rgba(255,255,255,.08) 82% 100%);}
-.st-ads{position:absolute;top:198px;right:24%;bottom:176px;display:flex;gap:16px;align-items:stretch;pointer-events:none;z-index:2;}
+.st-ads{position:absolute;top:240px;right:8%;bottom:212px;display:flex;gap:14px;align-items:stretch;pointer-events:none;z-index:2;}
 .st-ad{position:relative;pointer-events:auto;display:block;border:7px solid #0c0c0e;border-radius:5px;overflow:hidden;background:#0c0c0e;box-shadow:0 22px 44px rgba(0,0,0,.6),0 0 30px 4px rgba(120,180,255,.12);transition:transform .2s,box-shadow .2s;}
 .st-ad-tall{height:100%;aspect-ratio:3/4;flex:none;}        /* TrainBot portret — fără tăiere */
 .st-ad-col{display:flex;flex-direction:column;gap:16px;height:100%;align-items:flex-start;flex:none;}
