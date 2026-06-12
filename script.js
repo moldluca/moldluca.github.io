@@ -224,14 +224,53 @@ if(citymap){
   if(cityLeg) cityLeg.innerHTML = LINES.map(l => `<span><i style="background:${l.c}"></i> Linia ${l.key} — ${l.label}</span>`).join('');
 }
 
-// ---------- deschidere / închidere hartă ----------
+// ---------- stație de metrou: mini-hartă + reclame ----------
+const station = document.getElementById('station');
+const stMap = document.getElementById('stMap');
+const stExit = document.getElementById('stExit');
+const stMapSvg = document.getElementById('stMapSvg');
+const stAds = document.getElementById('stAds');
+const trainfx = document.getElementById('trainfx');
+
+if(stMapSvg){
+  const SX = 680/2240, SY = 360/1440;
+  let s = '';
+  LINES.forEach(l => { const sc = l.pts.split(' ').map(pt => { const [a,b] = pt.split(','); return (a*SX).toFixed(1)+','+(b*SY).toFixed(1); }).join(' ');
+    s += `<polyline points="${sc}" fill="none" stroke="${l.c}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`; });
+  STATIONS.forEach(st => s += `<circle cx="${(st.x*SX).toFixed(1)}" cy="${(st.y*SY).toFixed(1)}" r="${st.intc?6:4.5}" fill="#0e1422" stroke="${st.intc?'#fff':st.c}" stroke-width="3"/>`);
+  stMapSvg.innerHTML = s;
+}
+if(stAds){
+  const promo = PROJECTS.filter(p => p.featured && p.img).slice(0,3);
+  const pos = ['right:4%;top:27%;width:16vw;height:21vw;','right:4%;bottom:23%;width:16vw;height:21vw;','left:31%;top:30%;width:13vw;height:17vw;'];
+  stAds.innerHTML = promo.map((p,i) => `<a class="st-ad" style="${pos[i]||pos[0]}" href="${esc(p.live||p.repo||'#')}" target="_blank" rel="noopener"><img src="${esc(p.img)}" alt="${esc(p.title)}"><span class="st-ad-tag">${esc(p.title)} <em>· acum live</em></span></a>`).join('');
+}
+
+// ---------- tranziție cu tren ----------
+let trainBusy = false;
+function trainSweep(midCb){
+  if(trainBusy) return;
+  if(!trainfx){ midCb(); return; }
+  trainBusy = true;
+  trainfx.classList.add('go');
+  setTimeout(midCb, 760);
+  setTimeout(() => { trainfx.classList.remove('go'); trainBusy = false; }, 1720);
+}
+
+// ---------- flux: pagină ⇄ stație ⇄ hartă ----------
+function openStation(){ station.classList.add('open'); station.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll'); }
+function closeStation(){ station.classList.remove('open'); station.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); }
 let cityT = false;
-function openMap(){ if(cityT) return; cityT = true; gview.classList.add('open'); gview.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll');
-  if(cityvp){ cityvp.scrollLeft = 150; cityvp.scrollTop = 190; } setTimeout(()=>cityT=false, 450); }
-function closeMap(){ if(cityT) return; cityT = true; gview.classList.remove('open'); gview.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); setTimeout(()=>cityT=false, 450); }
-moreBtn?.addEventListener('click', openMap);
+function openMap(){ if(cityT) return; cityT = true; gview.classList.add('open'); gview.setAttribute('aria-hidden','false'); if(cityvp){ cityvp.scrollLeft = 150; cityvp.scrollTop = 190; } setTimeout(()=>cityT=false, 450); }
+function closeMap(){ if(cityT) return; cityT = true; gview.classList.remove('open'); gview.setAttribute('aria-hidden','true'); setTimeout(()=>cityT=false, 450); }
+
+moreBtn?.addEventListener('click', () => trainSweep(openStation));
+stExit?.addEventListener('click', () => trainSweep(closeStation));
+stMap?.addEventListener('click', openMap);
 gback?.addEventListener('click', closeMap);
-addEventListener('keydown', e => { if(e.key === 'Escape' && gview.classList.contains('open')) closeMap(); });
+addEventListener('keydown', e => { if(e.key !== 'Escape') return;
+  if(gview.classList.contains('open')) closeMap();
+  else if(station.classList.contains('open')) trainSweep(closeStation); });
 if(moreBtn) bindCursor(moreBtn);
 
 // ---------- drag-to-pan pe hartă ----------

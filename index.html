@@ -219,6 +219,29 @@
   </div>
 </footer>
 
+<!-- ===== Stație de metrou (scena) ===== -->
+<div class="station" id="station" aria-hidden="true">
+  <div class="st-wall"></div>
+  <div class="st-ceiling"></div><div class="st-light"></div>
+  <div class="st-nameband"><span class="st-roundel">LM</span><h2 class="st-name">Proiecte</h2><span class="st-x">// linia ta de proiecte</span></div>
+  <div class="st-sign"><span class="ar">←</span> Ieșire · Despre &nbsp;&nbsp;|&nbsp;&nbsp; Proiecte <span class="ar">→</span></div>
+
+  <button class="st-map" id="stMap" type="button" aria-label="Deschide harta interactivă">
+    <span class="st-map-head">HARTA PROIECTELOR <em>▸ click pentru a explora</em></span>
+    <div class="st-map-area"><svg class="st-map-svg" id="stMapSvg" viewBox="0 0 680 360" preserveAspectRatio="none"></svg></div>
+    <span class="st-map-glass"></span>
+  </button>
+
+  <div class="st-ads" id="stAds"></div>
+
+  <div class="st-bench"></div><div class="st-bin"></div>
+  <div class="st-floor"></div><div class="st-safety"></div><div class="st-gap"></div><div class="st-rail"></div>
+  <div class="st-mindgap">⚠ ATENȚIE LA DISTANȚA DINTRE TREN ȘI PERON</div>
+  <button class="st-exit" id="stExit" type="button">← ieșire</button>
+  <div class="st-hint" id="stHint">click pe hartă pentru a explora proiectele</div>
+  <div class="st-vig"></div>
+</div>
+
 <!-- ===== Harta proiectelor (city map) ===== -->
 <div class="gview" id="gview" aria-hidden="true">
   <div class="cityvp" id="cityvp">
@@ -231,6 +254,19 @@
   </div>
   <button class="gback" id="gback" type="button">← înapoi</button>
   <div class="map-hint" aria-hidden="true">✋ trage harta · hover pe stații</div>
+</div>
+
+<!-- ===== Tren (tranziție) ===== -->
+<div class="train-fx" id="trainfx" aria-hidden="true">
+  <div class="train">
+    <div class="cab"></div>
+    <div class="car"><div class="win"></div><div class="stripe"></div><div class="door"></div></div>
+    <div class="car"><div class="win"></div><div class="stripe"></div><div class="door"></div></div>
+    <div class="car"><div class="win"></div><div class="stripe"></div><div class="door"></div></div>
+    <div class="car"><div class="win"></div><div class="stripe"></div><div class="door"></div></div>
+    <div class="car"><div class="win"></div><div class="stripe"></div><div class="door"></div></div>
+    <div class="cab end"></div>
+  </div>
 </div>
 <script src="script.js"></script>
 </body>
