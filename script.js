@@ -213,15 +213,17 @@ if(stAds){
   const promoSlugs = ['trainbot','arbori','timisoara'];   // primul = reclama mare (înaltă)
   const phc = {trainbot:'#5b56e0', arbori:'#1f8a3b', timisoara:'#7d5ba6'};
   const promo = promoSlugs.map(s => PROJECTS.find(p => p.slug === s)).filter(Boolean);
-  stAds.innerHTML = promo.map(p => {
+  const adHTML = (p, cls) => {
     const ini = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
     const tag = p.live ? '· live' : (p.priv ? '· intern' : '');
-    // imagine de reclamă (images/ads/<slug>.jpg); dacă lipsește, rămâne placeholder colorat
-    return `<a class="st-ad" href="${esc(p.live||p.repo||'#')}" target="_blank" rel="noopener">`
+    return `<a class="st-ad ${cls}" href="${esc(p.live||p.repo||'#')}" target="_blank" rel="noopener">`
       + `<div class="st-ad-ph" style="--phc:${phc[p.slug]||'#2a3550'}">${ini}</div>`
       + `<img class="st-ad-img" src="images/ads/${p.slug}.jpg" alt="reclamă ${esc(p.title)}" loading="lazy" onerror="this.remove()">`
       + `<span class="st-ad-tag">${esc(p.title)} <em>${tag}</em></span></a>`;
-  }).join('');
+  };
+  const big = promo[0], smalls = promo.slice(1, 3);
+  stAds.innerHTML = (big ? adHTML(big, 'st-ad-tall') : '')
+    + `<div class="st-ad-col">` + smalls.map(p => adHTML(p, 'st-ad-small')).join('') + `</div>`;
 }
 
 // ---------- tranziție cu tren ----------
