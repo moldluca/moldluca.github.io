@@ -242,8 +242,7 @@ if(stMapSvg){
 }
 if(stAds){
   const promo = PROJECTS.filter(p => p.featured && p.img).slice(0,3);
-  const pos = ['right:4%;top:27%;width:16vw;height:21vw;','right:4%;bottom:23%;width:16vw;height:21vw;','left:31%;top:30%;width:13vw;height:17vw;'];
-  stAds.innerHTML = promo.map((p,i) => `<a class="st-ad" style="${pos[i]||pos[0]}" href="${esc(p.live||p.repo||'#')}" target="_blank" rel="noopener"><img src="${esc(p.img)}" alt="${esc(p.title)}"><span class="st-ad-tag">${esc(p.title)} <em>· acum live</em></span></a>`).join('');
+  stAds.innerHTML = promo.map(p => `<a class="st-ad" href="${esc(p.live||p.repo||'#')}" target="_blank" rel="noopener"><img src="${esc(p.img)}" alt="${esc(p.title)}"><span class="st-ad-tag">${esc(p.title)} <em>· acum live</em></span></a>`).join('');
 }
 
 // ---------- tranziție cu tren ----------
