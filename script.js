@@ -266,8 +266,17 @@ if(stMapSvg){
   stMapSvg.innerHTML = s;
 }
 if(stAds){
-  const promo = PROJECTS.filter(p => p.featured && p.img).slice(0,3);
-  stAds.innerHTML = promo.map(p => `<a class="st-ad" href="${esc(p.live||p.repo||'#')}" target="_blank" rel="noopener"><img src="${esc(p.img)}" alt="${esc(p.title)}"><span class="st-ad-tag">${esc(p.title)} <em>· acum live</em></span></a>`).join('');
+  const promoSlugs = ['arbori','trainbot','timisoara'];
+  const phc = {arbori:'#1f8a3b', trainbot:'#2a6fb0', timisoara:'#7d5ba6'};
+  const promo = promoSlugs.map(s => PROJECTS.find(p => p.slug === s)).filter(Boolean);
+  stAds.innerHTML = promo.map(p => {
+    const ini = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
+    const inner = p.img
+      ? `<img src="${esc(p.img)}" alt="${esc(p.title)}">`
+      : `<div class="st-ad-ph" style="--phc:${phc[p.slug]||'#2a3550'}">${ini}</div>`;
+    const tag = p.live ? '· live' : (p.priv ? '· intern' : '');
+    return `<a class="st-ad" href="${esc(p.live||p.repo||'#')}" target="_blank" rel="noopener">${inner}<span class="st-ad-tag">${esc(p.title)} <em>${tag}</em></span></a>`;
+  }).join('');
 }
 
 // ---------- tranziție cu tren ----------
