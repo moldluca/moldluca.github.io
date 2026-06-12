@@ -202,10 +202,35 @@ const STATIONS = [
 if(citymap){
   const BY = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
   const W=2240, H=1440;
-  let svg = `<svg class="layer" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`
-    + `<path d="M2240,180 C1700,360 1900,720 1300,820 C800,900 950,1200 300,1340" fill="none" stroke="#16345c" stroke-width="54" stroke-linecap="round" opacity=".5"/>`
-    + `<circle cx="430" cy="640" r="80" fill="#173a28" opacity=".65"/>`
-    + `<rect x="1720" y="640" width="190" height="150" rx="16" fill="#173a28" opacity=".65"/>`;
+  let deco = '';
+  // clădiri / blocuri (textură de oraș)
+  for(let i=0;i<78;i++){
+    const x=((i*263 + (i%9)*80) % 2120) + 60;
+    const y=((i*191 + (i%6)*70) % 1300) + 70;
+    const w=26 + (i*11 % 74), h=20 + (i*13 % 58);
+    deco += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.05)"/>`;
+  }
+  // bulevarde
+  deco += `<line x1="-20" y1="520" x2="2260" y2="760" stroke="rgba(255,255,255,0.05)" stroke-width="12"/>`
+       +  `<line x1="520" y1="-20" x2="1040" y2="1460" stroke="rgba(255,255,255,0.05)" stroke-width="12"/>`
+       +  `<line x1="1500" y1="-20" x2="1980" y2="1460" stroke="rgba(255,255,255,0.045)" stroke-width="10"/>`;
+  // parcuri (verde)
+  deco += `<circle cx="430" cy="640" r="92" fill="#173a28" opacity=".7"/>`
+       +  `<rect x="1700" y="630" width="210" height="160" rx="20" fill="#173a28" opacity=".7"/>`
+       +  `<ellipse cx="1230" cy="1185" rx="155" ry="98" fill="#173a28" opacity=".6"/>`
+       +  `<path d="M150,1070 q120,-60 235,12 q-30,124 -156,122 q-122,-30 -79,-134 Z" fill="#173a28" opacity=".55"/>`;
+  // apă: râu + lac
+  deco += `<path d="M2240,160 C1720,340 1920,720 1300,820 C780,910 980,1220 280,1360" fill="none" stroke="#16345c" stroke-width="58" stroke-linecap="round" opacity=".6"/>`
+       +  `<ellipse cx="1990" cy="1010" rx="172" ry="106" fill="#163a5e" opacity=".7"/>`;
+  // poduri peste râu
+  deco += `<g stroke="rgba(255,255,255,0.13)" stroke-width="4"><line x1="1126" y1="798" x2="1192" y2="852"/><line x1="756" y1="938" x2="822" y2="992"/></g>`;
+  // etichete de cartiere
+  const dlabels=[['CENTRU',1090,118],['NORD',520,150],['CARTIERUL VECHI',210,560],['PORTUL',1960,1185],['GARA',1310,1378],['PARCUL',1175,1300],['VEST',110,950]];
+  deco += dlabels.map(([t,x,y])=>`<text x="${x}" y="${y}" fill="rgba(255,255,255,0.10)" font-family="system-ui,sans-serif" font-weight="800" font-size="34" letter-spacing="5">${t}</text>`).join('');
+  // busolă
+  deco += `<g transform="translate(2120,150)" opacity=".55"><circle r="36" fill="rgba(14,20,34,.6)" stroke="rgba(255,255,255,.3)" stroke-width="2"/><path d="M0,-30 L9,2 L0,9 L-9,2 Z" fill="#ff3b5c"/><path d="M0,30 L9,-2 L0,-9 L-9,-2 Z" fill="rgba(255,255,255,.45)"/><text x="0" y="-42" text-anchor="middle" fill="rgba(255,255,255,.6)" font-family="system-ui" font-weight="700" font-size="16">N</text></g>`;
+
+  let svg = `<svg class="layer" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">` + deco;
   LINES.forEach(l => { svg += `<polyline points="${l.pts}" fill="none" stroke="${l.c}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>`; });
   svg += `</svg>`;
   let pins = '';
