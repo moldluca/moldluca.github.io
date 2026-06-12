@@ -65,7 +65,7 @@ const PROJECTS = [
   { slug:'timisoara', title:'Timișoara MUN', cat:'Eveniment',
     desc:'Site pentru conferința Timișoara Model United Nations — înscrieri, program, comitete.',
     tech:['Flask','Python','HTML'], img:null,
-    live:null, repo:null, since:'2025-10-06', priv:true },
+    live:'https://tm-mun.arpd.ro', repo:null, since:'2025-10-06' },
 
   { slug:'portofoliu', title:'Portofoliu', cat:'Personal',
     desc:'Acest portofoliu — temă „ivory estate × spray", cu animații, grafice și status live.',
@@ -177,76 +177,47 @@ const citymap = document.getElementById('citymap');
 const cityLeg = document.getElementById('cityLeg');
 
 const LINES = [
-  {key:'R', c:'#ff3b5c', label:'Robotică & live', pts:'260,300 620,460 980,640'},
-  {key:'E', c:'#2ec07a', label:'Educațional',     pts:'300,900 640,820 980,640 1500,560 1900,560'},
-  {key:'A', c:'#2ad4ff', label:'Produs / AI',     pts:'700,1150 1150,980 1600,900'},
-  {key:'W', c:'#f6b73a', label:'Web & Brand',     pts:'1500,1180 1950,1080'},
-  {key:'D', c:'#b06bff', label:'Diverse',         pts:'1650,300 2000,300'},
+  {key:'R', code:'M1', c:'#f7a600', label:'Robotică & live', pts:'460,370 685,595 860,770'},
+  {key:'A', code:'M2', c:'#1f3f93', label:'Produs / AI',     pts:'1210,420 1210,770 1210,1070 1210,1320'},
+  {key:'E', code:'M3', c:'#e2231a', label:'Educațional',     pts:'510,770 860,770 1210,770 1560,770'},
+  {key:'W', code:'M4', c:'#2e8b57', label:'Web & Brand',     pts:'860,770 860,1020 860,1270'},
+  {key:'D', code:'M5', c:'#f08000', label:'Diverse',         pts:'1560,770 1560,520 1560,320'},
 ];
 const STATIONS = [
-  {slug:'roworlds',         name:'RO Worlds',     x:260,  y:300,  c:'#ff3b5c'},
-  {slug:'perpetuum',        name:'Perpetuum',     x:620,  y:460,  c:'#ff3b5c'},
-  {slug:'criptare',         name:'Criptare',      x:300,  y:900,  c:'#2ec07a'},
-  {slug:'arbori',           name:'Arbori',        x:980,  y:640,  c:'#2ec07a', intc:true},
-  {slug:'eco',              name:'Eco',           x:1500, y:560,  c:'#2ec07a'},
-  {slug:'monede',           name:'Monede',        x:1900, y:560,  c:'#2ec07a'},
-  {slug:'arvusmart',        name:'ArvuSmart',     x:700,  y:1150, c:'#2ad4ff'},
-  {slug:'crocoai',          name:'CrocoAI',       x:1150, y:980,  c:'#2ad4ff'},
-  {slug:'trainbot',         name:'TrainBot',      x:1600, y:900,  c:'#2ad4ff'},
-  {slug:'codrea',           name:'CODREA',        x:1500, y:1180, c:'#f6b73a'},
-  {slug:'romania-identity', name:'România',       x:1950, y:1080, c:'#f6b73a'},
-  {slug:'timisoara',        name:'Timișoara MUN', x:1650, y:300,  c:'#b06bff'},
-  {slug:'portofoliu',       name:'Portofoliu',    x:2000, y:300,  c:'#b06bff'},
+  {slug:'roworlds',         name:'RO Worlds',     x:460,  y:370,  c:'#f7a600', lab:'t'},
+  {slug:'perpetuum',        name:'Perpetuum',     x:685,  y:595,  c:'#f7a600', lab:'l'},
+  {slug:'arbori',           name:'Arbori',        x:860,  y:770,  c:'#e2231a', intc:true, lab:'t'},
+  {slug:'criptare',         name:'Criptare',      x:510,  y:770,  c:'#e2231a', lab:'b'},
+  {slug:'eco',              name:'Eco',           x:1210, y:770,  c:'#e2231a', intc:true, lab:'b'},
+  {slug:'monede',           name:'Monede',        x:1560, y:770,  c:'#e2231a', intc:true, lab:'r'},
+  {slug:'trainbot',         name:'TrainBot',      x:1210, y:420,  c:'#1f3f93', lab:'r'},
+  {slug:'crocoai',          name:'CrocoAI',       x:1210, y:1070, c:'#1f3f93', lab:'r'},
+  {slug:'arvusmart',        name:'ArvuSmart',     x:1210, y:1320, c:'#1f3f93', lab:'r'},
+  {slug:'codrea',           name:'CODREA',        x:860,  y:1020, c:'#2e8b57', lab:'l'},
+  {slug:'romania-identity', name:'România',       x:860,  y:1270, c:'#2e8b57', lab:'l'},
+  {slug:'timisoara',        name:'Timișoara MUN', x:1560, y:520,  c:'#f08000', lab:'r'},
+  {slug:'portofoliu',       name:'Portofoliu',    x:1560, y:320,  c:'#f08000', lab:'r'},
 ];
 
 if(citymap){
   const BY = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
-  const W=2240, H=1440;
-  let deco = '';
-  // clădiri / blocuri (textură de oraș)
-  for(let i=0;i<78;i++){
-    const x=((i*263 + (i%9)*80) % 2120) + 60;
-    const y=((i*191 + (i%6)*70) % 1300) + 70;
-    const w=26 + (i*11 % 74), h=20 + (i*13 % 58);
-    deco += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="rgba(255,255,255,0.022)" stroke="rgba(255,255,255,0.05)"/>`;
-  }
-  // bulevarde
-  deco += `<line x1="-20" y1="520" x2="2260" y2="760" stroke="rgba(255,255,255,0.05)" stroke-width="12"/>`
-       +  `<line x1="520" y1="-20" x2="1040" y2="1460" stroke="rgba(255,255,255,0.05)" stroke-width="12"/>`
-       +  `<line x1="1500" y1="-20" x2="1980" y2="1460" stroke="rgba(255,255,255,0.045)" stroke-width="10"/>`;
-  // parcuri (verde)
-  deco += `<circle cx="430" cy="640" r="92" fill="#173a28" opacity=".7"/>`
-       +  `<rect x="1700" y="630" width="210" height="160" rx="20" fill="#173a28" opacity=".7"/>`
-       +  `<ellipse cx="1230" cy="1185" rx="155" ry="98" fill="#173a28" opacity=".6"/>`
-       +  `<path d="M150,1070 q120,-60 235,12 q-30,124 -156,122 q-122,-30 -79,-134 Z" fill="#173a28" opacity=".55"/>`;
-  // apă: râu + lac
-  deco += `<path d="M2240,160 C1720,340 1920,720 1300,820 C780,910 980,1220 280,1360" fill="none" stroke="#16345c" stroke-width="58" stroke-linecap="round" opacity=".6"/>`
-       +  `<ellipse cx="1990" cy="1010" rx="172" ry="106" fill="#163a5e" opacity=".7"/>`;
-  // poduri peste râu
-  deco += `<g stroke="rgba(255,255,255,0.13)" stroke-width="4"><line x1="1126" y1="798" x2="1192" y2="852"/><line x1="756" y1="938" x2="822" y2="992"/></g>`;
-  // etichete de cartiere
-  const dlabels=[['CENTRU',1090,118],['NORD',520,150],['CARTIERUL VECHI',210,560],['PORTUL',1960,1185],['GARA',1310,1378],['PARCUL',1175,1300],['VEST',110,950]];
-  deco += dlabels.map(([t,x,y])=>`<text x="${x}" y="${y}" fill="rgba(255,255,255,0.10)" font-family="system-ui,sans-serif" font-weight="800" font-size="34" letter-spacing="5">${t}</text>`).join('');
-  // busolă
-  deco += `<g transform="translate(2120,150)" opacity=".55"><circle r="36" fill="rgba(14,20,34,.6)" stroke="rgba(255,255,255,.3)" stroke-width="2"/><path d="M0,-30 L9,2 L0,9 L-9,2 Z" fill="#ff3b5c"/><path d="M0,30 L9,-2 L0,-9 L-9,-2 Z" fill="rgba(255,255,255,.45)"/><text x="0" y="-42" text-anchor="middle" fill="rgba(255,255,255,.6)" font-family="system-ui" font-weight="700" font-size="16">N</text></g>`;
-
-  let svg = `<svg class="layer" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">` + deco;
-  LINES.forEach(l => { svg += `<polyline points="${l.pts}" fill="none" stroke="${l.c}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>`; });
+  const W=2000, H=1560;
+  let svg = `<svg class="layer" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;
+  LINES.forEach(l => { svg += `<polyline points="${l.pts}" fill="none" stroke="${l.c}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>`; });
   svg += `</svg>`;
   let pins = '';
   STATIONS.forEach(s => {
     const p = BY[s.slug]; if(!p) return;
-    const initials = s.name.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
     const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : (p.priv ? '<span>intern</span>' : '');
     const repo = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod</a>` : '';
-    pins += `<div class="pin${s.intc?' intc':''}" style="left:${s.x}px;top:${s.y}px;--c:${s.c}">`
-      + `<span class="dot">${initials}</span><span class="plabel">${esc(s.name)}${s.intc?' ⇄':''}</span>`
+    pins += `<div class="pin${s.intc?' intc':''} lab-${s.lab||'r'}" style="left:${s.x}px;top:${s.y}px;--c:${s.c}">`
+      + `<span class="dot"></span><span class="plabel">${esc(s.name)}</span>`
       + `<div class="pcard"><h3>${esc(p.title)}</h3><div class="pc-cat">${esc(p.cat)}</div><div class="pc-tags">${p.tech.map(esc).join(' · ')}</div><div class="pc-links">${live}${repo}</div></div>`
       + `</div>`;
   });
   citymap.innerHTML = svg + pins;
   citymap.style.width = W + 'px'; citymap.style.height = H + 'px';
-  if(cityLeg) cityLeg.innerHTML = LINES.map(l => `<span><i style="background:${l.c}"></i> Linia ${l.key} — ${l.label}</span>`).join('');
+  if(cityLeg) cityLeg.innerHTML = LINES.map(l => `<span><i class="mpill" style="background:${l.c}">${l.code}</i> ${l.label}</span>`).join('');
 }
 
 // ---------- stație de metrou: mini-hartă + reclame ----------
@@ -258,11 +229,11 @@ const stAds = document.getElementById('stAds');
 const trainfx = document.getElementById('trainfx');
 
 if(stMapSvg){
-  const SX = 680/2240, SY = 360/1440;
+  const SX = 680/2000, SY = 360/1560;
   let s = '';
   LINES.forEach(l => { const sc = l.pts.split(' ').map(pt => { const [a,b] = pt.split(','); return (a*SX).toFixed(1)+','+(b*SY).toFixed(1); }).join(' ');
-    s += `<polyline points="${sc}" fill="none" stroke="${l.c}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`; });
-  STATIONS.forEach(st => s += `<circle cx="${(st.x*SX).toFixed(1)}" cy="${(st.y*SY).toFixed(1)}" r="${st.intc?6:4.5}" fill="#0e1422" stroke="${st.intc?'#fff':st.c}" stroke-width="3"/>`);
+    s += `<polyline points="${sc}" fill="none" stroke="${l.c}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>`; });
+  STATIONS.forEach(st => s += `<circle cx="${(st.x*SX).toFixed(1)}" cy="${(st.y*SY).toFixed(1)}" r="${st.intc?6:4.5}" fill="#fff" stroke="${st.intc?'#111':st.c}" stroke-width="3"/>`);
   stMapSvg.innerHTML = s;
 }
 if(stAds){
@@ -294,7 +265,8 @@ function trainSweep(midCb){
 function openStation(){ station.classList.add('open'); station.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll'); }
 function closeStation(){ station.classList.remove('open'); station.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); }
 let cityT = false;
-function openMap(){ if(cityT) return; cityT = true; gview.classList.add('open'); gview.setAttribute('aria-hidden','false'); if(cityvp){ cityvp.scrollLeft = 150; cityvp.scrollTop = 190; } setTimeout(()=>cityT=false, 450); }
+function openMap(){ if(cityT) return; cityT = true; gview.classList.add('open'); gview.setAttribute('aria-hidden','false');
+  if(cityvp){ cityvp.scrollLeft = Math.max(0,(2000 - cityvp.clientWidth)/2); cityvp.scrollTop = Math.max(0,(1560 - cityvp.clientHeight)/2 + 60); } setTimeout(()=>cityT=false, 450); }
 function closeMap(){ if(cityT) return; cityT = true; gview.classList.remove('open'); gview.setAttribute('aria-hidden','true'); setTimeout(()=>cityT=false, 450); }
 
 moreBtn?.addEventListener('click', () => trainSweep(openStation));
