@@ -154,22 +154,22 @@ const citymap = document.getElementById('citymap');
 const cityLeg = document.getElementById('cityLeg');
 
 const LINES = [
-  {key:'R', code:'M1', c:'#f7a600', label:'Robotică & live', pts:'620,420 840,640 1060,860'},
-  {key:'A', code:'M2', c:'#1f3f93', label:'Produs / AI',     pts:'1520,460 1520,860 1520,1200'},
-  {key:'E', code:'M3', c:'#e2231a', label:'Educațional',     pts:'700,860 1060,860'},
-  {key:'W', code:'M4', c:'#2e8b57', label:'Web & client',    pts:'1060,860 1060,1200'},
-  {key:'D', code:'M5', c:'#f08000', label:'Diverse',         pts:'1060,860 1360,560'},
+  {key:'R', code:'M1', c:'#f7a600', label:'Robotică & live', pts:'420,340 680,560'},
+  {key:'A', code:'M2', c:'#1f3f93', label:'Produs / AI',     pts:'1340,800 1340,1060 1340,1320'},
+  {key:'E', code:'M3', c:'#e2231a', label:'Educațional',     pts:'560,800 900,800 1340,800'},
+  {key:'W', code:'M4', c:'#2e8b57', label:'Web & client',    pts:'900,800 900,1120'},
+  {key:'D', code:'M5', c:'#f08000', label:'Diverse',         pts:'900,800 1180,520'},
 ];
 const STATIONS = [
-  {slug:'roworlds',  name:'RO Worlds',     x:620,  y:420,  c:'#f7a600', lab:'t'},
-  {slug:'perpetuum', name:'Perpetuum',     x:840,  y:640,  c:'#f7a600', lab:'l'},
-  {slug:'arbori',    name:'Arbori',        x:1060, y:860,  c:'#e2231a', intc:true, lab:'b'},
-  {slug:'criptare',  name:'Criptare',      x:700,  y:860,  c:'#e2231a', lab:'l'},
-  {slug:'trainbot',  name:'TrainBot',      x:1520, y:460,  c:'#1f3f93', lab:'r'},
-  {slug:'crocoai',   name:'CrocoAI',       x:1520, y:860,  c:'#1f3f93', lab:'r'},
-  {slug:'arvusmart', name:'ArvuSmart',     x:1520, y:1200, c:'#1f3f93', lab:'r'},
-  {slug:'codrea',    name:'CODREA BATI',   x:1060, y:1200, c:'#2e8b57', lab:'r'},
-  {slug:'timisoara', name:'Timișoara MUN', x:1360, y:560,  c:'#f08000', lab:'r'},
+  {slug:'roworlds',  name:'RO Worlds',     x:420,  y:340,  c:'#f7a600', lab:'t'},
+  {slug:'perpetuum', name:'Perpetuum',     x:680,  y:560,  c:'#f7a600', lab:'b'},
+  {slug:'criptare',  name:'Criptare',      x:560,  y:800,  c:'#e2231a', lab:'l'},
+  {slug:'arbori',    name:'Arbori',        x:900,  y:800,  c:'#e2231a', intc:true, lab:'t'},
+  {slug:'trainbot',  name:'TrainBot',      x:1340, y:800,  c:'#1f3f93', intc:true, lab:'t'},
+  {slug:'crocoai',   name:'CrocoAI',       x:1340, y:1060, c:'#1f3f93', lab:'r'},
+  {slug:'arvusmart', name:'ArvuSmart',     x:1340, y:1320, c:'#1f3f93', lab:'r'},
+  {slug:'codrea',    name:'CODREA BATI',   x:900,  y:1120, c:'#2e8b57', lab:'r'},
+  {slug:'timisoara', name:'Timișoara MUN', x:1180, y:520,  c:'#f08000', lab:'r'},
 ];
 
 if(citymap){
