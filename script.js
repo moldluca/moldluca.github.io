@@ -34,10 +34,10 @@ const PROJECTS = [
     tech:['HTML','Leaflet','JS'], img:'images/projects/arvusmart.png',
     live:'https://arvusmart.perpetuummobile.tech/', repo:null, since:'2026-04-27' },
 
-  { slug:'trainbot', featured:true, title:'TrainBot', cat:'Produs / AI',
-    desc:'Asistent AI pentru antrenamente — aplicație cu backend Node și model LLM (Groq / OpenAI).',
-    tech:['Node.js','LLM','iOS'], img:null,
-    live:'https://trainbot.perpetuummobile.tech/', repo:null, since:'2026-05-02' },
+  { slug:'trainbot', featured:true, title:'TrainBot', cat:'EdTech / AI',
+    desc:'Ecosistem EdTech care învață copiii (7–14 ani) AI & machine learning „cu mâinile" — app iOS (antrenezi modele CoreML on-device + LLM), dashboard profesori, backend Node. Sigur, conform GDPR.',
+    tech:['iOS','CoreML','LLM','Node'], img:null,
+    live:'https://trainbot.moldluca.tech', repo:null, since:'2026-05-02' },
 
   { slug:'perpetuum', featured:true, title:'Perpetuum Mobile', cat:'Organizație',
     desc:'Site-ul echipei de robotică Perpetuum Mobile — prezentare, sponsori, activități.',
@@ -211,7 +211,7 @@ if(stMapSvg){
 }
 if(stAds){
   const promoSlugs = ['trainbot','arbori','timisoara'];   // primul = reclama mare (înaltă)
-  const phc = {trainbot:'#2a6fb0', arbori:'#1f8a3b', timisoara:'#7d5ba6'};
+  const phc = {trainbot:'#5b56e0', arbori:'#1f8a3b', timisoara:'#7d5ba6'};
   const promo = promoSlugs.map(s => PROJECTS.find(p => p.slug === s)).filter(Boolean);
   stAds.innerHTML = promo.map(p => {
     const ini = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
