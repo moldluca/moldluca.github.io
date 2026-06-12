@@ -29,28 +29,10 @@ const PROJECTS = [
     live:'http://criptare.perpetuummobile.tech/',
     repo:'https://github.com/moldluca/laborator-criptare', since:'2026-05-08' },
 
-  { slug:'romania-identity', title:'România — Identitate Vizuală', cat:'Branding',
-    desc:'Website + brand book pentru o identitate vizuală națională a României (logo, paletă, mockup turism).',
-    tech:['HTML','CSS','JS'], img:'images/projects/romania-identity.png',
-    live:'https://romania.perpetuummobile.tech/',
-    repo:'https://github.com/moldluca/romania-visual-identity', since:'2026-05-07' },
-
   { slug:'arvusmart', featured:true, title:'ArvuSmart', cat:'Produs / Agri',
     desc:'Platformă agricolă: frontend, GeoSelect 3D pentru parcele și asistent AI agronomic.',
     tech:['HTML','Leaflet','JS'], img:'images/projects/arvusmart.png',
     live:'https://arvusmart.perpetuummobile.tech/', repo:null, since:'2026-04-27' },
-
-  { slug:'eco', title:'Eco Website', cat:'Educațional',
-    desc:'Site pe teme de ecologie și sustenabilitate.',
-    tech:['HTML','CSS','JS'], img:'images/projects/eco.png',
-    live:'https://moldluca.github.io/eco-website/',
-    repo:'https://github.com/moldluca/eco-website', since:'2026-03-26' },
-
-  { slug:'monede', title:'Prezentare Monede', cat:'Educațional',
-    desc:'Prezentare web interactivă despre monede.',
-    tech:['JavaScript','HTML','CSS'], img:'images/projects/monede.png',
-    live:'https://moldluca.github.io/prezentare-monede/',
-    repo:'https://github.com/moldluca/prezentare-monede', since:'2026-01-11' },
 
   { slug:'trainbot', featured:true, title:'TrainBot', cat:'Produs / AI',
     desc:'Asistent AI pentru antrenamente — aplicație cu backend Node și model LLM (Groq / OpenAI).',
@@ -66,11 +48,6 @@ const PROJECTS = [
     desc:'Site pentru conferința Timișoara Model United Nations — înscrieri, program, comitete.',
     tech:['Flask','Python','HTML'], img:null,
     live:'https://tm-mun.arpd.ro', repo:null, since:'2025-10-06' },
-
-  { slug:'portofoliu', title:'Portofoliu', cat:'Personal',
-    desc:'Acest portofoliu — temă „ivory estate × spray", cu animații, grafice și status live.',
-    tech:['HTML','CSS','JS'], img:null,
-    live:'https://moldluca.github.io/', repo:'https://github.com/moldluca/moldluca.github.io', since:'2026-06-09' },
 ];
 
 // ---------- helpers ----------
@@ -177,26 +154,22 @@ const citymap = document.getElementById('citymap');
 const cityLeg = document.getElementById('cityLeg');
 
 const LINES = [
-  {key:'R', code:'M1', c:'#f7a600', label:'Robotică & live', pts:'460,370 685,595 860,770'},
-  {key:'A', code:'M2', c:'#1f3f93', label:'Produs / AI',     pts:'1210,420 1210,770 1210,1070 1210,1320'},
-  {key:'E', code:'M3', c:'#e2231a', label:'Educațional',     pts:'510,770 860,770 1210,770 1560,770'},
-  {key:'W', code:'M4', c:'#2e8b57', label:'Web & Brand',     pts:'860,770 860,1020 860,1270'},
-  {key:'D', code:'M5', c:'#f08000', label:'Diverse',         pts:'1560,770 1560,520 1560,320'},
+  {key:'R', code:'M1', c:'#f7a600', label:'Robotică & live', pts:'620,420 840,640 1060,860'},
+  {key:'A', code:'M2', c:'#1f3f93', label:'Produs / AI',     pts:'1520,460 1520,860 1520,1200'},
+  {key:'E', code:'M3', c:'#e2231a', label:'Educațional',     pts:'700,860 1060,860'},
+  {key:'W', code:'M4', c:'#2e8b57', label:'Web & client',    pts:'1060,860 1060,1200'},
+  {key:'D', code:'M5', c:'#f08000', label:'Diverse',         pts:'1060,860 1360,560'},
 ];
 const STATIONS = [
-  {slug:'roworlds',         name:'RO Worlds',     x:460,  y:370,  c:'#f7a600', lab:'t'},
-  {slug:'perpetuum',        name:'Perpetuum',     x:685,  y:595,  c:'#f7a600', lab:'l'},
-  {slug:'arbori',           name:'Arbori',        x:860,  y:770,  c:'#e2231a', intc:true, lab:'t'},
-  {slug:'criptare',         name:'Criptare',      x:510,  y:770,  c:'#e2231a', lab:'b'},
-  {slug:'eco',              name:'Eco',           x:1210, y:770,  c:'#e2231a', intc:true, lab:'b'},
-  {slug:'monede',           name:'Monede',        x:1560, y:770,  c:'#e2231a', intc:true, lab:'r'},
-  {slug:'trainbot',         name:'TrainBot',      x:1210, y:420,  c:'#1f3f93', lab:'r'},
-  {slug:'crocoai',          name:'CrocoAI',       x:1210, y:1070, c:'#1f3f93', lab:'r'},
-  {slug:'arvusmart',        name:'ArvuSmart',     x:1210, y:1320, c:'#1f3f93', lab:'r'},
-  {slug:'codrea',           name:'CODREA',        x:860,  y:1020, c:'#2e8b57', lab:'l'},
-  {slug:'romania-identity', name:'România',       x:860,  y:1270, c:'#2e8b57', lab:'l'},
-  {slug:'timisoara',        name:'Timișoara MUN', x:1560, y:520,  c:'#f08000', lab:'r'},
-  {slug:'portofoliu',       name:'Portofoliu',    x:1560, y:320,  c:'#f08000', lab:'r'},
+  {slug:'roworlds',  name:'RO Worlds',     x:620,  y:420,  c:'#f7a600', lab:'t'},
+  {slug:'perpetuum', name:'Perpetuum',     x:840,  y:640,  c:'#f7a600', lab:'l'},
+  {slug:'arbori',    name:'Arbori',        x:1060, y:860,  c:'#e2231a', intc:true, lab:'b'},
+  {slug:'criptare',  name:'Criptare',      x:700,  y:860,  c:'#e2231a', lab:'l'},
+  {slug:'trainbot',  name:'TrainBot',      x:1520, y:460,  c:'#1f3f93', lab:'r'},
+  {slug:'crocoai',   name:'CrocoAI',       x:1520, y:860,  c:'#1f3f93', lab:'r'},
+  {slug:'arvusmart', name:'ArvuSmart',     x:1520, y:1200, c:'#1f3f93', lab:'r'},
+  {slug:'codrea',    name:'CODREA BATI',   x:1060, y:1200, c:'#2e8b57', lab:'r'},
+  {slug:'timisoara', name:'Timișoara MUN', x:1360, y:560,  c:'#f08000', lab:'r'},
 ];
 
 if(citymap){
