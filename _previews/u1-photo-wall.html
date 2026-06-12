@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U1 — Photo Wall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Archivo,sans-serif;color:#fff;min-height:100vh;
+  background:linear-gradient(180deg,rgba(10,10,14,.55),rgba(10,10,14,.78)), url("wall.jpg") center/cover fixed, #14141a;}
+.badge{position:fixed;top:14px;left:14px;z-index:99;background:#fff;color:#111;font-family:'Archivo Black';font-size:.7rem;padding:7px 12px}
+.wrap{max-width:1180px;margin:0 auto;padding:90px 40px}
+.head{margin-bottom:60px}
+.kick{font-size:.78rem;letter-spacing:6px;text-transform:uppercase;color:#d7d2c8;margin-bottom:16px}
+h1{font-family:'Archivo Black';font-size:clamp(3.4rem,11vw,8rem);line-height:.92;letter-spacing:-2px;
+  text-shadow:0 6px 30px rgba(0,0,0,.6)}
+h1 em{font-style:normal;color:#ff3d5a}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:rgba(20,20,26,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.16);border-radius:16px;overflow:hidden;transition:.25s}
+.card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.4);box-shadow:0 24px 50px rgba(0,0,0,.5)}
+.shot{aspect-ratio:16/10;background:rgba(0,0,0,.4);display:grid;place-items:center;font-family:'Archivo Black';font-size:2.4rem;color:rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.12)}
+.body{padding:18px 20px 22px}
+.name{font-family:'Archivo Black';font-size:1.5rem;margin-bottom:6px}
+.cat{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:#ff3d5a;margin-bottom:10px}
+.tags{font-size:.86rem;color:#c9c5bd;margin-bottom:14px}
+.links{display:flex;gap:16px;font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px}
+.links a{color:#fff;text-decoration:none;border-bottom:2px solid #ff3d5a;padding-bottom:3px}
+</style></head>
+<body>
+<div class="badge">U1 · PHOTO WALL (#1)</div>
+<div class="wrap">
+  <div class="head"><div class="kick">Toate proiectele</div><h1>PRO<em>IECTE</em></h1></div>
+  <div class="grid">
+    <div class="card"><div class="shot">RW</div><div class="body"><div class="name">RO Worlds</div><div class="cat">Live data</div><div class="tags">Node · FIRST API · Web Push</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="card"><div class="shot">CA</div><div class="body"><div class="name">CrocoAI</div><div class="cat">Produs / AI</div><div class="tags">Node · Socket.IO</div><div class="links"><a>↳ cod</a></div></div></div>
+    <div class="card"><div class="shot">AR</div><div class="body"><div class="name">Arbori</div><div class="cat">Educațional</div><div class="tags">JavaScript · SVG</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="card"><div class="shot">TB</div><div class="body"><div class="name">TrainBot</div><div class="cat">Produs / AI</div><div class="tags">Node · LLM · iOS</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="card"><div class="shot">AS</div><div class="body"><div class="name">ArvuSmart</div><div class="cat">Agri</div><div class="tags">HTML · Leaflet</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="card"><div class="shot">LC</div><div class="body"><div class="name">Criptare</div><div class="cat">Educațional</div><div class="tags">JavaScript · HTML</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+  </div>
+</div>
+</body></html>

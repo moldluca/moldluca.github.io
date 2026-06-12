@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U6c — Metro Real</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@600;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Archivo,sans-serif;color:#fff;min-height:100vh;overflow-x:hidden;
+  background:linear-gradient(180deg,rgba(6,6,10,.5),rgba(6,6,10,.7)), url("station.jpg") center/cover fixed, #0a0a0e}
+.badge{position:fixed;top:12px;left:12px;z-index:99;background:#111;color:#ffd23f;font-family:Oswald;font-weight:700;font-size:.7rem;padding:6px 11px;letter-spacing:1px}
+.vig{position:fixed;inset:0;pointer-events:none;z-index:40;box-shadow:inset 0 0 260px 90px rgba(0,0,0,.6)}
+
+/* semn de statie suspendat (foto-overlay) */
+.statSign{position:fixed;top:26px;left:50%;transform:translateX(-50%);z-index:30;background:#0e6f5a;border:4px solid #0a5040;border-radius:6px;
+  padding:10px 26px;display:flex;align-items:center;gap:18px;box-shadow:0 16px 36px rgba(0,0,0,.6)}
+.statSign .ro{width:46px;height:46px;border-radius:50%;border:7px solid #d4322a;background:#fff;display:grid;place-items:center;font-family:Oswald;font-weight:700;color:#111;font-size:.9rem}
+.statSign h1{font-family:Oswald;font-weight:700;letter-spacing:6px;text-transform:uppercase;font-size:1.7rem}
+
+/* harta ca lightbox montat pe perete */
+.case{position:fixed;left:5.5%;top:120px;width:min(720px,58vw);z-index:20;
+  border:15px solid #14141a;border-radius:9px;background:#14141a;padding:13px;
+  box-shadow:0 50px 90px rgba(0,0,0,.75),0 0 0 2px rgba(255,255,255,.06),0 0 70px 14px rgba(255,244,214,.18);
+  transform:perspective(1600px) rotateY(-5deg);transform-origin:left center}
+.case .glass{position:absolute;inset:13px;border-radius:5px;pointer-events:none;z-index:9;
+  background:linear-gradient(122deg, rgba(255,255,255,.22) 0 16%, transparent 30% 62%, rgba(255,255,255,.10) 82% 100%)}
+.inner{background:#fbfaf4;border-radius:5px;padding:16px 18px;position:relative;color:#1a1a1a;
+  box-shadow:inset 0 0 70px rgba(255,250,232,.7)}
+.inner h2{font-family:Oswald;font-weight:700;letter-spacing:2px;font-size:1.05rem}
+.inner .meta{font-family:'DM Mono',monospace;font-size:.64rem;color:#777;margin-bottom:10px}
+.maparea{position:relative}
+svg.lines{display:block;width:100%;height:auto}
+.st{position:absolute;transform:translate(-50%,-50%)}
+.st .node{width:14px;height:14px;border-radius:50%;background:#fff;border:4px solid #333;cursor:pointer;transition:.15s}
+.st.intc .node{width:18px;height:18px;border-radius:7px;border-color:#111}
+.st:hover .node{transform:scale(1.4)}
+.st .lab{position:absolute;left:15px;top:-7px;white-space:nowrap;font-family:Oswald;font-weight:600;font-size:.8rem}
+.st .card{position:absolute;left:50%;bottom:18px;transform:translateX(-50%) translateY(6px);width:184px;background:#fff;border:2px solid #111;border-radius:8px;padding:9px 11px;opacity:0;pointer-events:none;transition:.16s;z-index:30;box-shadow:0 12px 26px rgba(0,0,0,.35)}
+.st:hover .card{opacity:1;transform:translateX(-50%) translateY(0)}
+.st .card b{font-family:Oswald;font-size:.92rem}.st .card .t{font-size:.7rem;color:#555}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-family:Oswald;font-weight:600;font-size:.72rem;color:#333}
+.legend span{display:flex;align-items:center;gap:6px}.legend i{width:18px;height:5px;border-radius:3px}
+.youhere{position:absolute;font-family:'DM Mono',monospace;font-size:.6rem;color:#d4322a}
+
+/* afis luminos cu screenshot real */
+.poster{position:fixed;right:6%;top:150px;width:250px;height:330px;z-index:20;border:12px solid #0c0c0e;border-radius:5px;overflow:hidden;
+  box-shadow:0 40px 70px rgba(0,0,0,.7),0 0 40px 6px rgba(120,180,255,.12);background:#000;transform:perspective(1600px) rotateY(6deg)}
+.poster img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.05) brightness(.96)}
+.poster .ad{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.72);font-family:Oswald;font-weight:600;font-size:.74rem;letter-spacing:1px;padding:7px 10px}
+.hint{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:40;font-family:'DM Mono',monospace;color:#eee;background:rgba(0,0,0,.6);padding:6px 14px;border-radius:18px;font-size:.78rem}
+</style></head>
+<body>
+<div class="badge">U6c · METRO REAL (foto)</div>
+<div class="statSign"><span class="ro">LM</span><h1>Proiecte</h1></div>
+
+<div class="case">
+  <div class="glass"></div>
+  <div class="inner">
+    <h2>HARTA PROIECTELOR</h2><div class="meta">// fiecare linie = o categorie</div>
+    <div class="maparea">
+      <svg class="lines" viewBox="0 0 680 350">
+        <polyline points="60,70 230,70 360,140" fill="none" stroke="#d4322a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="60,200 230,200 360,140 470,205 600,205" fill="none" stroke="#1f8a3b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="360,140 470,60 620,60" fill="none" stroke="#1565c0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="120,300 300,300 470,205" fill="none" stroke="#f4a712" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="st" style="left:8.8%;top:20%"><span class="node" style="border-color:#d4322a"></span><span class="lab">RO Worlds</span><div class="card"><b>RO Worlds</b><div class="t">Robotică · live FIRST</div></div></div>
+      <div class="st" style="left:33.8%;top:20%"><span class="node" style="border-color:#d4322a"></span><span class="lab">Perpetuum</span><div class="card"><b>Perpetuum Mobile</b><div class="t">Robotică</div></div></div>
+      <div class="st intc" style="left:52.9%;top:40%"><span class="node"></span><span class="lab">Arbori ⇄</span><div class="card"><b>Arbori</b><div class="t">corespondență</div></div></div>
+      <div class="st" style="left:8.8%;top:57.1%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Criptare</span><div class="card"><b>Criptare</b><div class="t">Educațional</div></div></div>
+      <div class="st" style="left:69.1%;top:58.6%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Eco</span><div class="card"><b>Eco</b><div class="t">Educațional</div></div></div>
+      <div class="st" style="left:88.2%;top:58.6%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Monede</span><div class="card"><b>Monede</b><div class="t">Educațional</div></div></div>
+      <div class="st" style="left:69.1%;top:17.1%"><span class="node" style="border-color:#1565c0"></span><span class="lab">CrocoAI</span><div class="card"><b>CrocoAI</b><div class="t">Produs / AI</div></div></div>
+      <div class="st" style="left:91.2%;top:17.1%"><span class="node" style="border-color:#1565c0"></span><span class="lab">TrainBot</span><div class="card"><b>TrainBot</b><div class="t">Produs / AI</div></div></div>
+      <div class="st" style="left:17.6%;top:85.7%"><span class="node" style="border-color:#f4a712"></span><span class="lab">CODREA</span><div class="card"><b>CODREA BATI</b><div class="t">Web / comercial</div></div></div>
+      <div class="st" style="left:44.1%;top:85.7%"><span class="node" style="border-color:#f4a712"></span><span class="lab">România</span><div class="card"><b>România · Identitate</b><div class="t">Web / branding</div></div></div>
+      <span class="youhere" style="left:50%;top:47%">▲ ești aici</span>
+    </div>
+    <div class="legend">
+      <span><i style="background:#d4322a"></i> Robotică & Live</span>
+      <span><i style="background:#1f8a3b"></i> Educațional</span>
+      <span><i style="background:#1565c0"></i> Produs / AI</span>
+      <span><i style="background:#f4a712"></i> Web / Brand</span>
+    </div>
+  </div>
+</div>
+
+<div class="poster"><img src="../images/projects/roworlds.png" alt=""><div class="ad">RO WORLDS · acum live →</div></div>
+<div class="vig"></div>
+<div class="hint">foto reală de stație + hartă iluminată · hover pe stații</div>
+</body></html>

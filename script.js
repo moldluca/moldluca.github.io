@@ -168,62 +168,79 @@ addEventListener('load', () => setTimeout(() => {
   document.querySelector('.mold-graf')?.classList.add('spraying');
 }, 850));
 
-// ---------- galerie graffiti (vandalizare → toate proiectele) ----------
+// ---------- harta proiectelor (city map) ----------
 const moreBtn = document.getElementById('moreBtn');
 const gview = document.getElementById('gview');
 const gback = document.getElementById('gback');
-const sfx = document.getElementById('sfx');
-const GCOLORS = ['#e8662a','#1fa090','#e0a93b','#d23b2e','#3a7d44','#c8743a'];
-const wall = document.getElementById('wall');
+const cityvp = document.getElementById('cityvp');
+const citymap = document.getElementById('citymap');
+const cityLeg = document.getElementById('cityLeg');
 
-if(wall){
-  const COLS = 4, CW = 520, CH = 430, padX = 90, padY = 380;
-  const rows = Math.ceil(PROJECTS.length / COLS);
-  PROJECTS.forEach((p,i) => {
-    const col = i % COLS, row = Math.floor(i / COLS);
-    const x = padX + col*CW + Math.round(Math.sin(i*12.9)*38);
-    const y = padY + row*CH + Math.round(Math.cos(i*7.7)*34);
-    const rot = (Math.sin(i*3.3)*4).toFixed(2);
-    const c = GCOLORS[i % GCOLORS.length];
-    const initials = p.title.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
-    const shot = p.img
-      ? `<div class="pshot"><img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy"></div>`
-      : `<div class="pshot noimg">${initials}</div>`;
+const LINES = [
+  {key:'R', c:'#ff3b5c', label:'Robotică & live', pts:'260,300 620,460 980,640'},
+  {key:'E', c:'#2ec07a', label:'Educațional',     pts:'300,900 640,820 980,640 1500,560 1900,560'},
+  {key:'A', c:'#2ad4ff', label:'Produs / AI',     pts:'700,1150 1150,980 1600,900'},
+  {key:'W', c:'#f6b73a', label:'Web & Brand',     pts:'1500,1180 1950,1080'},
+  {key:'D', c:'#b06bff', label:'Diverse',         pts:'1650,300 2000,300'},
+];
+const STATIONS = [
+  {slug:'roworlds',         name:'RO Worlds',     x:260,  y:300,  c:'#ff3b5c'},
+  {slug:'perpetuum',        name:'Perpetuum',     x:620,  y:460,  c:'#ff3b5c'},
+  {slug:'criptare',         name:'Criptare',      x:300,  y:900,  c:'#2ec07a'},
+  {slug:'arbori',           name:'Arbori',        x:980,  y:640,  c:'#2ec07a', intc:true},
+  {slug:'eco',              name:'Eco',           x:1500, y:560,  c:'#2ec07a'},
+  {slug:'monede',           name:'Monede',        x:1900, y:560,  c:'#2ec07a'},
+  {slug:'arvusmart',        name:'ArvuSmart',     x:700,  y:1150, c:'#2ad4ff'},
+  {slug:'crocoai',          name:'CrocoAI',       x:1150, y:980,  c:'#2ad4ff'},
+  {slug:'trainbot',         name:'TrainBot',      x:1600, y:900,  c:'#2ad4ff'},
+  {slug:'codrea',           name:'CODREA',        x:1500, y:1180, c:'#f6b73a'},
+  {slug:'romania-identity', name:'România',       x:1950, y:1080, c:'#f6b73a'},
+  {slug:'timisoara',        name:'Timișoara MUN', x:1650, y:300,  c:'#b06bff'},
+  {slug:'portofoliu',       name:'Portofoliu',    x:2000, y:300,  c:'#b06bff'},
+];
+
+if(citymap){
+  const BY = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
+  const W=2240, H=1440;
+  let svg = `<svg class="layer" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`
+    + `<path d="M2240,180 C1700,360 1900,720 1300,820 C800,900 950,1200 300,1340" fill="none" stroke="#16345c" stroke-width="54" stroke-linecap="round" opacity=".5"/>`
+    + `<circle cx="430" cy="640" r="80" fill="#173a28" opacity=".65"/>`
+    + `<rect x="1720" y="640" width="190" height="150" rx="16" fill="#173a28" opacity=".65"/>`;
+  LINES.forEach(l => { svg += `<polyline points="${l.pts}" fill="none" stroke="${l.c}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>`; });
+  svg += `</svg>`;
+  let pins = '';
+  STATIONS.forEach(s => {
+    const p = BY[s.slug]; if(!p) return;
+    const initials = s.name.replace(/[^A-Za-zĂÂÎȘȚ]/g,'').slice(0,2).toUpperCase() || '#';
     const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : (p.priv ? '<span>intern</span>' : '');
     const repo = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod</a>` : '';
-    const el = document.createElement('article');
-    el.className = 'piece';
-    el.style.cssText = `left:${x}px;top:${y}px;--gc:${c};--rot:${rot}deg;`;
-    el.innerHTML = `<h3 class="ptitle">${esc(p.title)}</h3>${shot}<div class="pmeta">${esc(p.cat)} · ${p.tech.map(esc).join(' · ')}</div><div class="plinks">${live}${repo}</div>`;
-    wall.appendChild(el);
-    bindCursor(el);
+    pins += `<div class="pin${s.intc?' intc':''}" style="left:${s.x}px;top:${s.y}px;--c:${s.c}">`
+      + `<span class="dot">${initials}</span><span class="plabel">${esc(s.name)}${s.intc?' ⇄':''}</span>`
+      + `<div class="pcard"><h3>${esc(p.title)}</h3><div class="pc-cat">${esc(p.cat)}</div><div class="pc-tags">${p.tech.map(esc).join(' · ')}</div><div class="pc-links">${live}${repo}</div></div>`
+      + `</div>`;
   });
-  wall.style.width = (padX*2 + COLS*CW) + 'px';
-  wall.style.height = (padY + rows*CH + 160) + 'px';
+  citymap.innerHTML = svg + pins;
+  citymap.style.width = W + 'px'; citymap.style.height = H + 'px';
+  if(cityLeg) cityLeg.innerHTML = LINES.map(l => `<span><i style="background:${l.c}"></i> Linia ${l.key} — ${l.label}</span>`).join('');
 }
 
-// drag-to-pan pe perete (scroll merge oricum în toate direcțiile)
-if(gview){
-  let down=false, sx=0, sy=0, sl=0, st=0;
-  gview.addEventListener('mousedown', e => { if(e.target.closest('a,button')) return; down=true; sx=e.clientX; sy=e.clientY; sl=gview.scrollLeft; st=gview.scrollTop; gview.classList.add('grabbing'); });
-  addEventListener('mouseup', () => { down=false; gview.classList.remove('grabbing'); });
-  addEventListener('mousemove', e => { if(!down) return; gview.scrollLeft = sl - (e.clientX - sx); gview.scrollTop = st - (e.clientY - sy); });
-}
-
-let vTransitioning = false;
-function vandalize(open){
-  if(vTransitioning || !sfx) return; vTransitioning = true;
-  sfx.classList.add('go');                       // canistra intră + fumul se umflă
-  setTimeout(() => {                              // la fum maxim, schimbă lumea sub el
-    if(open){ gview.classList.add('open'); gview.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll'); gview.scrollTop = 0; }
-    else { gview.classList.remove('open'); gview.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); }
-  }, 1400);
-  setTimeout(() => { sfx.classList.remove('go'); vTransitioning = false; }, 2650);  // fumul s-a risipit
-}
-moreBtn?.addEventListener('click', () => vandalize(true));
-gback?.addEventListener('click', () => vandalize(false));
+// ---------- deschidere / închidere hartă ----------
+let cityT = false;
+function openMap(){ if(cityT) return; cityT = true; gview.classList.add('open'); gview.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll');
+  if(cityvp){ cityvp.scrollLeft = 150; cityvp.scrollTop = 190; } setTimeout(()=>cityT=false, 450); }
+function closeMap(){ if(cityT) return; cityT = true; gview.classList.remove('open'); gview.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); setTimeout(()=>cityT=false, 450); }
+moreBtn?.addEventListener('click', openMap);
+gback?.addEventListener('click', closeMap);
+addEventListener('keydown', e => { if(e.key === 'Escape' && gview.classList.contains('open')) closeMap(); });
 if(moreBtn) bindCursor(moreBtn);
-if(gback) bindCursor(gback);
+
+// ---------- drag-to-pan pe hartă ----------
+if(cityvp){
+  let down=false, sx=0, sy=0, sl=0, st=0;
+  cityvp.addEventListener('mousedown', e => { if(e.target.closest('a,button')) return; down=true; sx=e.clientX; sy=e.clientY; sl=cityvp.scrollLeft; st=cityvp.scrollTop; cityvp.classList.add('grab'); });
+  addEventListener('mouseup', () => { down=false; cityvp.classList.remove('grab'); });
+  addEventListener('mousemove', e => { if(!down) return; cityvp.scrollLeft = sl - (e.clientX - sx); cityvp.scrollTop = st - (e.clientY - sy); });
+}
 
 // ---------- counters ----------
 function count(el){

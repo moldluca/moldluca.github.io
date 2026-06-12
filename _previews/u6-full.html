@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U6 full — City Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Archivo,sans-serif;background:#0e1422;color:#e8edf6}
+.badge{position:fixed;top:14px;left:14px;z-index:99;background:#ff2e88;color:#0e1422;font-family:'Archivo Black';font-size:.7rem;padding:7px 11px}
+.viewport{position:fixed;inset:0;overflow:auto;cursor:grab}
+.viewport.grab{cursor:grabbing}
+.map{position:relative;width:2240px;height:1440px;background:#0e1422;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.055) 0 2px, transparent 2px 240px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.055) 0 2px, transparent 2px 240px);}
+svg.layer{position:absolute;inset:0;width:2240px;height:1440px;pointer-events:none}
+.pin{position:absolute;transform:translate(-50%,-50%);z-index:5}
+.dot{width:28px;height:28px;border-radius:50%;background:#0e1422;border:5px solid var(--c);box-shadow:0 0 0 3px #0e1422,0 0 14px var(--c);
+  display:grid;place-items:center;font-family:'Archivo Black';font-size:.62rem;color:#fff;cursor:pointer;transition:.15s}
+.pin:hover .dot{transform:scale(1.22)}
+.pin.intc .dot{width:34px;height:34px;border-radius:9px;border-color:#fff;box-shadow:0 0 0 3px #0e1422,0 0 14px #fff}
+.plabel{position:absolute;left:22px;top:-7px;white-space:nowrap;font-family:'Archivo Black';font-size:.95rem;text-shadow:0 2px 8px #0e1422,0 0 4px #0e1422}
+.pcard{position:absolute;left:50%;bottom:34px;transform:translateX(-50%) translateY(8px);width:224px;background:#161e30;border:1px solid #2a3550;border-radius:12px;padding:13px 15px;opacity:0;pointer-events:none;transition:.18s;z-index:20;box-shadow:0 18px 40px rgba(0,0,0,.55)}
+.pin:hover .pcard{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.pcard h3{font-family:'Archivo Black';font-size:1.1rem;margin-bottom:3px;color:var(--c)}
+.pcard .cat{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:#8a97b5;margin-bottom:7px}
+.pcard .tags{font-size:.78rem;color:#aab4cc;margin-bottom:9px}
+.pcard .links{display:flex;gap:14px;font-weight:700;font-size:.74rem;text-transform:uppercase}
+.pcard .links a{color:#fff;text-decoration:none;border-bottom:2px solid var(--c)}
+.pcard .links span{color:#6c7790}
+.hud{position:fixed;top:52px;left:14px;z-index:40;background:rgba(14,20,34,.88);border:1px solid #2a3550;border-radius:14px;padding:16px 18px;backdrop-filter:blur(6px);max-width:260px}
+.hud h1{font-family:'Archivo Black';font-size:1.5rem;line-height:1}
+.hud .sub{font-family:'DM Mono',monospace;font-size:.7rem;color:#8a97b5;margin:6px 0 12px}
+.leg{display:flex;flex-direction:column;gap:7px;font-size:.8rem}
+.leg span{display:flex;align-items:center;gap:9px}.leg i{width:22px;height:6px;border-radius:3px;flex:none}
+.hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:40;font-family:'DM Mono',monospace;color:#aab4cc;background:rgba(14,20,34,.72);padding:6px 16px;border:1px solid #2a3550;border-radius:20px;font-size:.82rem}
+.badge2{position:fixed;top:14px;right:16px;z-index:40;font-family:'DM Mono',monospace;color:#8a97b5;font-size:.78rem}
+</style></head>
+<body>
+<div class="badge">U6 FULL · CITY MAP</div>
+<div class="badge2">13 proiecte · 5 linii</div>
+<div class="viewport" id="vp">
+  <div class="map" id="map">
+    <svg class="layer" viewBox="0 0 2240 1440">
+      <!-- râu + parcuri -->
+      <path d="M2240,180 C1700,360 1900,720 1300,820 C800,900 950,1200 300,1340" fill="none" stroke="#16345c" stroke-width="54" stroke-linecap="round" opacity=".55"/>
+      <circle cx="430" cy="640" r="80" fill="#173a28" opacity=".7"/>
+      <rect x="1720" y="640" width="190" height="150" rx="16" fill="#173a28" opacity=".7"/>
+      <!-- RED Robotică -->
+      <polyline points="260,300 620,460 980,640" fill="none" stroke="#ff3b5c" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- GREEN Educațional (prin Arbori) -->
+      <polyline points="300,900 640,820 980,640 1500,560 1900,560" fill="none" stroke="#2ec07a" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- BLUE Produs/AI -->
+      <polyline points="700,1150 1150,980 1600,900" fill="none" stroke="#2ad4ff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- YELLOW Web/Brand -->
+      <polyline points="1500,1180 1950,1080" fill="none" stroke="#f6b73a" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- PURPLE Diverse -->
+      <polyline points="1650,300 2000,300" fill="none" stroke="#b06bff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <!-- RED -->
+    <div class="pin" style="left:260px;top:300px;--c:#ff3b5c"><div class="dot">RW</div><div class="plabel">RO Worlds</div><div class="pcard"><h3>RO Worlds Tracker</h3><div class="cat">Robotică &amp; live</div><div class="tags">Node · FIRST API · Web Push</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="pin" style="left:620px;top:460px;--c:#ff3b5c"><div class="dot">PM</div><div class="plabel">Perpetuum</div><div class="pcard"><h3>Perpetuum Mobile</h3><div class="cat">Robotică · organizație</div><div class="tags">Node · Express</div><div class="links"><a>→ live</a></div></div></div>
+    <!-- GREEN -->
+    <div class="pin" style="left:300px;top:900px;--c:#2ec07a"><div class="dot">LC</div><div class="plabel">Criptare</div><div class="pcard"><h3>Lab. de Criptare</h3><div class="cat">Educațional</div><div class="tags">JS · HTML · CSS</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="pin intc" style="left:980px;top:640px;--c:#2ec07a"><div class="dot">AR</div><div class="plabel">Arbori ⇄</div><div class="pcard" style="--c:#2ec07a"><h3>Arbori — Parcurgere</h3><div class="cat">Educațional · corespondență</div><div class="tags">JavaScript · SVG</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="pin" style="left:1500px;top:560px;--c:#2ec07a"><div class="dot">EC</div><div class="plabel">Eco</div><div class="pcard"><h3>Eco Website</h3><div class="cat">Educațional</div><div class="tags">HTML · CSS · JS</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="pin" style="left:1900px;top:560px;--c:#2ec07a"><div class="dot">MO</div><div class="plabel">Monede</div><div class="pcard"><h3>Prezentare Monede</h3><div class="cat">Educațional</div><div class="tags">JS · HTML · CSS</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <!-- BLUE -->
+    <div class="pin" style="left:700px;top:1150px;--c:#2ad4ff"><div class="dot">AS</div><div class="plabel">ArvuSmart</div><div class="pcard"><h3>ArvuSmart</h3><div class="cat">Produs / Agri</div><div class="tags">HTML · Leaflet · JS</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="pin" style="left:1150px;top:980px;--c:#2ad4ff"><div class="dot">CA</div><div class="plabel">CrocoAI</div><div class="pcard"><h3>CrocoAI</h3><div class="cat">Produs / AI</div><div class="tags">Node · Socket.IO</div><div class="links"><span>intern</span></div></div></div>
+    <div class="pin" style="left:1600px;top:900px;--c:#2ad4ff"><div class="dot">TB</div><div class="plabel">TrainBot</div><div class="pcard"><h3>TrainBot</h3><div class="cat">Produs / AI</div><div class="tags">Node · LLM · iOS</div><div class="links"><a>→ live</a></div></div></div>
+    <!-- YELLOW -->
+    <div class="pin" style="left:1500px;top:1180px;--c:#f6b73a"><div class="dot">CB</div><div class="plabel">CODREA</div><div class="pcard"><h3>CODREA BATI</h3><div class="cat">Web · comercial</div><div class="tags">HTML · CSS · JS</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="pin" style="left:1950px;top:1080px;--c:#f6b73a"><div class="dot">RO</div><div class="plabel">România</div><div class="pcard"><h3>România · Identitate</h3><div class="cat">Web · branding</div><div class="tags">HTML · CSS · JS</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <!-- PURPLE -->
+    <div class="pin" style="left:1650px;top:300px;--c:#b06bff"><div class="dot">TM</div><div class="plabel">Timișoara MUN</div><div class="pcard"><h3>Timișoara MUN</h3><div class="cat">Eveniment</div><div class="tags">Flask · Python</div><div class="links"><span>intern</span></div></div></div>
+    <div class="pin" style="left:2000px;top:300px;--c:#b06bff"><div class="dot">PF</div><div class="plabel">Portofoliu</div><div class="pcard"><h3>Portofoliu</h3><div class="cat">Personal</div><div class="tags">HTML · CSS · JS</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+  </div>
+</div>
+<div class="hud">
+  <h1>PROIECTE</h1><div class="sub">// harta · trage să explorezi</div>
+  <div class="leg">
+    <span><i style="background:#ff3b5c"></i> Linia R — Robotică &amp; live</span>
+    <span><i style="background:#2ec07a"></i> Linia E — Educațional</span>
+    <span><i style="background:#2ad4ff"></i> Linia A — Produs / AI</span>
+    <span><i style="background:#f6b73a"></i> Linia W — Web &amp; Brand</span>
+    <span><i style="background:#b06bff"></i> Linia D — Diverse</span>
+  </div>
+</div>
+<div class="hint">✋ trage harta · hover pe stații</div>
+<script>
+const vp=document.getElementById('vp');let d=false,sx,sy,sl,st;
+vp.addEventListener('mousedown',e=>{if(e.target.closest('.pin'))return;d=true;sx=e.clientX;sy=e.clientY;sl=vp.scrollLeft;st=vp.scrollTop;vp.classList.add('grab')});
+addEventListener('mouseup',()=>{d=false;vp.classList.remove('grab')});
+addEventListener('mousemove',e=>{if(!d)return;vp.scrollLeft=sl-(e.clientX-sx);vp.scrollTop=st-(e.clientY-sy)});
+vp.scrollLeft=120;vp.scrollTop=180;
+</script>
+</body></html>

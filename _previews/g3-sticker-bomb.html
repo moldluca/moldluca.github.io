@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G3 — Sticker Bomb</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Archivo Black',sans-serif;min-height:100vh;background:#17181c;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.06) 1px,transparent 0);background-size:20px 20px}
+.badge{position:fixed;top:14px;left:14px;z-index:99;background:#fff;color:#17181c;font-family:Bungee;font-size:.7rem;padding:7px 12px}
+.wrap{position:relative;min-height:100vh;padding:80px 30px}
+.bigtitle{font-family:Bungee;text-align:center;font-size:clamp(3rem,12vw,8rem);color:#fff;margin-bottom:30px;
+  text-shadow:6px 6px 0 #ff2e88,12px 12px 0 #00e5ff}
+.board{position:relative;max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:0;justify-content:center}
+.stk{position:relative;margin:-10px;padding:14px 16px 16px;border:4px solid #111;border-radius:18px;box-shadow:0 8px 0 rgba(0,0,0,.4);width:300px}
+.stk:nth-child(1){--c:#ffd23f;transform:rotate(-5deg);z-index:6}
+.stk:nth-child(2){--c:#ff2e88;transform:rotate(4deg);z-index:5}
+.stk:nth-child(3){--c:#3ddc84;transform:rotate(-3deg);z-index:4}
+.stk:nth-child(4){--c:#00bcd4;transform:rotate(6deg);z-index:3}
+.stk:nth-child(5){--c:#ff7a1a;transform:rotate(-6deg);z-index:2}
+.stk:nth-child(6){--c:#b14bff;transform:rotate(3deg);z-index:1}
+.stk{background:var(--c)}
+.stk:hover{transform:scale(1.06) rotate(0);z-index:20}
+.shot{aspect-ratio:16/10;border:3px solid #111;border-radius:10px;display:grid;place-items:center;font-family:Bungee;font-size:2rem;color:#fff;background:#111;margin-bottom:10px}
+.name{font-family:Bungee;font-size:1.5rem;color:#111;line-height:1}
+.cat{font-family:'Permanent Marker';font-size:.95rem;color:#111;opacity:.8}
+.tags{font-size:.62rem;color:#111;margin-top:4px;letter-spacing:.3px}
+.links{margin-top:8px;display:flex;gap:10px;font-family:Bungee;font-size:.62rem}
+.links a{color:#fff;background:#111;padding:3px 8px;border-radius:6px;text-decoration:none}
+</style></head>
+<body>
+<div class="badge">G3 · STICKER BOMB</div>
+<div class="wrap">
+  <div class="bigtitle">PROIECTE</div>
+  <div class="board">
+    <div class="stk"><div class="shot">RW</div><div class="name">RO Worlds</div><div class="cat">live data</div><div class="tags">NODE · FIRST API</div><div class="links"><a>live</a><a>cod</a></div></div>
+    <div class="stk"><div class="shot">CA</div><div class="name">CrocoAI</div><div class="cat">produs / ai</div><div class="tags">NODE · SOCKET.IO</div><div class="links"><a>cod</a></div></div>
+    <div class="stk"><div class="shot">AR</div><div class="name">Arbori</div><div class="cat">educațional</div><div class="tags">JS · SVG</div><div class="links"><a>live</a><a>cod</a></div></div>
+    <div class="stk"><div class="shot">TB</div><div class="name">TrainBot</div><div class="cat">produs / ai</div><div class="tags">NODE · LLM</div><div class="links"><a>live</a></div></div>
+    <div class="stk"><div class="shot">AS</div><div class="name">ArvuSmart</div><div class="cat">agri</div><div class="tags">HTML · LEAFLET</div><div class="links"><a>live</a></div></div>
+    <div class="stk"><div class="shot">LC</div><div class="name">Criptare</div><div class="cat">educațional</div><div class="tags">JS · HTML</div><div class="links"><a>live</a><a>cod</a></div></div>
+  </div>
+</div>
+</body></html>

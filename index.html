@@ -219,49 +219,18 @@
   </div>
 </footer>
 
-<!-- ===== Galerie graffiti (lume urbană, toate proiectele) ===== -->
+<!-- ===== Harta proiectelor (city map) ===== -->
 <div class="gview" id="gview" aria-hidden="true">
-  <div class="wall" id="wall">
-    <h2 class="wall-title">PRO<span class="a">IE</span><span class="b">CTE</span></h2>
-    <span class="deco" style="left:1180px;top:80px;color:#e8662a;font-size:150px;transform:rotate(-7deg);">LM</span>
-    <span class="deco out" style="left:1760px;top:300px;font-size:120px;transform:rotate(5deg);--oc:#1fa090;">street</span>
-    <span class="deco" style="left:120px;top:1180px;color:#e0a93b;font-size:120px;transform:rotate(-4deg);">code</span>
-    <span class="deco out" style="left:1540px;top:1320px;font-size:140px;transform:rotate(8deg);--oc:#d23b2e;">2026</span>
-    <span class="deco" style="left:880px;top:1520px;color:#1fa090;font-size:90px;transform:rotate(-6deg);">★★</span>
-    <span class="deco out" style="left:70px;top:1640px;font-size:100px;transform:rotate(3deg);--oc:#e8662a;">FTC</span>
-    <span class="deco" style="left:2080px;top:900px;color:#3a7d44;font-size:80px;transform:rotate(-5deg);">web</span>
-    <span class="deco out" style="left:2160px;top:1500px;font-size:110px;transform:rotate(-3deg);--oc:#e0a93b;">FLL</span>
+  <div class="cityvp" id="cityvp">
+    <div class="citymap" id="citymap"></div>
+  </div>
+  <div class="hud">
+    <h2 class="hud-t">PROIECTE</h2>
+    <p class="hud-sub">harta proiectelor · trage să explorezi</p>
+    <div class="leg" id="cityLeg"></div>
   </div>
   <button class="gback" id="gback" type="button">← înapoi</button>
-  <div class="pan-hint" aria-hidden="true">↔ ↕ trage / scroll pe perete</div>
-</div>
-
-<!-- canistră de spray + fum (tranziție stânga→dreapta) -->
-<div class="spray-fx" id="sfx" aria-hidden="true">
-  <div class="veil"></div>
-  <span class="puff" style="left:4%;top:62%;animation-delay:0s;"></span>
-  <span class="puff" style="left:12%;top:38%;animation-delay:.073s;"></span>
-  <span class="puff" style="left:20%;top:70%;animation-delay:.146s;"></span>
-  <span class="puff" style="left:28%;top:30%;animation-delay:.219s;"></span>
-  <span class="puff" style="left:36%;top:56%;animation-delay:.292s;"></span>
-  <span class="puff" style="left:44%;top:24%;animation-delay:.365s;"></span>
-  <span class="puff" style="left:54%;top:66%;animation-delay:.438s;"></span>
-  <span class="puff" style="left:62%;top:36%;animation-delay:.511s;"></span>
-  <span class="puff" style="left:70%;top:60%;animation-delay:.584s;"></span>
-  <span class="puff" style="left:78%;top:28%;animation-delay:.657s;"></span>
-  <span class="puff" style="left:86%;top:58%;animation-delay:.73s;"></span>
-  <span class="puff" style="left:94%;top:40%;animation-delay:.8s;"></span>
-  <svg class="spray-can" viewBox="0 0 60 130" xmlns="http://www.w3.org/2000/svg">
-    <rect x="25" y="2" width="10" height="9" rx="2" fill="#111"/>
-    <circle cx="30" cy="4.5" r="1.6" fill="#777"/>
-    <rect x="20" y="11" width="20" height="8" rx="2" fill="#2c2c2c"/>
-    <rect x="9" y="19" width="42" height="106" rx="9" fill="#16140f"/>
-    <rect x="9" y="48" width="42" height="32" fill="#E6357A"/>
-    <rect x="9" y="48" width="42" height="6" fill="#7Bd14b"/>
-    <rect x="9" y="74" width="42" height="6" fill="#7Bd14b"/>
-    <text x="30" y="72" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="15" fill="#fff">LM</text>
-    <rect x="9" y="118" width="42" height="7" rx="3" fill="#0c0b08"/>
-  </svg>
+  <div class="map-hint" aria-hidden="true">✋ trage harta · hover pe stații</div>
 </div>
 <script src="script.js"></script>
 </body>

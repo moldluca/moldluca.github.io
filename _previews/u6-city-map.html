@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U6 — City Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Archivo,sans-serif;background:#0e1422;color:#e8edf6}
+.badge{position:fixed;top:14px;left:14px;z-index:99;background:#ff2e88;color:#0e1422;font-family:'Archivo Black';font-size:.7rem;padding:7px 12px}
+.viewport{position:fixed;inset:0;overflow:auto;cursor:grab}
+.viewport.grab{cursor:grabbing}
+.map{position:relative;width:1800px;height:1300px;
+  background:#0e1422;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 2px, transparent 2px 256px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 2px, transparent 2px 256px);}
+svg.layer{position:absolute;inset:0;width:1800px;height:1300px;pointer-events:none}
+.pin{position:absolute;transform:translate(-50%,-50%);z-index:5}
+.dot{width:30px;height:30px;border-radius:50%;background:#0e1422;border:5px solid var(--c);box-shadow:0 0 0 3px #0e1422,0 0 16px var(--c);
+  display:grid;place-items:center;font-family:'Archivo Black';font-size:.7rem;color:#fff;cursor:pointer;transition:.15s}
+.pin:hover .dot{transform:scale(1.18)}
+.plabel{position:absolute;left:24px;top:-6px;white-space:nowrap;font-family:'Archivo Black';font-size:1rem;
+  text-shadow:0 2px 8px #0e1422,0 0 4px #0e1422}
+.pin.big .dot{width:38px;height:38px}
+.pcard{position:absolute;left:50%;bottom:38px;transform:translateX(-50%) translateY(8px);width:230px;
+  background:#161e30;border:1px solid #2a3550;border-radius:12px;padding:14px 16px;opacity:0;pointer-events:none;transition:.18s;z-index:20;
+  box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.pin:hover .pcard{opacity:1;transform:translateX(-50%) translateY(0)}
+.pcard h3{font-family:'Archivo Black';font-size:1.2rem;margin-bottom:4px;color:var(--c)}
+.pcard .cat{font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:#8a97b5;margin-bottom:8px}
+.pcard .tags{font-size:.8rem;color:#aab4cc;margin-bottom:10px}
+.pcard .links{display:flex;gap:14px;font-weight:700;font-size:.76rem;text-transform:uppercase}
+.pcard .links a{color:#fff;text-decoration:none;border-bottom:2px solid var(--c)}
+.hud{position:fixed;top:54px;left:14px;z-index:40;background:rgba(14,20,34,.85);border:1px solid #2a3550;border-radius:12px;padding:16px 18px;backdrop-filter:blur(6px)}
+.hud h1{font-family:'Archivo Black';font-size:1.5rem;line-height:1}
+.hud .sub{font-family:'DM Mono',monospace;font-size:.72rem;color:#8a97b5;margin:6px 0 12px}
+.leg{display:flex;flex-direction:column;gap:6px;font-size:.78rem}
+.leg span{display:flex;align-items:center;gap:8px}
+.leg i{width:22px;height:5px;border-radius:3px}
+.hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:40;font-family:'DM Mono',monospace;color:#aab4cc;background:rgba(14,20,34,.7);padding:6px 16px;border:1px solid #2a3550;border-radius:20px;font-size:.82rem}
+.badge2{position:fixed;top:14px;right:14px;z-index:40}
+</style></head>
+<body>
+<div class="badge">U6 · CITY MAP (#6)</div>
+<div class="viewport" id="vp">
+  <div class="map" id="map">
+    <svg class="layer" viewBox="0 0 1800 1300">
+      <!-- râu -->
+      <path d="M1800,120 C1300,260 1500,560 1000,640 C600,710 700,1000 200,1120" fill="none" stroke="#1b3a63" stroke-width="46" stroke-linecap="round" opacity=".7"/>
+      <!-- parcuri -->
+      <circle cx="430" cy="760" r="90" fill="#1d3a28" opacity=".8"/>
+      <rect x="1330" y="240" width="180" height="150" rx="14" fill="#1d3a28" opacity=".8"/>
+      <!-- Linia A (pink) -->
+      <polyline points="300,300 650,500 1000,360 1350,560" fill="none" stroke="#ff2e88" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Linia B (cyan) -->
+      <polyline points="1000,360 1150,820 700,900" fill="none" stroke="#2ad4ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="pin" style="left:300px;top:300px;--c:#ff2e88"><div class="dot">RW</div><div class="plabel">RO Worlds</div>
+      <div class="pcard"><h3>RO Worlds</h3><div class="cat">Live data</div><div class="tags">Node · FIRST API · Web Push</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="pin" style="left:650px;top:500px;--c:#ff2e88"><div class="dot">CA</div><div class="plabel">CrocoAI</div>
+      <div class="pcard"><h3>CrocoAI</h3><div class="cat">Produs / AI</div><div class="tags">Node · Socket.IO</div><div class="links"><a>↳ cod</a></div></div></div>
+    <div class="pin big" style="left:1000px;top:360px;--c:#ffffff"><div class="dot" style="border-color:#fff;box-shadow:0 0 0 3px #0e1422,0 0 16px #fff">AR</div><div class="plabel">Arbori ⇄</div>
+      <div class="pcard" style="--c:#7bff5a"><h3>Arbori</h3><div class="cat">Educațional · interchange</div><div class="tags">JS · SVG</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="pin" style="left:1350px;top:560px;--c:#ff2e88"><div class="dot">TB</div><div class="plabel">TrainBot</div>
+      <div class="pcard"><h3>TrainBot</h3><div class="cat">Produs / AI</div><div class="tags">Node · LLM · iOS</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="pin" style="left:1150px;top:820px;--c:#2ad4ff"><div class="dot">AS</div><div class="plabel">ArvuSmart</div>
+      <div class="pcard"><h3>ArvuSmart</h3><div class="cat">Agri</div><div class="tags">HTML · Leaflet</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="pin" style="left:700px;top:900px;--c:#2ad4ff"><div class="dot">LC</div><div class="plabel">Criptare</div>
+      <div class="pcard"><h3>Criptare</h3><div class="cat">Educațional</div><div class="tags">JS · HTML</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+  </div>
+</div>
+<div class="hud">
+  <h1>PROIECTE</h1><div class="sub">// harta orașului · trage să explorezi</div>
+  <div class="leg"><span><i style="background:#ff2e88"></i> Linia A — robotică / live</span><span><i style="background:#2ad4ff"></i> Linia B — produse / edu</span></div>
+</div>
+<div class="hint">✋ trage harta · hover pe stații</div>
+<script>
+const vp=document.getElementById('vp');
+let d=false,sx,sy,sl,st;
+vp.addEventListener('mousedown',e=>{if(e.target.closest('.pin'))return;d=true;sx=e.clientX;sy=e.clientY;sl=vp.scrollLeft;st=vp.scrollTop;vp.classList.add('grab')});
+addEventListener('mouseup',()=>{d=false;vp.classList.remove('grab')});
+addEventListener('mousemove',e=>{if(!d)return;vp.scrollLeft=sl-(e.clientX-sx);vp.scrollTop=st-(e.clientY-sy)});
+vp.scrollLeft=120;vp.scrollTop=140;
+</script>
+</body></html>

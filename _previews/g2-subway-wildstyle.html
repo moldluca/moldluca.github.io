@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G2 — Subway Wildstyle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Oswald,sans-serif;color:#fff;
+  background:linear-gradient(180deg,#3f86c4 0%,#7fb3dd 18%,#b9d6ec 30%,#8a8f96 30%,#6f757d 100%);min-height:100vh}
+.badge{position:fixed;top:14px;left:14px;z-index:99;background:#111;color:#7Bd14b;font-family:Bungee;font-size:.7rem;padding:7px 12px}
+/* nori */
+.sky{position:relative;height:32vh;overflow:hidden}
+.cloud{position:absolute;background:rgba(255,255,255,.85);border-radius:50%;filter:blur(2px)}
+.cloud.a{width:180px;height:60px;top:40px;left:8%}.cloud.b{width:240px;height:80px;top:90px;left:60%}.cloud.c{width:140px;height:50px;top:20px;left:38%}
+.title{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) rotate(-3deg);z-index:2;
+  font-family:Bungee;font-size:clamp(3rem,11vw,8rem);color:#f4b41a;-webkit-text-stroke:4px #1a1a1a;paint-order:stroke fill;
+  text-shadow:0 0 0 #fff,6px 0 0 #fff,-6px 0 0 #fff,0 6px 0 #fff,0 -6px 0 #fff,5px 5px 0 #fff,-5px 5px 0 #fff,10px 12px 0 #d2502a}
+/* vagon */
+.car{background:linear-gradient(180deg,#9aa0a6,#7c8288);border-top:6px solid #5a5f65;padding:40px 40px 70px;position:relative;min-height:68vh}
+.car::before{content:"";position:absolute;top:14px;left:0;right:0;height:8px;background:repeating-linear-gradient(90deg,#5a5f65 0 30px,#888d93 30px 60px)}
+.rivets{position:absolute;top:40px;left:0;right:0;height:4px;background:radial-gradient(circle,#5a5f65 2px,transparent 2px);background-size:40px 4px;opacity:.6}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:1200px;margin:30px auto 0}
+.piece{position:relative}
+.pname{font-family:Bungee;font-size:1.9rem;line-height:1;margin-bottom:10px;-webkit-text-stroke:2px #161616;paint-order:stroke fill;
+  text-shadow:0 0 0 #fff,4px 0 0 #fff,-4px 0 0 #fff,0 4px 0 #fff,0 -4px 0 #fff,6px 7px 0 rgba(0,0,0,.3);transform:rotate(-2deg)}
+.shot{aspect-ratio:16/10;border:3px solid #161616;box-shadow:5px 6px 0 rgba(0,0,0,.35);display:grid;place-items:center;font-family:Bungee;font-size:2rem;color:#fff;transform:rotate(-1deg)}
+.meta{font-weight:700;font-size:.85rem;color:#2a2d31;margin-top:10px;text-transform:uppercase;letter-spacing:.5px}
+.links{margin-top:6px;display:flex;gap:14px;font-family:Bungee;font-size:.72rem}
+.links a{color:#161616;text-decoration:none;border-bottom:3px solid #d2502a}
+</style></head>
+<body>
+<div class="badge">G2 · SUBWAY WILDSTYLE</div>
+<div class="sky"><span class="cloud a"></span><span class="cloud b"></span><span class="cloud c"></span><div class="title">PROIECTE</div></div>
+<div class="car"><div class="rivets"></div>
+  <div class="grid">
+    <div class="piece"><div class="pname" style="color:#f4b41a">RO Worlds</div><div class="shot" style="background:#d2502a">RW</div><div class="meta">Live data · Node · FIRST API</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div>
+    <div class="piece"><div class="pname" style="color:#2ec4b6">CrocoAI</div><div class="shot" style="background:#1b7f74">CA</div><div class="meta">Produs/AI · Node · Socket.IO</div><div class="links"><a>↳ cod</a></div></div>
+    <div class="piece"><div class="pname" style="color:#ff6b35">Arbori</div><div class="shot" style="background:#e0a52f">AR</div><div class="meta">Educațional · JS · SVG</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div>
+    <div class="piece"><div class="pname" style="color:#e94f37">TrainBot</div><div class="shot" style="background:#c0392b">TB</div><div class="meta">Produs/AI · Node · LLM</div><div class="links"><a>→ live</a></div></div>
+    <div class="piece"><div class="pname" style="color:#8ac926">ArvuSmart</div><div class="shot" style="background:#5a8a2b">AS</div><div class="meta">Agri · HTML · Leaflet</div><div class="links"><a>→ live</a></div></div>
+    <div class="piece"><div class="pname" style="color:#4cc9f0">Criptare</div><div class="shot" style="background:#2a7fb0">LC</div><div class="meta">Educațional · JS · HTML</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div>
+  </div>
+</div>
+</body></html>

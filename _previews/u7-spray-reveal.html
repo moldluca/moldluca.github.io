@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U7 — Spray Reveal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Archivo,sans-serif;color:#fff;min-height:100vh;overflow-x:hidden;cursor:none;
+  background:radial-gradient(circle at 30% 20%,#241f1b,#0e0c0a 75%)}
+.badge{position:fixed;top:14px;left:14px;z-index:99;background:#7Bd14b;color:#0e0c0a;font-family:'Archivo Black';font-size:.7rem;padding:7px 12px}
+.wrap{max-width:1180px;margin:0 auto;padding:80px 40px}
+h1{font-family:'Archivo Black';font-size:clamp(3rem,10vw,7rem);line-height:.92;margin-bottom:50px;color:#fff}
+h1 em{font-style:normal;color:#ff2e88}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:#16130f;border:2px solid #2a241d;border-radius:12px;overflow:hidden}
+.shot{aspect-ratio:16/10;display:grid;place-items:center;font-family:'Archivo Black';font-size:2.2rem;color:#3a342b;border-bottom:2px solid #2a241d}
+.body{padding:16px 18px 20px}
+.name{font-family:'Archivo Black';font-size:1.4rem;margin-bottom:6px;color:var(--c)}
+.cat{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:#8a8276;margin-bottom:8px}
+.tags{font-size:.84rem;color:#b3aa9a;margin-bottom:12px}
+.links{display:flex;gap:14px;font-weight:600;font-size:.8rem;text-transform:uppercase}
+.links a{color:#fff;text-decoration:none;border-bottom:2px solid var(--c)}
+#paint{position:fixed;inset:0;z-index:40;pointer-events:none}
+#can{position:fixed;left:0;top:0;z-index:60;pointer-events:none;width:74px;transform:translate(-30%,-20%) rotate(8deg);filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
+.hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:61;font-family:'Permanent Marker';color:#fff;
+  background:rgba(0,0,0,.55);padding:8px 18px;border:1px solid rgba(255,255,255,.25);font-size:.95rem;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.5}}
+.reset{position:fixed;top:18px;right:18px;z-index:61;font-family:'Archivo Black';font-size:.8rem;background:#ff2e88;color:#fff;border:none;padding:9px 18px;border-radius:8px;cursor:pointer}
+</style></head>
+<body>
+<div class="badge">U7 · SPRAY REVEAL (#7)</div>
+<button class="reset" id="reset">↻ re-spray</button>
+<div class="wrap">
+  <h1>PRO<em>IECTE</em></h1>
+  <div class="grid">
+    <div class="card" style="--c:#ff2e88"><div class="shot">RW</div><div class="body"><div class="name">RO Worlds</div><div class="cat">Live data</div><div class="tags">Node · FIRST API</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="card" style="--c:#2ad4ff"><div class="shot">CA</div><div class="body"><div class="name">CrocoAI</div><div class="cat">Produs / AI</div><div class="tags">Node · Socket.IO</div><div class="links"><a>↳ cod</a></div></div></div>
+    <div class="card" style="--c:#7bff5a"><div class="shot">AR</div><div class="body"><div class="name">Arbori</div><div class="cat">Educațional</div><div class="tags">JS · SVG</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="card" style="--c:#ffb02e"><div class="shot">TB</div><div class="body"><div class="name">TrainBot</div><div class="cat">Produs / AI</div><div class="tags">Node · LLM</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="card" style="--c:#b14bff"><div class="shot">AS</div><div class="body"><div class="name">ArvuSmart</div><div class="cat">Agri</div><div class="tags">HTML · Leaflet</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="card" style="--c:#ff5a3c"><div class="shot">LC</div><div class="body"><div class="name">Criptare</div><div class="cat">Educațional</div><div class="tags">JS · HTML</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+  </div>
+</div>
+<canvas id="paint"></canvas>
+<svg id="can" viewBox="0 0 60 130"><rect x="25" y="2" width="10" height="9" rx="2" fill="#111"/><rect x="20" y="11" width="20" height="8" rx="2" fill="#2c2c2c"/><rect x="9" y="19" width="42" height="106" rx="9" fill="#16140f"/><rect x="9" y="48" width="42" height="30" fill="#ff2e88"/><text x="30" y="70" text-anchor="middle" font-family="Permanent Marker" font-size="14" fill="#fff">LM</text></svg>
+<div class="hint" id="hint">↑ mișcă mouse-ul ca să dai cu spray și să descoperi proiectele</div>
+<script>
+const cv=document.getElementById('paint'),ctx=cv.getContext('2d'),can=document.getElementById('can'),hint=document.getElementById('hint');
+function fill(){cv.width=innerWidth;cv.height=innerHeight;ctx.globalCompositeOperation='source-over';
+  ctx.fillStyle='#1a1611';ctx.fillRect(0,0,cv.width,cv.height);
+  // textura: stropi subtili
+  for(let i=0;i<260;i++){ctx.fillStyle=`rgba(${30+Math.random()*40|0},${24+Math.random()*30|0},${18+Math.random()*24|0},.5)`;
+    ctx.beginPath();ctx.arc(Math.random()*cv.width,Math.random()*cv.height,Math.random()*2+1,0,7);ctx.fill();}
+  ctx.fillStyle='#d8cdbb';ctx.font="bold 26px Archivo";ctx.textAlign='center';ctx.globalAlpha=.25;
+  ctx.fillText('// dă cu spray',cv.width/2,cv.height/2);ctx.globalAlpha=1;}
+fill();
+addEventListener('resize',fill);
+let used=false;
+function spray(x,y){ ctx.globalCompositeOperation='destination-out';
+  const g=ctx.createRadialGradient(x,y,0,x,y,46);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.7,'rgba(0,0,0,.6)');g.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,46,0,7);ctx.fill();
+  for(let i=0;i<10;i++){const a=Math.random()*7,r=30+Math.random()*40;ctx.beginPath();ctx.arc(x+Math.cos(a)*r,y+Math.sin(a)*r,Math.random()*5+1,0,7);ctx.fill();}
+  if(!used){used=true;hint.style.display='none';}}
+addEventListener('mousemove',e=>{can.style.left=e.clientX+'px';can.style.top=e.clientY+'px';spray(e.clientX,e.clientY);});
+addEventListener('touchmove',e=>{const t=e.touches[0];spray(t.clientX,t.clientY);},{passive:true});
+document.getElementById('reset').onclick=()=>{fill();used=false;hint.style.display='';};
+</script>
+</body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G1 — Retro Tag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f2e7cf;--ink:#211a12;--teal:#168b7d;--orange:#e2622a;--mustard:#e0a52f;--red:#cf3b2c;--brown:#8a5a33;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f2e7cf;color:var(--ink);font-family:'DM Mono',monospace;
+  background-image:radial-gradient(circle at 1px 1px, rgba(33,26,18,.10) 1.4px, transparent 0);background-size:16px 16px;}
+.badge{position:fixed;top:14px;left:14px;z-index:99;background:var(--ink);color:var(--cream);font-family:Bungee;font-size:.7rem;padding:7px 12px}
+.frame{min-height:100vh;padding:46px;border:14px solid var(--ink);}
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px}
+h1{font-family:Bungee;font-size:clamp(3rem,10vw,7rem);line-height:.9;color:var(--teal);
+  -webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:8px 8px 0 var(--orange),8px 8px 0 var(--orange);transform:rotate(-2deg)}
+h1 .b{color:var(--red)}
+.sub{font-family:'Permanent Marker';font-size:1.4rem;color:var(--brown);transform:rotate(-1deg)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.card{background:var(--cream);border:3px solid var(--ink);box-shadow:9px 9px 0 var(--ink);overflow:hidden}
+.card:nth-child(3n+2){transform:rotate(-1.5deg)}.card:nth-child(3n){transform:rotate(1deg)}
+.shot{aspect-ratio:16/10;border-bottom:3px solid var(--ink);display:grid;place-items:center;font-family:Bungee;font-size:2.4rem;color:var(--cream)}
+.body{padding:16px 18px 20px}
+.name{font-family:Bungee;font-size:1.5rem;line-height:1;margin-bottom:8px;-webkit-text-stroke:1.5px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink)}
+.cat{font-family:'Permanent Marker';font-size:.85rem;color:var(--brown);margin-bottom:6px}
+.tags{font-size:.78rem;color:#5a4a35;margin-bottom:10px}
+.links{display:flex;gap:14px;font-family:Bungee;font-size:.72rem}
+.links a{color:var(--ink);text-decoration:none;border-bottom:3px solid var(--orange)}
+</style></head>
+<body>
+<div class="badge">G1 · RETRO TAG</div>
+<div class="frame">
+  <div class="head"><h1>PRO<span class="b">IECTE</span></h1><div class="sub">// street &amp; code · est. 2026</div></div>
+  <div class="grid">
+    <div class="card"><div class="shot" style="background:var(--orange)">RW</div><div class="body"><div class="name" style="color:var(--orange)">RO Worlds</div><div class="cat">Live data</div><div class="tags">Node · FIRST API</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="card"><div class="shot" style="background:var(--teal)">CA</div><div class="body"><div class="name" style="color:var(--teal)">CrocoAI</div><div class="cat">Produs / AI</div><div class="tags">Node · Socket.IO</div><div class="links"><a>↳ cod</a></div></div></div>
+    <div class="card"><div class="shot" style="background:var(--mustard)">AR</div><div class="body"><div class="name" style="color:var(--mustard)">Arbori</div><div class="cat">Educațional</div><div class="tags">JS · SVG</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+    <div class="card"><div class="shot" style="background:var(--red)">TB</div><div class="body"><div class="name" style="color:var(--red)">TrainBot</div><div class="cat">Produs / AI</div><div class="tags">Node · LLM</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="card"><div class="shot" style="background:var(--brown)">AS</div><div class="body"><div class="name" style="color:var(--brown)">ArvuSmart</div><div class="cat">Agri</div><div class="tags">HTML · Leaflet</div><div class="links"><a>→ live</a></div></div></div>
+    <div class="card"><div class="shot" style="background:var(--teal)">LC</div><div class="body"><div class="name" style="color:var(--teal)">Criptare</div><div class="cat">Educațional</div><div class="tags">JS · HTML</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div></div>
+  </div>
+</div>
+</body></html>

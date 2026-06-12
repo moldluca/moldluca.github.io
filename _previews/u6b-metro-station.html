@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U6b — Metro Station</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@600;700;800&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Archivo,sans-serif;background:#0a0a0c;color:#1a1a1a;overflow-x:hidden}
+.badge{position:fixed;top:12px;left:12px;z-index:99;background:#111;color:#ffd23f;font-family:Oswald;font-weight:700;font-size:.7rem;padding:6px 11px;letter-spacing:1px}
+
+.scene{position:relative;min-height:100vh;overflow:hidden}
+/* ===== perete cu faianta ===== */
+.wall{position:absolute;inset:0;
+  background-color:#cfc9bc;
+  background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='92'><defs><linearGradient id='t' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23fbf9f3'/><stop offset='0.5' stop-color='%23efece3'/><stop offset='1' stop-color='%23d8d3c6'/></linearGradient></defs><rect width='200' height='92' fill='%23a59f90'/><rect x='3' y='3' width='92' height='40' rx='3' fill='url(%23t)'/><rect x='105' y='3' width='92' height='40' rx='3' fill='url(%23t)'/><rect x='-43' y='49' width='92' height='40' rx='3' fill='url(%23t)'/><rect x='59' y='49' width='92' height='40' rx='3' fill='url(%23t)'/><rect x='151' y='49' width='92' height='40' rx='3' fill='url(%23t)'/></svg>");
+  background-size:200px 92px;}
+/* murdarie + iluminat tungsten */
+.wall::after{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 8%, rgba(255,236,200,.28), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 120%, rgba(0,0,0,.4), transparent 70%),
+    linear-gradient(180deg, rgba(255,250,240,.06), rgba(0,0,0,.18));}
+/* tavan + bara de lumina */
+.ceiling{position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(#15151a,#26262e);z-index:3;border-bottom:3px solid #0c0c10}
+.lightbar{position:absolute;top:20px;left:6%;right:6%;height:14px;border-radius:8px;background:#fffbe9;z-index:4;
+  box-shadow:0 0 30px 8px rgba(255,245,210,.55),0 14px 50px 12px rgba(255,240,200,.25)}
+/* banda colorata cu numele statiei */
+.nameband{position:absolute;top:78px;left:0;right:0;height:84px;z-index:2;background:#0f7a63;
+  box-shadow:inset 0 6px 0 rgba(255,255,255,.18),inset 0 -8px 0 rgba(0,0,0,.25);
+  display:flex;align-items:center;justify-content:center;gap:26px}
+.roundel{width:58px;height:58px;border-radius:50%;border:9px solid #d4322a;background:#fff;display:grid;place-items:center;font-family:Oswald;font-weight:700;color:#111}
+.nameband h1{font-family:Oswald;font-weight:700;letter-spacing:6px;font-size:clamp(1.6rem,5vw,3rem);color:#fff;text-transform:uppercase}
+.nameband .x{font-family:Oswald;color:#bfeee1;letter-spacing:3px;font-size:.9rem}
+
+/* ===== panou semnalizare suspendat ===== */
+.signhang{position:absolute;top:180px;right:5%;z-index:6;background:#111;color:#fff;border:3px solid #2a2a2a;border-radius:6px;padding:12px 18px;
+  box-shadow:0 16px 30px rgba(0,0,0,.5);font-family:Oswald;font-weight:600}
+.signhang::before,.signhang::after{content:"";position:absolute;top:-26px;width:4px;height:26px;background:#333}
+.signhang::before{left:24px}.signhang::after{right:24px}
+.signhang .row{display:flex;align-items:center;gap:10px;font-size:1rem;letter-spacing:1px}
+.signhang .row+.row{margin-top:6px}
+.bul{width:18px;height:18px;border-radius:50%;display:inline-block}
+.arrow{font-size:1.3rem}
+
+/* ===== harta montata pe perete (eroul) ===== */
+.board{position:absolute;left:5%;top:210px;width:min(760px,62vw);z-index:5;
+  background:#13131a;border-radius:10px;padding:12px;border:8px solid #1c1c22;
+  box-shadow:0 30px 60px rgba(0,0,0,.55),0 6px 0 rgba(0,0,0,.3),inset 0 0 0 2px #3a3a44}
+.board .glass{position:absolute;inset:8px;border-radius:6px;pointer-events:none;z-index:9;
+  background:linear-gradient(125deg, rgba(255,255,255,.16) 0 18%, transparent 30% 64%, rgba(255,255,255,.07) 80% 100%)}
+.board .inner{background:#f6f3ea;border-radius:6px;padding:16px 18px;position:relative}
+.board h2{font-family:Oswald;font-weight:700;letter-spacing:2px;color:#111;font-size:1.1rem;margin-bottom:2px}
+.board .meta{font-family:'DM Mono',monospace;font-size:.66rem;color:#777;margin-bottom:10px}
+.maparea{position:relative}
+svg.lines{display:block;width:100%;height:auto}
+.st{position:absolute;transform:translate(-50%,-50%)}
+.st .node{width:15px;height:15px;border-radius:50%;background:#fff;border:4px solid #333;cursor:pointer;transition:.15s}
+.st.intc .node{width:19px;height:19px;border-radius:8px;background:#fff;border:4px solid #111}
+.st:hover .node{transform:scale(1.35)}
+.st .lab{position:absolute;left:16px;top:-7px;white-space:nowrap;font-family:Oswald;font-weight:600;font-size:.82rem;color:#222}
+.st .card{position:absolute;left:50%;bottom:20px;transform:translateX(-50%) translateY(6px);width:188px;background:#fff;border:2px solid #111;border-radius:8px;padding:9px 11px;opacity:0;pointer-events:none;transition:.16s;z-index:30;box-shadow:0 12px 26px rgba(0,0,0,.3)}
+.st:hover .card{opacity:1;transform:translateX(-50%) translateY(0)}
+.st .card b{font-family:Oswald;font-size:.95rem}
+.st .card .t{font-size:.72rem;color:#555}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:12px;font-family:Oswald;font-weight:600;font-size:.74rem;color:#333}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend i{width:20px;height:5px;border-radius:3px}
+.youhere{position:absolute;font-family:'DM Mono',monospace;font-size:.62rem;color:#d4322a}
+
+/* ===== afise (ecrane) cu screenshot-uri ===== */
+.poster{position:absolute;z-index:5;border:10px solid #1a1a1a;border-radius:4px;box-shadow:0 18px 34px rgba(0,0,0,.5);overflow:hidden;background:#000}
+.poster img{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.05) brightness(.95)}
+.poster .tagad{position:absolute;left:0;bottom:0;right:0;background:rgba(0,0,0,.7);color:#fff;font-family:Oswald;font-weight:600;font-size:.7rem;padding:5px 8px;letter-spacing:1px}
+.p1{right:5%;top:430px;width:230px;height:150px;transform:rotate(.5deg)}
+.p2{right:21%;bottom:150px;width:200px;height:260px;transform:rotate(-.5deg)}
+
+/* ===== podea / peron / tunel ===== */
+.floor{position:absolute;left:0;right:0;bottom:0;height:150px;z-index:7;
+  background:linear-gradient(#3a3a40,#2a2a30);box-shadow:inset 0 8px 16px rgba(0,0,0,.4)}
+.floor::before{content:"";position:absolute;inset:0;opacity:.5;
+  background:repeating-linear-gradient(90deg, rgba(0,0,0,.12) 0 2px, transparent 2px 70px),repeating-linear-gradient(0deg, rgba(0,0,0,.12) 0 2px, transparent 2px 70px)}
+.safety{position:absolute;left:0;right:0;bottom:118px;height:26px;z-index:8;background:repeating-linear-gradient(45deg,#f4c518 0 18px,#1a1a1a 18px 36px);box-shadow:0 -2px 6px rgba(0,0,0,.4)}
+.gap{position:absolute;left:0;right:0;bottom:0;height:118px;z-index:7;background:linear-gradient(#15151a,#050507);border-top:5px solid #0a0a0c}
+.mindgap{position:absolute;left:24px;bottom:60px;z-index:9;color:#f4c518;font-family:Oswald;font-weight:700;letter-spacing:2px;font-size:.8rem;opacity:.85}
+.rail{position:absolute;bottom:24px;left:0;right:0;height:6px;z-index:8;background:repeating-linear-gradient(90deg,#444 0 60px,#222 60px 70px)}
+/* banca + cos */
+.bench{position:absolute;left:6%;bottom:150px;z-index:7;width:170px;height:18px;background:#5a4632;border-radius:4px;box-shadow:0 14px 0 -4px #3a2e22,0 26px 18px rgba(0,0,0,.4)}
+.bench::before,.bench::after{content:"";position:absolute;bottom:-26px;width:8px;height:26px;background:#2c2c30}
+.bench::before{left:14px}.bench::after{right:14px}
+.bin{position:absolute;left:20%;bottom:150px;z-index:7;width:42px;height:60px;background:linear-gradient(#3a3a40,#23232a);border-radius:6px 6px 4px 4px;border-top:6px solid #4a4a52}
+.vig{position:fixed;inset:0;pointer-events:none;z-index:20;box-shadow:inset 0 0 220px 70px rgba(0,0,0,.55)}
+.hint{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:40;font-family:'DM Mono',monospace;color:#eee;background:rgba(0,0,0,.6);padding:6px 14px;border-radius:18px;font-size:.8rem}
+</style></head>
+<body>
+<div class="badge">U6b · METRO STATION (#6 realist)</div>
+<div class="scene">
+  <div class="wall"></div>
+  <div class="ceiling"></div><div class="lightbar"></div>
+  <div class="nameband"><span class="roundel">LM</span><h1>Proiecte</h1><span class="x">// linia ta de proiecte</span></div>
+
+  <div class="signhang">
+    <div class="row"><span class="arrow">←</span> Ieșire · Despre</div>
+    <div class="row"><span class="bul" style="background:#d4322a"></span><span class="bul" style="background:#1f8a3b"></span><span class="bul" style="background:#1565c0"></span><span class="bul" style="background:#f4a712"></span> Proiecte <span class="arrow">→</span></div>
+  </div>
+
+  <!-- HARTA -->
+  <div class="board">
+    <div class="glass"></div>
+    <div class="inner">
+      <h2>HARTA PROIECTELOR</h2><div class="meta">// fiecare linie = o categorie</div>
+      <div class="maparea">
+        <svg class="lines" viewBox="0 0 680 360">
+          <!-- Linia ROBOTICĂ (rosie) -->
+          <polyline points="60,70 230,70 360,140" fill="none" stroke="#d4322a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Linia EDUCAȚIONAL (verde) -->
+          <polyline points="60,200 230,200 360,140 470,210 600,210" fill="none" stroke="#1f8a3b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Linia AI/PRODUS (albastra) -->
+          <polyline points="360,140 470,60 620,60" fill="none" stroke="#1565c0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Linia WEB/BRAND (galbena) -->
+          <polyline points="120,300 300,300 470,210" fill="none" stroke="#f4a712" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <!-- statii (procentaje pe 680x360) -->
+        <div class="st" style="left:8.8%;top:19.4%"><span class="node" style="border-color:#d4322a"></span><span class="lab">RO Worlds</span><div class="card"><b>RO Worlds</b><div class="t">Robotică · live tracker FIRST</div></div></div>
+        <div class="st" style="left:33.8%;top:19.4%"><span class="node" style="border-color:#d4322a"></span><span class="lab">Perpetuum</span><div class="card"><b>Perpetuum Mobile</b><div class="t">Robotică · site echipă</div></div></div>
+        <div class="st intc" style="left:52.9%;top:38.9%"><span class="node"></span><span class="lab">Arbori ⇄</span><div class="card"><b>Arbori</b><div class="t">Educațional · corespondență</div></div></div>
+        <div class="st" style="left:8.8%;top:55.6%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Criptare</span><div class="card"><b>Criptare</b><div class="t">Educațional</div></div></div>
+        <div class="st" style="left:69.1%;top:58.3%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Eco</span><div class="card"><b>Eco</b><div class="t">Educațional</div></div></div>
+        <div class="st" style="left:88.2%;top:58.3%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Monede</span><div class="card"><b>Monede</b><div class="t">Educațional</div></div></div>
+        <div class="st" style="left:69.1%;top:16.7%"><span class="node" style="border-color:#1565c0"></span><span class="lab">CrocoAI</span><div class="card"><b>CrocoAI</b><div class="t">Produs / AI</div></div></div>
+        <div class="st" style="left:91.2%;top:16.7%"><span class="node" style="border-color:#1565c0"></span><span class="lab">TrainBot</span><div class="card"><b>TrainBot</b><div class="t">Produs / AI</div></div></div>
+        <div class="st" style="left:17.6%;top:83.3%"><span class="node" style="border-color:#f4a712"></span><span class="lab">CODREA</span><div class="card"><b>CODREA BATI</b><div class="t">Web / comercial</div></div></div>
+        <div class="st" style="left:44.1%;top:83.3%"><span class="node" style="border-color:#f4a712"></span><span class="lab">România</span><div class="card"><b>România · Identitate</b><div class="t">Web / branding</div></div></div>
+        <span class="youhere" style="left:50%;top:46%">▲ ești aici</span>
+      </div>
+      <div class="legend">
+        <span><i style="background:#d4322a"></i> Robotică & Live</span>
+        <span><i style="background:#1f8a3b"></i> Educațional</span>
+        <span><i style="background:#1565c0"></i> Produs / AI</span>
+        <span><i style="background:#f4a712"></i> Web / Brand</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- afise cu screenshot-uri reale -->
+  <div class="poster p1"><img src="../images/projects/roworlds.png" alt=""><div class="tagad">RO WORLDS · acum live</div></div>
+  <div class="poster p2"><img src="../images/projects/arbori.png" alt=""><div class="tagad">ARBORI · joacă-te</div></div>
+
+  <!-- detalii peron -->
+  <div class="bench"></div><div class="bin"></div>
+  <div class="floor"></div>
+  <div class="safety"></div>
+  <div class="gap"></div>
+  <div class="rail"></div>
+  <div class="mindgap">⚠ ATENȚIE LA DISTANȚA DINTRE TREN ȘI PERON</div>
+</div>
+<div class="vig"></div>
+<div class="hint">mockup statie · harta = eroul · hover pe stații</div>
+</body></html>

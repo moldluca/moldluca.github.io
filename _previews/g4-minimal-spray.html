@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G4 — Minimal Spray</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Archivo,sans-serif;background:#0d0d0f;color:#eceae6;min-height:100vh}
+.badge{position:fixed;top:14px;left:14px;z-index:99;background:#eceae6;color:#0d0d0f;font-weight:900;font-size:.7rem;padding:7px 12px;letter-spacing:1px}
+.wrap{max-width:1180px;margin:0 auto;padding:80px 40px}
+.head{margin-bottom:70px}
+.kick{font-size:.8rem;letter-spacing:5px;text-transform:uppercase;color:#7a7770;margin-bottom:14px}
+h1{font-size:clamp(3rem,9vw,6.5rem);font-weight:900;letter-spacing:-3px;line-height:.95;position:relative;display:inline-block}
+h1 .spray{position:absolute;left:-6%;right:-6%;bottom:8%;height:42%;z-index:-1}
+h1 .spray path{fill:none;stroke:#ff2e6e;stroke-width:16;stroke-linecap:round;opacity:.9}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:50px 60px}
+.item{position:relative}
+.shot{aspect-ratio:16/10;background:#16161a;border:1px solid #26262b;overflow:hidden;display:grid;place-items:center;font-weight:900;font-size:2.4rem;color:#3a3a40;position:relative}
+.shot .acc{position:absolute;left:8%;bottom:14%;width:46%;height:8px;background:var(--c);border-radius:4px;transform:rotate(-2deg);opacity:.95}
+.name{font-size:1.8rem;font-weight:800;margin:18px 0 4px;letter-spacing:-.5px}
+.name .scribble{font-family:'Permanent Marker';color:var(--c);font-weight:400}
+.cat{font-size:.74rem;letter-spacing:3px;text-transform:uppercase;color:#7a7770}
+.tags{font-size:.85rem;color:#9a968d;margin-top:10px}
+.links{margin-top:16px;display:flex;gap:24px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.links a{color:#eceae6;text-decoration:none;border-bottom:1px solid #3a3a40;padding-bottom:3px}
+.links a:hover{border-color:var(--c);color:var(--c)}
+</style></head>
+<body>
+<div class="badge">G4 · MINIMAL + SPRAY</div>
+<div class="wrap">
+  <div class="head">
+    <div class="kick">Toate proiectele</div>
+    <h1>Proiecte
+      <svg class="spray" viewBox="0 0 600 80" preserveAspectRatio="none"><path d="M10,55 C140,30 280,65 420,42 C500,30 560,55 590,40"/></svg>
+    </h1>
+  </div>
+  <div class="grid">
+    <div class="item" style="--c:#ff2e6e"><div class="shot">RW<span class="acc"></span></div><div class="name">RO Worlds <span class="scribble">~</span></div><div class="cat">Live data</div><div class="tags">Node · FIRST API · Web Push</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div>
+    <div class="item" style="--c:#3ddc84"><div class="shot">CA<span class="acc"></span></div><div class="name">CrocoAI</div><div class="cat">Produs / AI</div><div class="tags">Node · Socket.IO</div><div class="links"><a>↳ cod</a></div></div>
+    <div class="item" style="--c:#4cc9f0"><div class="shot">AR<span class="acc"></span></div><div class="name">Arbori</div><div class="cat">Educațional</div><div class="tags">JavaScript · SVG</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div>
+    <div class="item" style="--c:#ffb703"><div class="shot">TB<span class="acc"></span></div><div class="name">TrainBot</div><div class="cat">Produs / AI</div><div class="tags">Node · LLM · iOS</div><div class="links"><a>→ live</a></div></div>
+    <div class="item" style="--c:#ff7a1a"><div class="shot">AS<span class="acc"></span></div><div class="name">ArvuSmart</div><div class="cat">Agri</div><div class="tags">HTML · Leaflet</div><div class="links"><a>→ live</a></div></div>
+    <div class="item" style="--c:#b14bff"><div class="shot">LC<span class="acc"></span></div><div class="name">Criptare</div><div class="cat">Educațional</div><div class="tags">JavaScript · HTML</div><div class="links"><a>→ live</a><a>↳ cod</a></div></div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ro"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U6d — Metro (foto reală)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#000;display:grid;place-items:center;overflow:hidden;font-family:Oswald,sans-serif}
+.badge{position:fixed;top:12px;left:12px;z-index:99;background:#111;color:#ffd23f;font-weight:700;font-size:.7rem;padding:6px 11px;letter-spacing:1px}
+.stage{position:relative;aspect-ratio:3508/3027;width:min(100vw,calc(100vh*3508/3027));
+  background:url("station-real.jpg") center/cover no-repeat;box-shadow:0 0 120px rgba(0,0,0,.6)}
+
+/* ===== harta montată FIX în rama verde reală ===== */
+.mapwrap{position:absolute;left:24.1%;top:29.1%;width:49.1%;height:42.4%;overflow:visible}
+.mapbg{position:absolute;inset:0;background:linear-gradient(#f7f4ec,#efeadf);box-shadow:inset 0 0 30px rgba(0,0,0,.12)}
+.gloss{position:absolute;inset:0;z-index:8;pointer-events:none;
+  background:linear-gradient(118deg, rgba(255,255,255,.22) 0 14%, transparent 28% 60%, rgba(255,255,255,.10) 82% 100%)}
+.title{position:absolute;left:4%;top:4%;z-index:6;background:#0f7a63;color:#fff;font-weight:700;letter-spacing:2px;font-size:.8vw;padding:3px 8px}
+.legend{position:absolute;left:4%;bottom:3%;z-index:6;display:flex;gap:.7vw;font-size:.52vw;font-weight:600;color:#222}
+.legend span{display:flex;align-items:center;gap:.25vw}.legend i{width:1vw;height:.28vw;border-radius:2px}
+svg.lines{position:absolute;inset:0;width:100%;height:100%}
+.st{position:absolute;transform:translate(-50%,-50%);z-index:5}
+.st .node{width:.85vw;height:.85vw;border-radius:50%;background:#fff;border:.28vw solid #333;cursor:pointer;transition:.15s}
+.st.intc .node{border-radius:.2vw;border-color:#111}
+.st:hover .node{transform:scale(1.5)}
+.st .lab{position:absolute;left:.9vw;top:-.5vw;white-space:nowrap;font-weight:600;font-size:.62vw;color:#222}
+.st .card{position:absolute;left:50%;bottom:1.4vw;transform:translateX(-50%) translateY(6px);width:11vw;background:#fff;border:1px solid #111;border-radius:.4vw;padding:.5vw .6vw;opacity:0;pointer-events:none;transition:.16s;z-index:30;box-shadow:0 .6vw 1.4vw rgba(0,0,0,.4)}
+.st:hover .card{opacity:1;transform:translateX(-50%) translateY(0)}
+.st .card b{font-size:.8vw}.st .card .t{font-size:.6vw;color:#555}
+.youhere{position:absolute;z-index:6;font-family:'DM Mono',monospace;font-size:.5vw;color:#d4322a;font-weight:700}
+.hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:60;font-family:'DM Mono',monospace;color:#eee;background:rgba(0,0,0,.6);padding:6px 14px;border-radius:18px;font-size:.78rem}
+@media(max-width:700px){.title,.legend,.st .lab,.st .card{font-size:2.4vw} .legend{font-size:1.6vw}}
+</style></head>
+<body>
+<div class="badge">U6d · METRO FOTO REALĂ</div>
+<div class="stage">
+  <div class="mapwrap">
+    <div class="mapbg"></div>
+    <div class="title">PROIECTE</div>
+    <svg class="lines" viewBox="0 0 680 480" preserveAspectRatio="none">
+      <polyline points="70,90 250,90 380,200" fill="none" stroke="#d4322a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="70,300 250,300 380,200 500,310 620,310" fill="none" stroke="#1f8a3b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="380,200 500,90 630,90" fill="none" stroke="#1565c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="130,420 320,420 500,310" fill="none" stroke="#f4a712" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="st" style="left:10.3%;top:18.8%"><span class="node" style="border-color:#d4322a"></span><span class="lab">RO Worlds</span><div class="card"><b>RO Worlds</b><div class="t">Robotică · live FIRST</div></div></div>
+    <div class="st" style="left:36.8%;top:18.8%"><span class="node" style="border-color:#d4322a"></span><span class="lab">Perpetuum</span><div class="card"><b>Perpetuum Mobile</b><div class="t">Robotică</div></div></div>
+    <div class="st intc" style="left:55.9%;top:41.7%"><span class="node"></span><span class="lab">Arbori ⇄</span><div class="card"><b>Arbori</b><div class="t">corespondență</div></div></div>
+    <div class="st" style="left:10.3%;top:62.5%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Criptare</span><div class="card"><b>Criptare</b><div class="t">Educațional</div></div></div>
+    <div class="st" style="left:73.5%;top:64.6%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Eco</span><div class="card"><b>Eco</b><div class="t">Educațional</div></div></div>
+    <div class="st" style="left:91.2%;top:64.6%"><span class="node" style="border-color:#1f8a3b"></span><span class="lab">Monede</span><div class="card"><b>Monede</b><div class="t">Educațional</div></div></div>
+    <div class="st" style="left:73.5%;top:18.8%"><span class="node" style="border-color:#1565c0"></span><span class="lab">CrocoAI</span><div class="card"><b>CrocoAI</b><div class="t">Produs / AI</div></div></div>
+    <div class="st" style="left:92.6%;top:18.8%"><span class="node" style="border-color:#1565c0"></span><span class="lab">TrainBot</span><div class="card"><b>TrainBot</b><div class="t">Produs / AI</div></div></div>
+    <div class="st" style="left:19.1%;top:87.5%"><span class="node" style="border-color:#f4a712"></span><span class="lab">CODREA</span><div class="card"><b>CODREA BATI</b><div class="t">Web / comercial</div></div></div>
+    <div class="st" style="left:47.1%;top:87.5%"><span class="node" style="border-color:#f4a712"></span><span class="lab">România</span><div class="card"><b>România · Identitate</b><div class="t">Web / branding</div></div></div>
+    <span class="youhere" style="left:54%;top:48%">▲ ești aici</span>
+    <div class="legend">
+      <span><i style="background:#d4322a"></i>Robotică</span><span><i style="background:#1f8a3b"></i>Educațional</span>
+      <span><i style="background:#1565c0"></i>Produs/AI</span><span><i style="background:#f4a712"></i>Web/Brand</span>
+    </div>
+    <div class="gloss"></div>
+  </div>
+</div>
+<div class="hint">harta ta montată în rama reală din stație · hover pe stații</div>
+</body></html>
