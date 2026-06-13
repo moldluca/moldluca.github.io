@@ -37,22 +37,22 @@ const PROJECTS = [
   { slug:'trainbot', featured:true, title:'TrainBot', cat:'EdTech / AI',
     desc:'Ecosistem EdTech care învață copiii (7–14 ani) AI & machine learning „cu mâinile" — app iOS (antrenezi modele CoreML on-device + LLM), dashboard profesori, backend Node. Sigur, conform GDPR.',
     tech:['iOS','CoreML','LLM','Node'], img:'images/projects/trainbot.jpg',
-    live:'https://trainbot.moldluca.tech', repo:null, since:'2026-05-02' },
+    live:'https://trainbot.moldluca.tech', repo:'https://github.com/moldluca/trainbot-site', since:'2026-05-02' },
 
   { slug:'perpetuum', featured:true, title:'Perpetuum Mobile', cat:'Robotică · FTC',
     desc:'Echipă de robotică FIRST Tech Challenge — proiectăm, construim și programăm un robot de competiție în fiecare sezon.',
     tech:['FTC','Robotică','CAD','Java'], img:'images/projects/perpetuum.jpg',
-    live:'https://perpetuummobile.tech/', repo:null, since:'2026-01-24' },
+    live:'https://perpetuummobile.tech/', repo:'https://github.com/moldluca/PerpetuumWebsite', since:'2026-01-24' },
 
   { slug:'crocorobo', featured:true, title:'Crocorobo', cat:'Robotică · FLL',
     desc:'Echipă de robotică FIRST Lego League — copiii construiesc și programează roboți LEGO și prezintă un proiect de inovație.',
     tech:['FLL','LEGO','Robotică','Scratch'], img:'images/projects/crocorobo.jpg',
-    live:'https://crocorobo.perpetuummobile.tech', repo:null, since:'2026-04-26' },
+    live:'https://crocorobo.perpetuummobile.tech', repo:'https://github.com/moldluca/site-crocorobo', since:'2026-04-26' },
 
   { slug:'timisoara', featured:true, title:'Timișoara MUN', cat:'Eveniment',
     desc:'Site pentru conferința Timișoara Model United Nations — înscrieri, program, comitete.',
     tech:['Flask','Python','HTML'], img:'images/projects/timisoara.jpg',
-    live:'https://tm-mun.arpd.ro', repo:null, since:'2025-10-06' },
+    live:'https://tm-mun.arpd.ro', repo:'https://github.com/moldluca/timisoara-mun', since:'2025-10-06' },
 ];
 
 // descriere lungă (popup) — fallback la .desc dacă lipsește
@@ -128,8 +128,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
 (function buildRadar(){
   const svg = document.getElementById('radar'); if(!svg) return;
   const skills = [
-    {l:'Frontend',v:90},{l:'Backend',v:85},{l:'CAD / 3D',v:82},
-    {l:'Robotică',v:85},{l:'Design',v:80},{l:'Leadership',v:88},
+    {l:'JavaScript',v:90},{l:'Python',v:85},{l:'React',v:84},
+    {l:'Node.js',v:88},{l:'AI / ML',v:80},{l:'CAD / 3D',v:82},
   ];
   const cx=160, cy=160, R=118, n=skills.length;
   const ang = i => (-90 + i*360/n) * Math.PI/180;
@@ -322,6 +322,7 @@ function count(el){
   const node = el.childNodes[0];
   const t = setInterval(()=>{ n += step; if(n>=to){ n=to; clearInterval(t); } node.nodeValue = n; }, 26);
 }
+document.getElementById('stat-proj')?.setAttribute('data-to', PROJECTS.length);  // numar proiecte = automat
 const cio = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ count(e.target); cio.unobserve(e.target); } }), { threshold:.6 });
 document.querySelectorAll('[data-to]').forEach(el => { el.insertBefore(document.createTextNode('0'), el.firstChild); cio.observe(el); });
 
