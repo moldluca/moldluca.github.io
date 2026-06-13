@@ -3,7 +3,7 @@
   --ink:#1B1A17; --ink-soft:#4a463d; --ink-faint:#7a7568;
   --green:#143A2A; --green-2:#1d5440; --gold:#B8924A; --gold-2:#d4ad5e;
   --spray:#E6357A; --lime:#7Bd14b;
-  --serif:'Fraunces',serif; --body:'EB Garamond',serif; --tag:'Caveat',cursive;
+  --serif:'Fraunces',serif; --body:'EB Garamond',serif; --tag:'Permanent Marker',cursive;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
