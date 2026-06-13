@@ -39,9 +39,9 @@ const PROJECTS = [
     tech:['iOS','CoreML','LLM','Node'], img:'images/projects/trainbot.jpg',
     live:'https://trainbot.moldluca.tech', repo:null, since:'2026-05-02' },
 
-  { slug:'perpetuum', featured:true, title:'Perpetuum Mobile', cat:'Organizație',
-    desc:'Site-ul echipei de robotică Perpetuum Mobile — prezentare, sponsori, activități.',
-    tech:['Node.js','Express','HTML'], img:'images/projects/perpetuum.jpg',
+  { slug:'perpetuum', featured:true, title:'Perpetuum Mobile', cat:'Robotică · FTC',
+    desc:'Echipă de robotică FIRST Tech Challenge — proiectăm, construim și programăm un robot de competiție în fiecare sezon.',
+    tech:['FTC','Robotică','CAD','Java'], img:'images/projects/perpetuum.jpg',
     live:'https://perpetuummobile.tech/', repo:null, since:'2026-01-24' },
 
   { slug:'timisoara', featured:true, title:'Timișoara MUN', cat:'Eveniment',
@@ -59,7 +59,7 @@ const LONG = {
   criptare:'Laborator interactiv care învață copiii bazele criptografiei: cifruri clasice (Cezar, Vigenère), exerciții practice și jocuri. Construit pentru ateliere educaționale.',
   arvusolutions:'Ecosistem AgriTech complet — ArvuFarm. Roboți autonomi care acoperă tot ciclul agricol: ArvuScan (robot pe șenile ce scanează solul — NPK, pH, umiditate, temperatură, conductivitate), ArvuPlant (robot CNC de plantare cu cap pneumatic vacuum), ArvuSpider (quadruped de monitorizare) și ArvuFly (dronă de tratament). Totul orchestrat de o platformă web cu hartă GeoSelect 3D a parcelelor și asistent AI agronomic. Flux: date sol → plantare → monitorizare → tratament.',
   trainbot:'Ecosistem EdTech care învață copiii (7–14 ani) inteligență artificială și machine learning „cu mâinile". App iOS unde copiii antrenează modele CoreML direct pe dispozitiv și interacționează cu un LLM, dashboard pentru profesori și backend Node.js. Sigur și conform GDPR.',
-  perpetuum:'Site-ul oficial al echipei de robotică Perpetuum Mobile: prezentarea echipei, sponsori, activități și realizări. Construit pe Node.js + Express.',
+  perpetuum:'Echipa de robotică Perpetuum Mobile concurează în FIRST Tech Challenge (FTC). În fiecare sezon proiectăm, construim și programăm de la zero un robot de competiție: design CAD și fabricație mecanică, electronică, și cod autonom + teleoperat în Java. Participăm la competiții regionale și naționale și facem outreach STEM în comunitate.',
   timisoara:'Site pentru conferința Timișoara Model United Nations: înscrieri delegați, program, comitete și informații pentru participanți. Backend Flask/Python.',
 };
 function projImg(p){ return p.img || `images/ads/${p.slug}.jpg`; }
@@ -93,9 +93,11 @@ ordered.forEach(p => {
     ? `<div class="thumb"><span class="cat-tag">${esc(p.cat)}</span><img src="${esc(p.img)}" alt="Screenshot ${esc(p.title)}" loading="lazy"></div>`
     : `<div class="thumb noimg"><span class="cat-tag">${esc(p.cat)}</span>${initials}</div>`;
   const tags = p.tech.map(t => `<span class="tag">${esc(t)}</span>`).join('');
-  const statusInit = p.priv ? 'private' : 'offline';
-  const statusLabel = p.priv ? 'Intern' : 'verific…';
-  const liveLink = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : `<span class="disabled">→ indisponibil</span>`;
+  // status (live/offline) doar pentru proiectele cu site
+  const statusBlock = p.live
+    ? `<div class="status offline" data-slug="${p.slug}"><span class="led"></span><span class="status-label">verific…</span><span class="uptime"></span></div>`
+    : '';
+  const liveLink = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : '';
   const repoLink = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod</a>` : '';
   card.innerHTML = `
     ${thumb}
@@ -103,7 +105,7 @@ ordered.forEach(p => {
       <h3 class="card-title">${esc(p.title)}</h3>
       <p class="card-desc">${esc(p.desc)}</p>
       <div class="tags">${tags}</div>
-      <div class="status ${statusInit}" data-slug="${p.slug}"><span class="led"></span><span class="status-label">${statusLabel}</span><span class="uptime"></span></div>
+      ${statusBlock}
       <div class="links">${liveLink}${repoLink}</div>
     </div>`;
   grid.appendChild(card);
@@ -329,7 +331,7 @@ async function runChecks(){
   let on = 0;
   await Promise.all(PROJECTS.map(async p => {
     const el = p._statusEl;
-    if(p.priv || !p.live){ el.className='status private'; el.querySelector('.status-label').textContent='Intern'; el.querySelector('.uptime').textContent='// privat / nedeploiat'; return; }
+    if(!p.live || !el) return;   // fără site → fără status
     const up = await checkLive(p.live);
     if(up){ on++; el.className='status online'; el.querySelector('.status-label').textContent='Online'; p._online=true; }
     else { el.className='status offline'; el.querySelector('.status-label').textContent='Offline'; el.querySelector('.uptime').textContent='// momentan indisponibil'; }
