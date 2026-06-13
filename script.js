@@ -3,50 +3,50 @@
 const PROJECTS = [
   { slug:'roworlds', title:'RO Worlds Tracker', cat:'Live data',
     desc:'Live tracker pentru echipele românești la FIRST World Championship 2026 Houston (FTC + FRC), cu Web Push.',
-    tech:['Node.js','FIRST API','Web Push'], img:'images/projects/roworlds.png',
+    tech:['Node.js','FIRST API','Web Push'], img:'images/projects/roworlds.jpg',
     live:'https://worlds.perpetuummobile.tech/', repo:null, since:'2026-05-01' },
 
   { slug:'crocoai', title:'CrocoAI', cat:'Produs / AI',
     desc:'Platformă internă cu asistent AI, chat, taskuri și calendar pentru echipa Perpetuum Mobile.',
-    tech:['Node.js','Socket.IO','HTML'], img:'images/projects/crocoai.png',
+    tech:['Node.js','Socket.IO','HTML'], img:'images/projects/crocoai.jpg',
     live:null, repo:null, since:'2026-05-03', priv:true },
 
   { slug:'arbori', featured:true, title:'Arbori — Parcurgere', cat:'Educațional',
     desc:'Vizualizare interactivă a algoritmilor de parcurgere a arborilor binari — 100 de arbori, cu dificultate.',
-    tech:['JavaScript','HTML','SVG'], img:'images/projects/arbori.png',
+    tech:['JavaScript','HTML','SVG'], img:'images/projects/arbori.jpg',
     live:'https://moldluca.github.io/arbori-parcurgere/',
     repo:'https://github.com/moldluca/arbori-parcurgere', since:'2026-06-09' },
 
   { slug:'codrea', title:'CODREA BATI', cat:'Comercial',
     desc:'Site de prezentare pentru o firmă de construcții din Franța (Travaux Bâtiment). Multipage, design curat.',
-    tech:['HTML','CSS','JS'], img:'images/projects/codrea.png',
+    tech:['HTML','CSS','JS'], img:'images/projects/codrea.jpg',
     live:'https://moldluca.github.io/codrea-bati-website/',
     repo:'https://github.com/moldluca/codrea-bati-website', since:'2026-05-07' },
 
   { slug:'criptare', featured:true, title:'Laboratorul de Criptare', cat:'Educațional',
     desc:'Site educațional interactiv care învață copiii bazele criptografiei prin exerciții și jocuri.',
-    tech:['JavaScript','HTML','CSS'], img:'images/projects/criptare.png',
+    tech:['JavaScript','HTML','CSS'], img:'images/projects/criptare.jpg',
     live:'http://criptare.perpetuummobile.tech/',
     repo:'https://github.com/moldluca/laborator-criptare', since:'2026-05-08' },
 
   { slug:'arvusolutions', featured:true, title:'ArvuSolutions', cat:'Ecosistem AgriTech',
     desc:'Ecosistem AgriTech ArvuFarm: roboți autonomi (ArvuScan, ArvuPlant, ArvuSpider, ArvuFly) + platformă web cu hartă GeoSelect 3D și asistent AI agronomic.',
-    tech:['Robotică','Node.js','Leaflet','AI'], img:'images/projects/arvusolutions.png',
+    tech:['Robotică','Node.js','Leaflet','AI'], img:'images/projects/arvusolutions.jpg',
     live:'https://arvusmart.perpetuummobile.tech/', repo:null, since:'2026-04-27' },
 
   { slug:'trainbot', featured:true, title:'TrainBot', cat:'EdTech / AI',
     desc:'Ecosistem EdTech care învață copiii (7–14 ani) AI & machine learning „cu mâinile" — app iOS (antrenezi modele CoreML on-device + LLM), dashboard profesori, backend Node. Sigur, conform GDPR.',
-    tech:['iOS','CoreML','LLM','Node'], img:null,
+    tech:['iOS','CoreML','LLM','Node'], img:'images/projects/trainbot.jpg',
     live:'https://trainbot.moldluca.tech', repo:null, since:'2026-05-02' },
 
   { slug:'perpetuum', featured:true, title:'Perpetuum Mobile', cat:'Organizație',
     desc:'Site-ul echipei de robotică Perpetuum Mobile — prezentare, sponsori, activități.',
-    tech:['Node.js','Express','HTML'], img:'images/projects/perpetuum.png',
+    tech:['Node.js','Express','HTML'], img:'images/projects/perpetuum.jpg',
     live:'https://perpetuummobile.tech/', repo:null, since:'2026-01-24' },
 
   { slug:'timisoara', featured:true, title:'Timișoara MUN', cat:'Eveniment',
     desc:'Site pentru conferința Timișoara Model United Nations — înscrieri, program, comitete.',
-    tech:['Flask','Python','HTML'], img:null,
+    tech:['Flask','Python','HTML'], img:'images/projects/timisoara.jpg',
     live:'https://tm-mun.arpd.ro', repo:null, since:'2025-10-06' },
 ];
 
