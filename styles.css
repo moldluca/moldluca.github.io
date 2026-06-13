@@ -70,7 +70,7 @@ a{color:inherit;text-decoration:none;}
 .hs-cap{font-family:var(--serif);text-transform:uppercase;letter-spacing:2px;font-size:.68rem;color:var(--ink-soft);margin-top:4px;}
 
 .hero-frame{display:flex;justify-content:center;}
-.frame{position:relative;width:100%;max-width:360px;aspect-ratio:3/4;border:18px solid transparent;border-radius:3px;
+.frame{position:relative;width:100%;max-width:414px;aspect-ratio:3/4;border:18px solid transparent;border-radius:3px;
   background:linear-gradient(var(--paper2),var(--paper2)) padding-box,
     linear-gradient(135deg,#efd79a 0%,#c79e50 14%,#6e542a 32%,#e3c578 50%,#8a6d35 70%,#efd79a 100%) border-box;
   box-shadow:
