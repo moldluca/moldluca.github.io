@@ -29,9 +29,9 @@ const PROJECTS = [
     live:'http://criptare.perpetuummobile.tech/',
     repo:'https://github.com/moldluca/laborator-criptare', since:'2026-05-08' },
 
-  { slug:'arvusmart', featured:true, title:'ArvuSmart', cat:'Produs / Agri',
-    desc:'Platformă agricolă: frontend, GeoSelect 3D pentru parcele și asistent AI agronomic.',
-    tech:['HTML','Leaflet','JS'], img:'images/projects/arvusmart.png',
+  { slug:'arvusolutions', featured:true, title:'ArvuSolutions', cat:'Ecosistem AgriTech',
+    desc:'Ecosistem AgriTech ArvuFarm: roboți autonomi (ArvuScan, ArvuPlant, ArvuSpider, ArvuFly) + platformă web cu hartă GeoSelect 3D și asistent AI agronomic.',
+    tech:['Robotică','Node.js','Leaflet','AI'], img:'images/projects/arvusolutions.png',
     live:'https://arvusmart.perpetuummobile.tech/', repo:null, since:'2026-04-27' },
 
   { slug:'trainbot', featured:true, title:'TrainBot', cat:'EdTech / AI',
@@ -44,11 +44,25 @@ const PROJECTS = [
     tech:['Node.js','Express','HTML'], img:'images/projects/perpetuum.png',
     live:'https://perpetuummobile.tech/', repo:null, since:'2026-01-24' },
 
-  { slug:'timisoara', title:'Timișoara MUN', cat:'Eveniment',
+  { slug:'timisoara', featured:true, title:'Timișoara MUN', cat:'Eveniment',
     desc:'Site pentru conferința Timișoara Model United Nations — înscrieri, program, comitete.',
     tech:['Flask','Python','HTML'], img:null,
     live:'https://tm-mun.arpd.ro', repo:null, since:'2025-10-06' },
 ];
+
+// descriere lungă (popup) — fallback la .desc dacă lipsește
+const LONG = {
+  roworlds:'Tracker live pentru echipele românești la FIRST World Championship 2026 (Houston). Afișează scoruri, clasamente și meciuri în timp real pentru FTC și FRC, cu notificări Web Push când intră pe teren o echipă din România. Datele sunt trase direct din FIRST API.',
+  crocoai:'Platformă internă a echipei Perpetuum Mobile: asistent AI conversațional, chat de echipă în timp real (Socket.IO), management de taskuri și calendar partajat. Rulează pe server propriu (DigitalOcean).',
+  arbori:'Aplicație educațională care vizualizează interactiv parcurgerile arborilor binari — SRD (inordine), RSD (preordine) și SDR (postordine). 100 de arbori generați, cu niveluri de dificultate, animație pas-cu-pas și verificarea răspunsului.',
+  codrea:'Site de prezentare pentru CODREA BATI, firmă de construcții din Franța (Travaux Bâtiment). Structură multipage, design curat și responsive, secțiuni de servicii, galerie și contact. Proiect comercial pentru client.',
+  criptare:'Laborator interactiv care învață copiii bazele criptografiei: cifruri clasice (Cezar, Vigenère), exerciții practice și jocuri. Construit pentru ateliere educaționale.',
+  arvusolutions:'Ecosistem AgriTech complet — ArvuFarm. Roboți autonomi care acoperă tot ciclul agricol: ArvuScan (robot pe șenile ce scanează solul — NPK, pH, umiditate, temperatură, conductivitate), ArvuPlant (robot CNC de plantare cu cap pneumatic vacuum), ArvuSpider (quadruped de monitorizare) și ArvuFly (dronă de tratament). Totul orchestrat de o platformă web cu hartă GeoSelect 3D a parcelelor și asistent AI agronomic. Flux: date sol → plantare → monitorizare → tratament.',
+  trainbot:'Ecosistem EdTech care învață copiii (7–14 ani) inteligență artificială și machine learning „cu mâinile". App iOS unde copiii antrenează modele CoreML direct pe dispozitiv și interacționează cu un LLM, dashboard pentru profesori și backend Node.js. Sigur și conform GDPR.',
+  perpetuum:'Site-ul oficial al echipei de robotică Perpetuum Mobile: prezentarea echipei, sponsori, activități și realizări. Construit pe Node.js + Express.',
+  timisoara:'Site pentru conferința Timișoara Model United Nations: înscrieri delegați, program, comitete și informații pentru participanți. Backend Flask/Python.',
+};
+function projImg(p){ return p.img || `images/ads/${p.slug}.jpg`; }
 
 // ---------- helpers ----------
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -94,6 +108,9 @@ ordered.forEach(p => {
     </div>`;
   grid.appendChild(card);
   p._statusEl = card.querySelector('.status');
+  card.dataset.slug = p.slug;
+  card.classList.add('clickable');
+  card.addEventListener('click', e => { if(e.target.closest('a')) return; openProjModal(p.slug); });
   bindCursor(card);
 });
 
@@ -167,7 +184,7 @@ const STATIONS = [
   {slug:'arbori',    name:'Arbori',        x:900,  y:800,  c:'#e2231a', intc:true, lab:'t'},
   {slug:'trainbot',  name:'TrainBot',      x:1340, y:800,  c:'#1f3f93', intc:true, lab:'t'},
   {slug:'crocoai',   name:'CrocoAI',       x:1340, y:1060, c:'#1f3f93', lab:'r'},
-  {slug:'arvusmart', name:'ArvuSmart',     x:1340, y:1320, c:'#1f3f93', lab:'r'},
+  {slug:'arvusolutions', name:'ArvuSolutions', x:1340, y:1320, c:'#1f3f93', lab:'r'},
   {slug:'codrea',    name:'CODREA BATI',   x:900,  y:1120, c:'#2e8b57', lab:'r'},
   {slug:'timisoara', name:'Timișoara MUN', x:1180, y:520,  c:'#f08000', lab:'r'},
 ];
@@ -183,7 +200,7 @@ if(citymap){
     const p = BY[s.slug]; if(!p) return;
     const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ live</a>` : (p.priv ? '<span>intern</span>' : '');
     const repo = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod</a>` : '';
-    pins += `<div class="pin${s.intc?' intc':''} lab-${s.lab||'r'}" style="left:${s.x}px;top:${s.y}px;--c:${s.c}">`
+    pins += `<div class="pin${s.intc?' intc':''} lab-${s.lab||'r'}" data-slug="${s.slug}" style="left:${s.x}px;top:${s.y}px;--c:${s.c}">`
       + `<span class="dot"></span><span class="plabel">${esc(s.name)}</span>`
       + `<div class="pcard"><h3>${esc(p.title)}</h3><div class="pc-cat">${esc(p.cat)}</div><div class="pc-tags">${p.tech.map(esc).join(' · ')}</div><div class="pc-links">${live}${repo}</div></div>`
       + `</div>`;
@@ -250,17 +267,45 @@ stExit?.addEventListener('click', () => trainSweep(closeStation));
 stMap?.addEventListener('click', openMap);
 gback?.addEventListener('click', closeMap);
 addEventListener('keydown', e => { if(e.key !== 'Escape') return;
+  if(projModal?.classList.contains('open')) return;
   if(gview.classList.contains('open')) closeMap();
   else if(station.classList.contains('open')) trainSweep(closeStation); });
 if(moreBtn) bindCursor(moreBtn);
 
 // ---------- drag-to-pan pe hartă ----------
+let mapMoved = false;
 if(cityvp){
   let down=false, sx=0, sy=0, sl=0, st=0;
-  cityvp.addEventListener('mousedown', e => { if(e.target.closest('a,button')) return; down=true; sx=e.clientX; sy=e.clientY; sl=cityvp.scrollLeft; st=cityvp.scrollTop; cityvp.classList.add('grab'); });
+  cityvp.addEventListener('mousedown', e => { if(e.target.closest('a,button')) return; down=true; mapMoved=false; sx=e.clientX; sy=e.clientY; sl=cityvp.scrollLeft; st=cityvp.scrollTop; cityvp.classList.add('grab'); });
   addEventListener('mouseup', () => { down=false; cityvp.classList.remove('grab'); });
-  addEventListener('mousemove', e => { if(!down) return; cityvp.scrollLeft = sl - (e.clientX - sx); cityvp.scrollTop = st - (e.clientY - sy); });
+  addEventListener('mousemove', e => { if(!down) return; if(Math.abs(e.clientX-sx)+Math.abs(e.clientY-sy)>6) mapMoved=true; cityvp.scrollLeft = sl - (e.clientX - sx); cityvp.scrollTop = st - (e.clientY - sy); });
 }
+
+// ---------- popup proiect (modal) ----------
+const projModal = document.getElementById('projModal');
+const BYSLUG = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
+function openProjModal(slug){
+  const p = BYSLUG[slug]; if(!p || !projModal) return;
+  const live = p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">→ vezi live</a>` : '';
+  const repo = p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">↳ cod sursă</a>` : '';
+  const priv = (!p.live && p.priv) ? `<span class="pm-priv">intern / nedeploiat</span>` : '';
+  const tags = p.tech.map(t => `<span class="pm-tag">${esc(t)}</span>`).join('');
+  projModal.querySelector('.pm-dialog').innerHTML =
+      `<button class="pm-x" data-close aria-label="Închide">✕</button>`
+    + `<div class="pm-media"><img src="${esc(projImg(p))}" alt="${esc(p.title)}" onerror="this.closest('.pm-media').classList.add('noimg')"><span class="pm-fallback">${esc(p.title)}</span></div>`
+    + `<div class="pm-body"><span class="pm-cat">${esc(p.cat)}</span>`
+    + `<h3 class="pm-title">${esc(p.title)}</h3>`
+    + `<p class="pm-desc">${esc(LONG[p.slug] || p.desc)}</p>`
+    + `<div class="pm-tags">${tags}</div>`
+    + `<div class="pm-links">${live}${repo}${priv}</div></div>`;
+  projModal.classList.add('open'); projModal.setAttribute('aria-hidden','false');
+  document.body.classList.add('noscroll');
+}
+function closeProjModal(){ if(!projModal) return; projModal.classList.remove('open'); projModal.setAttribute('aria-hidden','true');
+  if(!station.classList.contains('open') && !gview.classList.contains('open')) document.body.classList.remove('noscroll'); }
+projModal?.addEventListener('click', e => { if(e.target.closest('[data-close]') || e.target.classList.contains('pm-backdrop')) closeProjModal(); });
+citymap?.addEventListener('click', e => { const pin = e.target.closest('.pin'); if(!pin || e.target.closest('a') || mapMoved) return; if(pin.dataset.slug) openProjModal(pin.dataset.slug); });
+addEventListener('keydown', e => { if(e.key === 'Escape' && projModal?.classList.contains('open')) closeProjModal(); });
 
 // ---------- counters ----------
 function count(el){

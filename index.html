@@ -257,7 +257,7 @@
     <div class="leg" id="cityLeg"></div>
   </div>
   <button class="gback" id="gback" type="button">← înapoi</button>
-  <div class="map-hint" aria-hidden="true">✋ trage harta · hover pe stații</div>
+  <div class="map-hint" aria-hidden="true">✋ trage harta · click pe stație pentru detalii</div>
 </div>
 
 <!-- ===== Tren (tranziție) ===== -->
@@ -271,6 +271,11 @@
     <div class="car"><div class="win"></div><div class="stripe"></div><div class="door"></div></div>
     <div class="cab end"></div>
   </div>
+</div>
+<!-- ===== Popup proiect ===== -->
+<div class="pmodal" id="projModal" aria-hidden="true">
+  <div class="pm-backdrop" data-close></div>
+  <div class="pm-dialog" role="dialog" aria-modal="true" aria-label="Detalii proiect"></div>
 </div>
 <script src="script.js"></script>
 </body>
