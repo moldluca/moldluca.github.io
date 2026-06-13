@@ -23,7 +23,7 @@ const PROJECTS = [
     live:'https://moldluca.github.io/codrea-bati-website/',
     repo:'https://github.com/moldluca/codrea-bati-website', since:'2026-05-07' },
 
-  { slug:'criptare', featured:true, title:'Laboratorul de Criptare', cat:'Educațional',
+  { slug:'criptare', title:'Laboratorul de Criptare', cat:'Educațional',
     desc:'Site educațional interactiv care învață copiii bazele criptografiei prin exerciții și jocuri.',
     tech:['JavaScript','HTML','CSS'], img:'images/projects/criptare.jpg',
     live:'http://criptare.perpetuummobile.tech/',
@@ -47,7 +47,7 @@ const PROJECTS = [
   { slug:'crocorobo', featured:true, title:'Crocorobo', cat:'Robotică · FLL',
     desc:'Echipă de robotică FIRST Lego League — copiii construiesc și programează roboți LEGO și prezintă un proiect de inovație.',
     tech:['FLL','LEGO','Robotică','Scratch'], img:'images/projects/crocorobo.jpg',
-    live:'https://crocorobo.ro', repo:null, since:'2026-04-26' },
+    live:'https://crocorobo.perpetuummobile.tech', repo:null, since:'2026-04-26' },
 
   { slug:'timisoara', featured:true, title:'Timișoara MUN', cat:'Eveniment',
     desc:'Site pentru conferința Timișoara Model United Nations — înscrieri, program, comitete.',
