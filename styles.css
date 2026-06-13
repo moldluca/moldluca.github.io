@@ -70,10 +70,30 @@ a{color:inherit;text-decoration:none;}
 .hs-cap{font-family:var(--serif);text-transform:uppercase;letter-spacing:2px;font-size:.68rem;color:var(--ink-soft);margin-top:4px;}
 
 .hero-frame{display:flex;justify-content:center;}
-.frame{position:relative;width:100%;max-width:360px;aspect-ratio:3/4;border:10px solid transparent;
+.frame{position:relative;width:100%;max-width:360px;aspect-ratio:3/4;border:18px solid transparent;border-radius:3px;
   background:linear-gradient(var(--paper2),var(--paper2)) padding-box,
-    linear-gradient(135deg,var(--gold-2),var(--gold) 40%,#8a6d35 70%,var(--gold-2)) border-box;
-  box-shadow:0 30px 70px rgba(27,26,23,.28);display:grid;place-items:center;overflow:hidden;}
+    linear-gradient(135deg,#efd79a 0%,#c79e50 14%,#6e542a 32%,#e3c578 50%,#8a6d35 70%,#efd79a 100%) border-box;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,247,225,.65),
+    inset 0 0 12px rgba(64,48,22,.6),
+    0 0 0 1px rgba(64,48,22,.85),
+    0 34px 80px rgba(27,26,23,.34);
+  display:grid;place-items:center;overflow:hidden;}
+/* passe-partout (matte) + filet aurie peste marginea pozei */
+.frame::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  box-shadow:
+    inset 0 0 0 3px var(--gold-2),
+    inset 0 0 0 5px #5e471f,
+    inset 0 0 0 19px var(--paper),
+    inset 0 0 0 20px var(--gold-2),
+    inset 0 0 26px 20px rgba(64,48,22,.14);}
+/* ornamente in colturile deschiderii */
+.frame::after{content:"";position:absolute;inset:16px;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(circle at 0 0,var(--gold) 0 3.5px,transparent 4.5px),
+    radial-gradient(circle at 100% 0,var(--gold) 0 3.5px,transparent 4.5px),
+    radial-gradient(circle at 0 100%,var(--gold) 0 3.5px,transparent 4.5px),
+    radial-gradient(circle at 100% 100%,var(--gold) 0 3.5px,transparent 4.5px);}
 .frame-initials{font-family:var(--serif);font-size:7rem;color:var(--green);font-weight:500;opacity:.9;}
 .vandal{position:absolute;font-family:var(--tag);color:var(--spray);font-size:2.4rem;transform:rotate(-8deg);bottom:14%;left:-2%;text-shadow:1px 1px 0 rgba(0,0,0,.12);}
 .vandal2{position:absolute;font-family:var(--tag);color:var(--green);font-size:1.3rem;top:8%;right:8%;transform:rotate(6deg);}

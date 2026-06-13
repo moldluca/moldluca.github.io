@@ -123,6 +123,7 @@ ordered.forEach(p => {
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
+const ageEl = document.getElementById('age'); if(ageEl) ageEl.textContent = new Date().getFullYear() - 2008;  // varsta din anul nasterii
 
 // ---------- radar chart ----------
 (function buildRadar(){
