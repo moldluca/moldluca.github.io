@@ -44,6 +44,11 @@ const PROJECTS = [
     tech:['FTC','Robotică','CAD','Java'], img:'images/projects/perpetuum.jpg',
     live:'https://perpetuummobile.tech/', repo:null, since:'2026-01-24' },
 
+  { slug:'crocorobo', featured:true, title:'Crocorobo', cat:'Robotică · FLL',
+    desc:'Echipă de robotică FIRST Lego League — copiii construiesc și programează roboți LEGO și prezintă un proiect de inovație.',
+    tech:['FLL','LEGO','Robotică','Scratch'], img:'images/projects/crocorobo.jpg',
+    live:'https://crocorobo.ro', repo:null, since:'2026-04-26' },
+
   { slug:'timisoara', featured:true, title:'Timișoara MUN', cat:'Eveniment',
     desc:'Site pentru conferința Timișoara Model United Nations — înscrieri, program, comitete.',
     tech:['Flask','Python','HTML'], img:'images/projects/timisoara.jpg',
@@ -60,6 +65,7 @@ const LONG = {
   arvusolutions:'Ecosistem AgriTech complet — ArvuFarm. Roboți autonomi care acoperă tot ciclul agricol: ArvuScan (robot pe șenile ce scanează solul — NPK, pH, umiditate, temperatură, conductivitate), ArvuPlant (robot CNC de plantare cu cap pneumatic vacuum), ArvuSpider (quadruped de monitorizare) și ArvuFly (dronă de tratament). Totul orchestrat de o platformă web cu hartă GeoSelect 3D a parcelelor și asistent AI agronomic. Flux: date sol → plantare → monitorizare → tratament.',
   trainbot:'Ecosistem EdTech care învață copiii (7–14 ani) inteligență artificială și machine learning „cu mâinile". App iOS unde copiii antrenează modele CoreML direct pe dispozitiv și interacționează cu un LLM, dashboard pentru profesori și backend Node.js. Sigur și conform GDPR.',
   perpetuum:'Echipa de robotică Perpetuum Mobile concurează în FIRST Tech Challenge (FTC). În fiecare sezon proiectăm, construim și programăm de la zero un robot de competiție: design CAD și fabricație mecanică, electronică, și cod autonom + teleoperat în Java. Participăm la competiții regionale și naționale și facem outreach STEM în comunitate.',
+  crocorobo:'Echipa de robotică Crocorobo concurează în FIRST Lego League (FLL). Copiii construiesc și programează roboți din LEGO (SPIKE) care rezolvă misiuni autonome pe teren și prezintă un proiect de inovație pe tema sezonului. Accent pe lucru în echipă, gândire computațională și valorile FIRST.',
   timisoara:'Site pentru conferința Timișoara Model United Nations: înscrieri delegați, program, comitete și informații pentru participanți. Backend Flask/Python.',
 };
 function projImg(p){ return p.img || `images/ads/${p.slug}.jpg`; }
@@ -173,7 +179,7 @@ const citymap = document.getElementById('citymap');
 const cityLeg = document.getElementById('cityLeg');
 
 const LINES = [
-  {key:'R', code:'M1', c:'#f7a600', label:'Robotică & live', pts:'420,340 680,560'},
+  {key:'R', code:'M1', c:'#f7a600', label:'Robotică & live', pts:'420,340 680,560 900,660'},
   {key:'A', code:'M2', c:'#1f3f93', label:'Produs / AI',     pts:'1340,800 1340,1060 1340,1320'},
   {key:'E', code:'M3', c:'#e2231a', label:'Educațional',     pts:'560,800 900,800 1340,800'},
   {key:'W', code:'M4', c:'#2e8b57', label:'Web & client',    pts:'900,800 900,1120'},
@@ -181,7 +187,8 @@ const LINES = [
 ];
 const STATIONS = [
   {slug:'roworlds',  name:'RO Worlds',     x:420,  y:340,  c:'#f7a600', lab:'t'},
-  {slug:'perpetuum', name:'Perpetuum',     x:680,  y:560,  c:'#f7a600', lab:'b'},
+  {slug:'perpetuum', name:'Perpetuum',     x:680,  y:560,  c:'#f7a600', lab:'l'},
+  {slug:'crocorobo', name:'Crocorobo',     x:900,  y:660,  c:'#f7a600', lab:'r'},
   {slug:'criptare',  name:'Criptare',      x:560,  y:800,  c:'#e2231a', lab:'l'},
   {slug:'arbori',    name:'Arbori',        x:900,  y:800,  c:'#e2231a', intc:true, lab:'t'},
   {slug:'trainbot',  name:'TrainBot',      x:1340, y:800,  c:'#1f3f93', intc:true, lab:'t'},
