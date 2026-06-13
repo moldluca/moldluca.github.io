@@ -95,7 +95,7 @@ a{color:inherit;text-decoration:none;}
     radial-gradient(circle at 0 100%,var(--gold) 0 3.5px,transparent 4.5px),
     radial-gradient(circle at 100% 100%,var(--gold) 0 3.5px,transparent 4.5px);}
 .frame-initials{font-family:var(--serif);font-size:7rem;color:var(--green);font-weight:500;opacity:.9;}
-.vandal{position:absolute;font-family:var(--tag);color:var(--spray);font-size:2.4rem;transform:rotate(-8deg);bottom:14%;left:15%;text-shadow:1px 1px 0 rgba(0,0,0,.12);}
+.vandal{position:absolute;font-family:var(--tag);color:var(--spray);font-size:2.4rem;transform:rotate(-8deg);bottom:14%;left:10%;text-shadow:1px 1px 0 rgba(0,0,0,.12);}
 .vandal2{position:absolute;font-family:var(--tag);color:var(--green);font-size:1.3rem;top:8%;right:8%;transform:rotate(6deg);text-align:center;line-height:.95;}
 .plaque{position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);background:var(--green);color:var(--paper);
   font-family:var(--serif);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:6px 18px;white-space:nowrap;}
